@@ -6,7 +6,7 @@ export const functionSlice = createSlice({
         //create page state
             //click on add btn
             showQuizType : false,
-            quizzes : [{id:Date.now,type:"qna",quiz:{}}],
+            quizzes : [{id:Date.now(),type:"qna",quiz:{}}],
             quizId: null,
         //playing page state
             start:false,
@@ -26,7 +26,13 @@ export const functionSlice = createSlice({
             },
             insertQuiz : (state,action)=>{
                 return {
-                    ...state,quizzes:[...state.quizzes,action.payload.data]
+                    ...state,quizzes:[...state.quizzes,action.payload]
+                }
+            },
+            deleteQuiz : (state,action)=>{
+                const newQuizzes =state.quizzes.filter((item)=>item.id !== action.payload.quizId);
+                return {
+                    ...state,quizzes:newQuizzes
                 }
             },
             
@@ -45,5 +51,7 @@ export const functionSlice = createSlice({
 })
 
 export const {startPlaying, nextPage,getQuizId,
-             prevPage,setShowQuizType,insertQuiz} = functionSlice.actions;
+             prevPage,setShowQuizType,insertQuiz,
+            deleteQuiz
+            } = functionSlice.actions;
 export default functionSlice.reducer;

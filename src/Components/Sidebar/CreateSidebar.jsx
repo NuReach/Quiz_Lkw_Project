@@ -18,39 +18,28 @@ export default function CreateSidebar() {
     const addQuiz = (e,type)=>{
         e.preventDefault();
         if (type == "qna") {
-            dispatch(insertQuiz({    
-                                type:"ADD_QA",
-                                data:{
-                                        id:Date.now(),
-                                        type:type, 
-                                        quiz:{},
-                                    }}))    
+            dispatch(insertQuiz({
+                id:Date.now(),
+                type:type, 
+                quiz:{},
+            }))
         } else if ( type == "tf" ) {
             dispatch(insertQuiz({
-                                type:"ADD_QA",
-                                data:{
-                                        id:Date.now(),
-                                        type:type,
-                                        quiz:{}
-                                    }
-                              }))   
+                id:Date.now(),
+                type:type,
+                quiz:{}
+            }))   
         }else if (type == "qcm") {
             dispatch(insertQuiz({
-                                type:"ADD_QA",
-                                data:{
-                                        id:Date.now(),
-                                        type:type,
-                                        quiz:{}
-                                    }
+                id:Date.now(),
+                type:type,
+                quiz:{}                     
             }))
         }else{
             dispatch(insertQuiz({
-                type:"ADD_QA",
-                data:{
-                        id:Date.now(),
-                        type:"op",
-                        quiz:{}
-                    }
+                id:Date.now(),
+                type:"op",
+                quiz:{}     
             }))
         };
         dispatch(setShowQuizType());
@@ -63,6 +52,7 @@ export default function CreateSidebar() {
     };
     const quizId = useSelector((state)=>state.function.quizId);
     //step 4
+    console.log(quizId);
     const save = ()=>{};
     const title = "";
   return (
