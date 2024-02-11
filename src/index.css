@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+
+.mid {
+    width: 540px;
+}
+
+
+@media only screen and (max-width: 735px ) {
+    .mid {
+      width: 100%;
+    }
+  
+  }
+
+.scrollWidth{
+  scrollbar-width: none;
+}
+
+.circle {
+  border-radius: 50%;
+}
