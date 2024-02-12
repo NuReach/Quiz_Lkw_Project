@@ -10,8 +10,6 @@ import QCMform from '../Components/Quiz/QCMform'
 import CreateSidebar from '../Components/Sidebar/CreateSidebar'
 
 export default function CreatePage() {
-    const param = useParams();
-    const {title} = param;
     const dispatch = useDispatch();
     const [quiz,setQuiz] = useState(null);
     const quizzes = useSelector((state)=>state.function.quizzes);

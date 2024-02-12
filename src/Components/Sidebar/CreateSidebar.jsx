@@ -5,9 +5,12 @@ import QAquiz from '../Quiz/QAquiz';
 import QCMquiz from '../Quiz/QCMquiz';
 import TFquiz from '../Quiz/TFquiz';
 import OPquiz from '../Quiz/OPquiz';
+import { useParams } from 'react-router-dom';
 
 export default function CreateSidebar() {
     const dispatch = useDispatch();
+    const param = useParams();
+    const {title} = param;
     //step 1
     const showQuizType = useSelector((state)=>state.function.showQuizType);
     const showQuizTypeBtn = (e)=>{
@@ -52,8 +55,11 @@ export default function CreateSidebar() {
     };
     const quizId = useSelector((state)=>state.function.quizId);
     //step 4
-    const save = ()=>{};
-    const title = "";
+    const save = (e)=>{
+        e.preventDefault();
+        console.log({id:Date.now(),title:title,quizzes});
+    };
+   
   return (
     <div className='w-36 shadow-lg p-3 border md:min-w-64 '>
     <section className='line-clamp-2 bg-purple-600 rounded-lg text-sm  p-3 font-medium  text-white'>
@@ -65,11 +71,11 @@ export default function CreateSidebar() {
                 <div onClick={(e)=>findQuizId(e,item.id)} key={i} className={ item.id===quizId ? "scale-110 transition my-1 border-pink-600 border-b-4 rounded-lg" : "" }>
                 {
                 item.type == "qna" ? 
-                <QAquiz  /> :
+                <QAquiz number={i}  /> :
                 (item.type == "qcm") ?
-                <QCMquiz  /> :
+                <QCMquiz number={i}  /> :
                 (item.type == "tf") ? 
-                <TFquiz  /> : <OPquiz  />
+                <TFquiz number={i} /> : <OPquiz number={i} />
                 }
                 </div>
             ))
@@ -77,7 +83,7 @@ export default function CreateSidebar() {
     </section>
     <section className='relative '>
         <button onClick={showQuizTypeBtn} className='bg-green-500  rounded-lg p-2 text-center w-full text-white font-medium mt-3 hover:scale-105 transition'>Add</button>
-        <button onClick={save} className='bg-blue-500  rounded-lg p-2 text-center w-full text-white font-medium mt-3 '>Save</button>
+        <button onClick={save} className='bg-blue-500  rounded-lg p-2 text-center w-full text-white font-medium mt-3 hover:scale-105 transition'>Save</button>
         {
             showQuizType && 
             <div className='absolute -top-32 -right-52 bg-white p-3 shadow-lg border w-48 rounded-lg transition'>
