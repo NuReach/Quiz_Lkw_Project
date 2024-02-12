@@ -1,14 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { updateQuiz } from '../../Slice/functionSlice';
 
-export default function QAform() {
+export default function QAform({quiz}) {
     const dispatch = useDispatch();
-    const [question, setquestion] = useState("");
+    const [question, setquestion] = useState(quiz?.quiz.question);
+    const quizId = useSelector((state)=>state.function.quizId);
+    const quizzes =  useSelector((state)=>state.function.quizzes);
     const handleSubmit = (e)=>{
-        e.preventDefault();
+        e.preventDefault(); 
+      dispatch(updateQuiz({data:{id:quizId,type:"qna",quiz:{question:question}},quizzes:quizzes}))
     }
-
-   
 
   return (
     <div className='w-80 md:w-96 border shadow-lg rounded-md  p-6'>

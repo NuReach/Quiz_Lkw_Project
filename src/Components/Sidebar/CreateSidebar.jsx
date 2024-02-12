@@ -52,7 +52,6 @@ export default function CreateSidebar() {
     };
     const quizId = useSelector((state)=>state.function.quizId);
     //step 4
-    console.log(quizId);
     const save = ()=>{};
     const title = "";
   return (

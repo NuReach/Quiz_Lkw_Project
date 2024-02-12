@@ -1,12 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { updateQuiz } from '../../Slice/functionSlice';
 
-export default function TFform() {
-  const [question, setQuestion] = useState("");
-  const [op,setOp] = useState("");
+export default function TFform({quiz}) {
+  const [question, setQuestion] = useState(quiz?.quiz.question);
+  const [op,setOp] = useState(quiz?.quiz.answer);
   const dispatch = useDispatch();
+  const quizId = useSelector((state)=>state.function.quizId);
+  const quizzes =  useSelector((state)=>state.function.quizzes);
   const handleSubmit = (e)=>{
     e.preventDefault();
+    dispatch(updateQuiz({data:{id:quizId,type:"tf",quiz:{question:question,answer:op}},quizzes:quizzes}))
   }
 
 

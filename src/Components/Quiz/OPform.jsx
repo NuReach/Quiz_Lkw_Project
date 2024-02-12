@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import { updateQuiz } from '../../Slice/functionSlice';
 
-export default function OPform() {
-  const [question, setquestion] = useState("");
-  const [anw1,setAnw1] = useState("");
-  const [anw2,setAnw2] = useState("");
-  const [anw3,setAnw3] = useState("");
-  const [anw4,setAnw4] = useState("");
+export default function OPform({quiz}) {
+  const [question, setquestion] = useState(quiz?.quiz.question);
+  const [anw1,setAnw1] = useState(quiz?.quiz.anw1);
+  const [anw2,setAnw2] = useState(quiz?.quiz.anw2);
+  const [anw3,setAnw3] = useState(quiz?.quiz.anw3);
+  const [anw4,setAnw4] = useState(quiz?.quiz.anw4);
   const [answers,setAnswers] = useState([]);
   const [checked,setChecked] = useState([]);
   const dispatch = useDispatch();
-  const handleSubmit = (e)=>{
-    e.preventDefault();
-
-  };
+  const quizId = useSelector((state)=>state.function.quizId);
+  const quizzes =  useSelector((state)=>state.function.quizzes);
   const handleChange=(e)=>{
     const { value, checked } = e.target;
     setAnswers((prev)=>
-      checked ? [ ...prev, value ] :
-      prev.filter((item)=>item != value) 
+    checked ? [ ...prev, value ] :
+    prev.filter((item)=>item != value) 
     )
   };
-
+  const handleSubmit = (e)=>{
+    e.preventDefault();
+    dispatch(updateQuiz({data:{id:quizId,type:"op",quiz:{question:question,anw1,anw2,anw3,anw4,answer:answers}},quizzes:quizzes}))
+  };
+  
 
   return (
     <div className='w-80 md:w-96 border shadow-lg rounded-md  p-6'>

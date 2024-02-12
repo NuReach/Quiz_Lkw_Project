@@ -35,7 +35,16 @@ export const functionSlice = createSlice({
                     ...state,quizzes:newQuizzes
                 }
             },
-            
+            updateQuiz : (state,action)=>{
+                const item = action.payload.data; 
+                const existQuiz = state.quizzes.filter((x)=>x.id == item.id);
+                const quizzes = action.payload.quizzes;
+                if (existQuiz) {
+                    return {
+                        ...state,quizzes:quizzes.map((x)=>x.id == item.id ? item : x )
+                    }
+                }                
+            },
         startPlaying : ( state, action )=> {
             return {
                 ...state,start:!state.start
@@ -52,6 +61,6 @@ export const functionSlice = createSlice({
 
 export const {startPlaying, nextPage,getQuizId,
              prevPage,setShowQuizType,insertQuiz,
-            deleteQuiz
+            deleteQuiz,updateQuiz
             } = functionSlice.actions;
 export default functionSlice.reducer;

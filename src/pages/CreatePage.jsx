@@ -13,12 +13,13 @@ export default function CreatePage() {
     const param = useParams();
     const {title} = param;
     const dispatch = useDispatch();
+    const [quiz,setQuiz] = useState(null);
     const quizzes = useSelector((state)=>state.function.quizzes);
     const quizId = useSelector((state)=>state.function.quizId);
-    const getOneQuiz = quizzes.filter((item)=>item.id == quizId);
-    console.log(getOneQuiz);
-    
-  return (
+    useEffect(()=>{
+      setQuiz(quizzes.find((item)=>item.id == quizId));
+    },[quizId])
+   return (
     <div>
         <Navbar />
         <div className='flex'>
@@ -26,10 +27,10 @@ export default function CreatePage() {
             <div className='flex justify-center items-center w-full'> 
                 {
                 <div>{
-                getOneQuiz[0]?.type == "qna" ?  <QAform /> :
-                (getOneQuiz[0]?.type == "qcm" ? <QCMform /> :
-                (getOneQuiz[0]?.type == "tf" ? <TFform /> : 
-                (getOneQuiz[0]?.type == "op" ? <OPform/> : "" )  
+                quiz?.type == "qna" ?  <QAform key={quiz.id} quiz={quiz} /> :
+                (quiz?.type == "qcm" ? <QCMform key={quiz.id} quiz={quiz} /> :
+                (quiz?.type == "tf" ? <TFform key={quiz.id} quiz={quiz} /> : 
+                (quiz?.type == "op" ? <OPform key={quiz.id} quiz={quiz}/> : "" )  
                 ))
                 }
                 </div>
