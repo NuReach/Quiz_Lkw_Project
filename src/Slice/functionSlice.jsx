@@ -11,6 +11,7 @@ export const functionSlice = createSlice({
         //playing page state
             start:false,
             page : 0,
+            userAnswer:[],
     },
     reducers : {
         //create page function
@@ -45,22 +46,26 @@ export const functionSlice = createSlice({
                     }
                 }                
             },
-        startPlaying : ( state, action )=> {
-            return {
-                ...state,start:!state.start
+        //playing page
+            startPlaying : ( state, action )=> {
+                return {
+                    ...state,start:!state.start
+                }
+            },
+            nextPage : (state,action) =>{
+                    state.page++;
+            },
+            prevPage : (state,action) =>{
+                state.page--;
+            },
+            insertUserAnswer : (state,action)=>{
+                console.log(action.payload);
             }
-        },
-        nextPage : (state,action) =>{
-                state.page++;
-        },
-        prevPage : (state,action) =>{
-             state.page--;
-        },
     }
 })
 
 export const {startPlaying, nextPage,getQuizId,
              prevPage,setShowQuizType,insertQuiz,
-            deleteQuiz,updateQuiz
+            deleteQuiz,updateQuiz,insertUserAnswer
             } = functionSlice.actions;
 export default functionSlice.reducer;

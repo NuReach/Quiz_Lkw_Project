@@ -22,9 +22,10 @@ export default function Playing() {
   const param = useParams();
   const id = param.id;
   const quiz = data.find(item=>item.id == id);
-  const [quizzes,setQuizzes] = useState(quiz.quizzes);
+  const [questions,setQuestions] = useState(quiz.questions);
   const page = useSelector((state)=>state.function.page);
-  console.log(quizzes);
+  const userAnswr = useSelector((state)=>state.function.userAnswer);
+  console.log(userAnswr);
   return (
     <div>
       <Navbar />
@@ -39,21 +40,21 @@ export default function Playing() {
                   </div>
                   <div className=' items-center justify-center flex py-3  '>
                     {
-                      quizzes[page].type == "qna" ? 
-                      <QAplaying item={quizzes[page]} number={page+1} /> :
-                      (quizzes[page].type == "qcm") ?
-                      <QCMplaying item={quizzes[page]} number={page+1} /> :
-                      (quizzes[page].type == "tf") ? 
-                      <TFplaying item={quizzes[page]} number={page+1} /> : <OPplaying item={quizzes[page]} number={page+1} />
+                      questions[page].type == "qna" ? 
+                      <QAplaying item={questions[page]} number={page+1} quizId={id} /> :
+                      (questions[page].type == "qcm") ?
+                      <QCMplaying item={questions[page]} number={page+1} quizId={id} /> :
+                      (questions[page].type == "tf") ? 
+                      <TFplaying item={questions[page]} number={page+1} quizId={id} /> : <OPplaying item={questions[page]} number={page+1} quizId={id} />
                     }
                   </div>
                   <div className='flex justify-between items-center'>
                       <PreviousQuestion />
                       {
-                        page == quizzes.length-1 ? 
+                        page == questions.length-1 ? 
                         <SubmitAnswerBtn />
                         :
-                      <NextQuestion quizzes={quizzes} />  
+                      <NextQuestion quizzes={questions} />  
                       }
 
                   </div>

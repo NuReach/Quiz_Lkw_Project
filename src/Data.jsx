@@ -5,7 +5,7 @@ export const all = [
         image : "",
         duration : 40,
         author : "Reach",
-        quizzes : [
+        questions : [
             {
                 id:"q1",
                 question : "What does database mean ?",

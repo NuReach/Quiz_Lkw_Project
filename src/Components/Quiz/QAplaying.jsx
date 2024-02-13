@@ -1,8 +1,16 @@
 import React, { useState } from 'react'
 import Clock from '../Clock/Clock'
+import { useDispatch } from 'react-redux';
+import { insertUserAnswer } from '../../Slice/functionSlice';
 
-export default function QAplaying({item,number}) {
+export default function QAplaying({item,number,quizId}) {
   const [answer, setAnswer] = useState("");
+  const dispatch = useDispatch();
+  const handleChange = (e)=>{
+    setAnswer(e.target.value);
+    dispatch(insertUserAnswer({id:Date.now(),userId:1,questionId:item.id,quizId:quizId,answer:answer}))
+  }
+
   return (
     <div className=' border shadow-lg rounded-md w-full lg:w-8/12  p-6 min-h-96'>
         <div className='flex flex-col justify-center items-center shadow-lg border p-3 rounded-sm'>
@@ -16,7 +24,7 @@ export default function QAplaying({item,number}) {
           <div className='w-full border my-3 '>
           </div>
         </div>
-        <textarea className='w-full my-1  ' name="" id="" onChange={(e)=>setAnswer(e.target.value)} placeholder='Enter your answer here !' >{answer}</textarea>
+        <textarea className='w-full my-1  ' name="" id="" onChange={handleChange} placeholder='Enter your answer here !' >{answer}</textarea>
     </div>
     )
 }
