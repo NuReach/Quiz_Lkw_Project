@@ -24,7 +24,7 @@ export default function Playing() {
   const quiz = data.find(item=>item.id == id);
   const [questions,setQuestions] = useState(quiz.questions);
   const page = useSelector((state)=>state.function.page);
-  const userAnswr = useSelector((state)=>state.function.userAnswer);
+  const userAnswr = useSelector((state)=>state.function.userAnswers);
   console.log(userAnswr);
   return (
     <div>

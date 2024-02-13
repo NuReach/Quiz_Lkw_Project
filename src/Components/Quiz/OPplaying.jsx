@@ -1,7 +1,12 @@
 import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
+import { insertUserAnswer } from '../../Slice/functionSlice';
 
-export default function OPplaying({item,number}) {
-  const [answer, setAnswer] = useState([]);
+export default function OPplaying({item,number,quizId}) {
+  const id = item.id+quizId;
+  const userAnswers = useSelector((state)=>state.function.userAnswers);
+  const [answer, setAnswer] = useState((userAnswers?.filter((x)=>x.id==id)[0])?.answer);
+  const dispatch = useDispatch();
   const handleClick = (e,choice)=>{
     e.preventDefault();
     const updatedArr= answer.includes(choice) ?
@@ -9,8 +14,8 @@ export default function OPplaying({item,number}) {
     :
     [...answer,choice]
     setAnswer(updatedArr);
+    dispatch(insertUserAnswer({data:{id:id,userId:1,questionId:item.id,quizId:quizId,answer:updatedArr},userAnswers:userAnswers}))
   }
-  console.log(answer);
   return (
     <div className=' border shadow-lg rounded-md w-full lg:w-8/12  p-6 min-h-96'>
       <div className='flex flex-col justify-center items-center shadow-lg border p-3 rounded-sm'>

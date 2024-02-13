@@ -1,10 +1,16 @@
 import React, { useState } from 'react'
+import { insertUserAnswer } from '../../Slice/functionSlice';
+import { useDispatch, useSelector } from 'react-redux';
 
-export default function QCMplaying({item,number}) {
-  const [answer, setAnswer] = useState("");
+export default function QCMplaying({item,number,quizId}) {
+  const userAnswers = useSelector((state)=>state.function.userAnswers);
+  const id = item.id+quizId;
+  const [answer, setAnswer] = useState((userAnswers?.filter((x)=>x.id==id)[0])?.answer);
+  const dispatch = useDispatch();
   const handleClick = (e,choice)=>{
     e.preventDefault();
     setAnswer(choice);
+    dispatch(insertUserAnswer({data:{id:id,userId:1,questionId:item.id,quizId:quizId,answer:choice},userAnswers:userAnswers}))
   }
   return (
     <div className=' border shadow-lg rounded-md w-full lg:w-8/12  p-6 min-h-96'>

@@ -11,7 +11,7 @@ export const functionSlice = createSlice({
         //playing page state
             start:false,
             page : 0,
-            userAnswer:[],
+            userAnswers:[],
     },
     reducers : {
         //create page function
@@ -59,7 +59,19 @@ export const functionSlice = createSlice({
                 state.page--;
             },
             insertUserAnswer : (state,action)=>{
-                console.log(action.payload);
+                const item = action.payload.data;
+                const userAnswers = action.payload.userAnswers;
+                const existItem = state.userAnswers.find((x)=>x.id == item.id);
+                if (existItem) {
+                    return {
+                        ...state,userAnswers:userAnswers.map((x)=>x.id==item.id ? item : x)
+                    }
+                }else{
+                    return {
+                        ...state,userAnswers:[...state.userAnswers,item]
+                    }  
+                }
+                
             }
     }
 })

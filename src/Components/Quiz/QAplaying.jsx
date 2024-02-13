@@ -1,14 +1,16 @@
 import React, { useState } from 'react'
 import Clock from '../Clock/Clock'
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { insertUserAnswer } from '../../Slice/functionSlice';
 
 export default function QAplaying({item,number,quizId}) {
-  const [answer, setAnswer] = useState("");
+  const userAnswers = useSelector((state)=>state.function.userAnswers);
   const dispatch = useDispatch();
+  const id = quizId+item.id;
+  const [answer, setAnswer] = useState((userAnswers?.filter((x)=>x.id==id)[0])?.answer);
   const handleChange = (e)=>{
     setAnswer(e.target.value);
-    dispatch(insertUserAnswer({id:Date.now(),userId:1,questionId:item.id,quizId:quizId,answer:answer}))
+    dispatch(insertUserAnswer({data:{id:id,userId:1,questionId:item.id,quizId:quizId,answer:e.target.value},userAnswers:userAnswers}))
   }
 
   return (
