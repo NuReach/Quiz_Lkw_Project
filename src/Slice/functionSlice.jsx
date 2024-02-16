@@ -6,7 +6,7 @@ export const functionSlice = createSlice({
         //create page state
             //click on add btn
             showQuizType : false,
-            quizzes : [{id:Date.now(),type:"qna",quiz:{}}],
+            quizzes : [{id:Date.now(),type:"tf",quiz:{}}],
             quizId: null,
         //playing page state
             start:false,
@@ -76,8 +76,9 @@ export const functionSlice = createSlice({
     }
 })
 
-export const {startPlaying, nextPage,getQuizId,
-             prevPage,setShowQuizType,insertQuiz,
-            deleteQuiz,updateQuiz,insertUserAnswer
+export const {
+    startPlaying, nextPage,getQuizId,
+    prevPage,setShowQuizType,insertQuiz,
+    deleteQuiz,updateQuiz,insertUserAnswer
             } = functionSlice.actions;
 export default functionSlice.reducer;

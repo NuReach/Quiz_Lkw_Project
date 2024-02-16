@@ -9,8 +9,7 @@ import { useParams } from 'react-router-dom';
 
 export default function CreateSidebar() {
     const dispatch = useDispatch();
-    const param = useParams();
-    const {title} = param;
+    const title = "Create Quizzes";
     //step 1
     const showQuizType = useSelector((state)=>state.function.showQuizType);
     const showQuizTypeBtn = (e)=>{
@@ -86,23 +85,22 @@ export default function CreateSidebar() {
         <button onClick={save} className='bg-blue-500  rounded-lg p-2 text-center w-full text-white font-medium mt-3 hover:scale-105 transition'>Save</button>
         {
             showQuizType && 
-            <div className='absolute -top-32 -right-52 bg-white p-3 shadow-lg border w-48 rounded-lg transition'>
+            <div className='absolute -top-9 -right-52 bg-white p-3 shadow-lg border w-48 rounded-lg transition'>
                 <div>
                     <p className='text-sm cursor-pointer font-medium '>Type</p>
-                </div>
-                <div onClick={(e)=>addQuiz(e,"qna")} className='bg-red-500 p-2 my-2 text-white text-center hover:scale-105 transition cursor-pointer'>
-                    <p className='text-xs font-medium'>QUESTION</p>
-                </div>
-                <div onClick={(e)=>addQuiz(e,"qcm")} className='bg-yellow-400 p-2 my-2 text-white text-center hover:scale-105 transition cursor-pointer' >
-                    <p className='text-xs font-medium'>QCM</p>
                 </div>
                 <div onClick={(e)=>addQuiz(e,"tf")} className='bg-green-500 p-2 my-2 text-white text-center hover:scale-105 transition cursor-pointer'>
                     <p className='text-xs font-medium'>TRUE OR FALSE</p>
                 </div>
-                <div onClick={(e)=>addQuiz(e,"op")} className='bg-blue-500 p-2 my-2 text-white text-center hover:scale-105 transition cursor-pointer'>
-                    <p className='text-xs font-medium'>OPTION</p>
+                <div onClick={(e)=>addQuiz(e,"qcm")} className='bg-yellow-400 p-2 my-2 text-white text-center hover:scale-105 transition cursor-pointer' >
+                    <p className='text-xs font-medium'>QCM</p>
                 </div>
-            
+                {/* <div onClick={(e)=>addQuiz(e,"qna")} className='bg-red-500 p-2 my-2 text-white text-center hover:scale-105 transition cursor-pointer'>
+                    <p className='text-xs font-medium'>QUESTION</p>
+                </div> */}
+                {/* <div onClick={(e)=>addQuiz(e,"op")} className='bg-blue-500 p-2 my-2 text-white text-center hover:scale-105 transition cursor-pointer'>
+                    <p className='text-xs font-medium'>OPTION</p>
+                </div> */}
             </div>
         }
     </section>

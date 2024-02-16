@@ -52,7 +52,7 @@ export default function OPform({quiz}) {
            <input type="checkbox" value="anw4" name='answers' onChange={handleChange} checked={answers.find((item)=>item=="anw4")}  />
        </div>
      </div>
-     <input type='submit' className='text-xs text-white font-medium py-2 px-4 bg-pink-500 rounded-md hover:scale-105 transition' ></input>
+     <input type='submit' className='text-xs w-full my-3 text-white font-medium py-2 px-4 bg-pink-500 rounded-md hover:scale-105 transition' ></input>
     </form>
 </div>
   )

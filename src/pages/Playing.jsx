@@ -34,29 +34,40 @@ export default function Playing() {
             start ?
             <div className='w-full p-6 '>
                   <div className='flex justify-end'>
-                    {/* <div>
+                    <div>
                       <Clock />
-                    </div> */}
+                    </div>
                   </div>
-                  <div className=' items-center justify-center flex py-3  '>
-                    {
+                  <div className=' items-center justify-center flex flex-col py-3  '>
+                    {/* {
                       questions[page].type == "qna" ? 
                       <QAplaying item={questions[page]} number={page+1} quizId={id} /> :
                       (questions[page].type == "qcm") ?
                       <QCMplaying item={questions[page]} number={page+1} quizId={id} /> :
                       (questions[page].type == "tf") ? 
                       <TFplaying item={questions[page]} number={page+1} quizId={id} /> : <OPplaying item={questions[page]} number={page+1} quizId={id} />
+                    } */}
+                    
+                    {
+                      questions.map((item,i)=>(
+                      item.type == "qna" ? 
+                      <QAplaying item={item} number={page+1} quizId={id} /> :
+                      (item.type == "qcm") ?
+                      <QCMplaying item={item} number={page+1} quizId={id} /> :
+                      (item.type == "tf") ? 
+                      <TFplaying item={item} number={page+1} quizId={id} /> : <OPplaying item={item} number={page+1} quizId={id} />
+                      ))
                     }
                   </div>
-                  <div className='flex justify-between items-center'>
-                      <PreviousQuestion />
+                  <div className='flex justify-end w-full items-center'>
+                      {/* <PreviousQuestion />
                       {
                         page == questions.length-1 ? 
                         <SubmitAnswerBtn />
                         :
                       <NextQuestion quizzes={questions} />  
-                      }
-
+                      } */}
+                      <SubmitAnswerBtn />
                   </div>
             </div>
              :

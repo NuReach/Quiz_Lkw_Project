@@ -41,6 +41,41 @@ export default function Home() {
                         </div>
                         
                     </div>
+                </section>
+                <section className='md:w-72 m-6 w-full'>
+                    <div className='border rounded-lg shadow-lg p-3 '>
+                        <div className='text-sm uppercase font-bold'>
+                            <p className='text-blue-500'>Total Participants</p>
+                            <p className='text-gray-500 text-xs'>120 Students</p>
+                        </div>
+                    </div>
+                    <div className='border rounded-lg shadow-lg p-3 mt-3'>
+                        <div className='text-sm uppercase font-bold'>
+                            <p className='text-pink-500'>Last Quiz</p>
+                            <p className='text-gray-500 text-xs'>Updated at : 2024-15-02</p>
+                        </div>
+                        <div className='my-3 border-b pb-3 flex space-x-3 items-center'>
+                            <img className='w-9' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzpfF9JQ8S-3yextczkPpYtj7yi660mfH9kBLtj564KgPfq2_DrAbayHSI8XtqUTiI9T8&usqp=CAU" alt="" />
+                            <div className='text-xs font-bold'>
+                                <p>Math Limit</p>
+                                <p className='text-gray-500'>Total : 20 Question</p>
+                            </div>
+                        </div>
+                        <div className='my-3 border-b pb-3 flex space-x-3 items-center'>
+                            <img className='w-9' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzpfF9JQ8S-3yextczkPpYtj7yi660mfH9kBLtj564KgPfq2_DrAbayHSI8XtqUTiI9T8&usqp=CAU" alt="" />
+                            <div className='text-xs font-bold'>
+                                <p>Math Limit</p>
+                                <p className='text-gray-500'>Total : 20 Question</p>
+                            </div>
+                        </div>
+                        <div className='my-3 border-b pb-3 flex space-x-3 items-center'>
+                            <img className='w-9' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzpfF9JQ8S-3yextczkPpYtj7yi660mfH9kBLtj564KgPfq2_DrAbayHSI8XtqUTiI9T8&usqp=CAU" alt="" />
+                            <div className='text-xs font-bold'>
+                                <p>Math Limit</p>
+                                <p className='text-gray-500'>Total : 20 Question</p>
+                            </div>
+                        </div>
+                    </div>
                     <div className='border rounded-lg shadow-lg p-3 mt-3'>
                         <div className='text-sm uppercase font-bold'>
                             <p className='text-green-500'>Your Questios</p>
@@ -68,28 +103,7 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
-                </section>
-                <section className='md:w-72 m-6'>
-                    <div className='border rounded-lg shadow-lg p-3'>
-                        <div className='text-sm uppercase font-bold'>
-                            <p className='text-blue-500'>Total Participants</p>
-                            <p className='text-gray-500 text-xs'>120 Students</p>
-                        </div>
-                    </div>
-                    <div className='border rounded-lg shadow-lg p-3 mt-3'>
-                        <div className='text-sm uppercase font-bold'>
-                            <p className='text-pink-500'>Last Quiz</p>
-                            <p className='text-gray-500 text-xs'>Updated at : 2024-15-02</p>
-                        </div>
-                        <div className='my-3 border-b pb-3 flex space-x-3 items-center'>
-                            <img className='w-9' src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzpfF9JQ8S-3yextczkPpYtj7yi660mfH9kBLtj564KgPfq2_DrAbayHSI8XtqUTiI9T8&usqp=CAU" alt="" />
-                            <div className='text-xs font-bold'>
-                                <p>Math Limit</p>
-                                <p className='text-gray-500'>Total : 20 Question</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div className='border rounded-lg shadow-lg p-3 mt-3'>
+                    {/* <div className='border rounded-lg shadow-lg p-3 mt-3'>
                         <div className='text-sm uppercase font-bold'>
                             <p className='text-purple-700'>News</p>
                             <p className='text-gray-500 text-xs line-clamp-2'>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reiciendis unde voluptate, magni laudantium cum voluptatum maxime ab 
@@ -108,7 +122,7 @@ export default function Home() {
                         <div>
                             <img className='w-full max-h-72 object-contain' src="/pic/news2.jpg" alt="" />
                         </div>
-                    </div>
+                    </div> */}
                 </section>
                 <section className='m-6 mid' >
                     <div>
