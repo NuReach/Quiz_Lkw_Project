@@ -20,11 +20,11 @@ export default function Navbar() {
   }
 
   return (
-    <nav className='bg-black flex justify-between items-center px-6 shadow-2xl '>
+    <nav className='bg-black flex justify-between items-center px-6 shadow-2xl  '>
         <Link to={"/"}>
           <img className='w-24' src="https://upload.wikimedia.org/wikipedia/commons/0/08/Limkokwing_Corporate_Logo_2018.png" alt="" />
         </Link>
-        <div className='relative'>
+        <div className='relative md:block hidden'>
           <input placeholder='Input Quiz Code...' className=' bg-inherit lg:w-96 text-xs rounded-md text-white border-2 border-gray-400 focus:border-2 focus:border-gray-400 focus:ring-0  transition'  type="text" value={quizId} onChange={(e)=>setQuizId(e.target.value)} />
           <button onClick={handleClick} className='text-white text-xs absolute  font-medium z-10 right-0 rounded-r-md bg-green-500 h-full border-2 border-l-0 p-2 border-gray-400 '>GO</button>
         </div>

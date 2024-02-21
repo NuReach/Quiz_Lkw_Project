@@ -6,7 +6,7 @@ export default function Sidebar() {
   const route = location.pathname;
   const menu = [
     {
-        title:"Home",
+        title:"Dashboard",
         link:"/",
         icon:'<svg  xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><path fill="currentColor" d="M4 21V9l8-6l8 6v12h-6v-7h-4v7z"/></svg>',
     },
@@ -54,7 +54,7 @@ export default function Sidebar() {
         <section className='flex flex-col space-y-6 border-b-2 pb-6'>
             {
                 menu.map((item,i)=>(
-                    <Link to={item.link} key={i} className={ route==item.link ?'text-white bg-purple-800 p-3 rounded-md font-bold flex space-x-3 items-center text-sm cursor-pointer':'text-gray-600 font-bold flex space-x-3 items-center text-sm cursor-pointer'}>
+                    <Link to={item.link} key={i} className={ route==item.link ?'text-white bg-purple-800 p-3 rounded-md md:justify-normal justify-center font-bold flex space-x-3 items-center text-sm cursor-pointer':'text-gray-600 font-bold md:justify-normal justify-center flex space-x-3 items-center text-sm cursor-pointer'}>
                         <div dangerouslySetInnerHTML={{ __html: item.icon }} />
                         <p className='hidden md:block'>{item.title}</p>
                     </Link>
@@ -65,7 +65,7 @@ export default function Sidebar() {
         <p className='font-bold text-gray-500 text-sm hidden md:block mt-3'>Channels</p>
             {
                 channels.map((item,i)=>(
-                    <div key={i} className={ route==item.link ?'text-white bg-purple-800 p-3 rounded-md font-bold flex space-x-3 items-center text-sm cursor-pointer':'text-gray-600 font-bold flex space-x-3 items-center text-sm cursor-pointer'}>
+                    <div key={i} className={ route==item.link ?'text-white bg-purple-800 p-3 rounded-md font-bold flex space-x-3 justify-center md:justify-normal items-center text-sm cursor-pointer':'text-gray-600 justify-center md:justify-normal font-bold flex space-x-3 items-center text-sm cursor-pointer'}>
                         <div dangerouslySetInnerHTML={{ __html: item.icon }} />
                         <p  className='hidden md:block'>{item.title}</p>
                     </div>
