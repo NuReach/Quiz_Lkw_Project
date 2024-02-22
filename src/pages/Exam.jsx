@@ -11,7 +11,6 @@ import NextQuestion from '../Components/Button/NextQuestion'
 export default function Exam() {
   const text ="asdfgh";
   const [data,setData]=useState(text.split(""));
-  console.log(data);
   return (
     <div>
         <Navbar />
