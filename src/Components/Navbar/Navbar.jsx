@@ -20,7 +20,7 @@ export default function Navbar() {
   }
 
   return (
-    <nav className='bg-black flex justify-between items-center px-6 shadow-2xl  '>
+    <nav className='bg-black flex justify-between items-center px-6  '>
         <Link to={"/"}>
           <img className='w-24' src="https://upload.wikimedia.org/wikipedia/commons/0/08/Limkokwing_Corporate_Logo_2018.png" alt="" />
         </Link>

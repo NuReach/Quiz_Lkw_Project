@@ -51,7 +51,7 @@ export default function Sidebar() {
   ]
   return (
     <div className=' border w-fit p-3 shadow-lg flex flex-col md:min-w-48 h-auto pb-24  '>
-        <section className='flex flex-col space-y-6 border-b-2 pb-6'>
+        <section className='flex flex-col space-y-6 border-b-2 pb-6 mt-2'>
             {
                 menu.map((item,i)=>(
                     <Link to={item.link} key={i} className={ route==item.link ?'text-white bg-purple-800 p-3 rounded-md md:justify-normal justify-center font-bold flex space-x-3 items-center text-sm cursor-pointer':'text-gray-600 font-bold md:justify-normal justify-center flex space-x-3 items-center text-sm cursor-pointer'}>
