@@ -9,6 +9,8 @@ import Playing from "./pages/Playing"
 import Login from "./pages/Login"
 import Signup from "./pages/Signup"
 import Question from "./pages/Question"
+import Exam from "./pages/Exam"
+import Result from "./pages/Result"
 
 function App() {
   return (
@@ -16,10 +18,12 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/exam" element={<Exam />} />
+        <Route path="/result" element={<Result />} />
         <Route path="/create/quiz" element={<CreatePage />} />
         <Route path="/quiz" element={<Quiz />} />
         <Route path="/questions" element={<Question />} />
-        <Route path="/profile" element={<Profile />} />
         <Route path="/user" element={<User />} />
         <Route path="/quiz/playing/:id" element={<Playing />} />
         <Route path="/login" element={<Login />} />

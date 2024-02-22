@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function ChangePasswordCard() {
   return (
-    <div className='shadow-lg rounded-lg p-6 lg:w-96 w-80'>
+    <div className='shadow-lg rounded-lg p-6  sm:w-60 md:w-72 lg:w-80 xl:w-96'>
         <section className='border-b pb-3 mt-3'>
             <p className='text-sm font-medium'>Change Password</p>
         </section>

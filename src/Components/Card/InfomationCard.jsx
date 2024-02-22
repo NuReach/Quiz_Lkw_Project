@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function InfomationCard() {
   return (
-    <div className='shadow-lg rounded-lg p-6 w-80 lg:w-96'>
+    <div className='shadow-lg rounded-lg p-6 sm:w-60 md:w-72 lg:w-80 xl:w-96 '>
         <section className='border-b pb-3 '>
             <p className='text-sm font-medium'>User Information</p>
         </section>

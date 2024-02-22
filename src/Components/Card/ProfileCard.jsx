@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function ProfileCard() {
   return (
-    <div className='border rounded-lg shadow-lg p-3 '>
+    <div className='border rounded-lg shadow-lg p-3 w-full sm:w-60 md:w-72 lg:w-80 xl:w-96'>
         <div className='text-sm uppercase font-bold'>
             <p className='text-purple-700'>Reach</p>
             <p className='text-gray-500 text-xs'>Nureach46@gmail.com</p>

@@ -13,12 +13,12 @@ export default function Profile() {
         <Navbar/>
         <div className='flex'>
             <Sidebar />
-            <div className='w-full justify-center items-center flex flex-wrap'>
-                <div className='flex flex-col p-3 space-y-3' >
+            <div className='flex flex-wrap justify-center items-center w-full gap-6'>
+                <div className='p-3 w-full sm:w-fit flex flex-col gap-6'>
                     <InfomationCard />
                     <ChangePasswordCard />
                 </div>
-                <div className='flex flex-col w-80 lg:w-96 space-y-3 my-6'>
+                <div className='p-3 w-fit flex flex-col gap-6'>
                     <ProfileCard />
                     <InformationDetail />
                 </div>
