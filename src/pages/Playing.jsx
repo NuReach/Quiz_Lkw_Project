@@ -29,16 +29,14 @@ export default function Playing() {
   return (
     <div>
       <Navbar />
-        <div className='flex flex-col min-h-screen justify-center items-center '>
+        <div className='flex flex-col min-h-screen justify-center items-center test '>
           {
             start ?
             <div className='w-full p-6 '>
-                  <div className='flex justify-end'>
-                    <div>
+                    <div className='fixed bottom-3 right-3 md:bottom-9 md:right-9'>
                       <Clock />
                     </div>
-                  </div>
-                  <div className=' items-center justify-center flex flex-col py-3  '>
+                  <div className=' items-center justify-center flex flex-col py-3 gap-9 '>
                     {/* {
                       questions[page].type == "qna" ? 
                       <QAplaying item={questions[page]} number={page+1} quizId={id} /> :
@@ -50,16 +48,12 @@ export default function Playing() {
                     
                     {
                       questions.map((item,i)=>(
-                      item.type == "qna" ? 
-                      <QAplaying item={item} number={page+1} quizId={id} /> :
                       (item.type == "qcm") ?
-                      <QCMplaying item={item} number={page+1} quizId={id} /> :
-                      (item.type == "tf") ? 
-                      <TFplaying item={item} number={page+1} quizId={id} /> : <OPplaying item={item} number={page+1} quizId={id} />
+                      <QCMplaying item={item} number={i+1} quizId={id} /> :  <TFplaying item={item} number={i+1} quizId={id} />
                       ))
                     }
                   </div>
-                  <div className='flex justify-end w-full items-center'>
+                  <div className='flex justify-center w-full'>
                       {/* <PreviousQuestion />
                       {
                         page == questions.length-1 ? 
@@ -67,7 +61,9 @@ export default function Playing() {
                         :
                       <NextQuestion quizzes={questions} />  
                       } */}
+                      <div className='w-full md:w-96 lg:w-1/3 flex justify-end'>
                       <SubmitAnswerBtn />
+                      </div>
                   </div>
             </div>
              :

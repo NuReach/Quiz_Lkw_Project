@@ -17,17 +17,18 @@ function App() {
     <>  
     <BrowserRouter>
       <Routes>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
         <Route path="/" element={<Home />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/exam" element={<Exam />} />
         <Route path="/result" element={<Result />} />
-        <Route path="/create/quiz" element={<CreatePage />} />
-        <Route path="/quiz" element={<Quiz />} />
-        <Route path="/questions" element={<Question />} />
-        <Route path="/user" element={<User />} />
         <Route path="/quiz/playing/:id" element={<Playing />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        
+        {/* <Route path="/quiz" element={<Quiz />} />
+        <Route path="/create/quiz" element={<CreatePage />} />
+        <Route path="/questions" element={<Question />} />
+        <Route path="/user" element={<User />} /> */}
       </Routes>
     </BrowserRouter>
 
