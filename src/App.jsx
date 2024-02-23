@@ -11,6 +11,7 @@ import Signup from "./pages/Signup"
 import Question from "./pages/Question"
 import Exam from "./pages/Exam"
 import Result from "./pages/Result"
+import TeacherDashboard from "./pages/Teacher/TeacherDashboard"
 
 function App() {
   return (
@@ -24,7 +25,7 @@ function App() {
         <Route path="/exam" element={<Exam />} />
         <Route path="/result" element={<Result />} />
         <Route path="/quiz/playing/:id" element={<Playing />} />
-        
+        <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
         {/* <Route path="/quiz" element={<Quiz />} />
         <Route path="/create/quiz" element={<CreatePage />} />
         <Route path="/questions" element={<Question />} />
