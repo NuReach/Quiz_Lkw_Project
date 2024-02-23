@@ -14,6 +14,7 @@ import Result from "./pages/Result"
 import TeacherDashboard from "./pages/Teacher/TeacherDashboard"
 import TeacherProfileCard from "./Components/Card/TeacherProfileCard"
 import TeachProfile from "./pages/Teacher/TeachProfile"
+import TeacherCourse from "./pages/Teacher/TeacherCourse"
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
         <Route path="/quiz/playing/:id" element={<Playing />} />
         <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
         <Route path="/teacher/profile" element={<TeachProfile />} />
+        <Route path="/teacher/course" element={<TeacherCourse />} />
         {/* <Route path="/quiz" element={<Quiz />} />
         <Route path="/create/quiz" element={<CreatePage />} />
         <Route path="/questions" element={<Question />} />

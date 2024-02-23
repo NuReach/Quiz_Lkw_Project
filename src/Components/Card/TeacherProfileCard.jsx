@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 export default function TeacherProfileCard() {
   return (
-    <div className=' w-full  sm:w-80 md:w-96 flex flex-col rounded-lg p-3 border shadow-lg relative h-96 max-h-96'>
+    <div className=' w-full sm:w-80 md:w-96 flex flex-col rounded-lg p-3 border shadow-lg relative '>
         <div className='absolute -top-9'>
             <p className='font-bold text-lg'>Dashboard</p>
         </div>
@@ -12,8 +12,8 @@ export default function TeacherProfileCard() {
                 <img className='w-full h-36 object-cover' src="https://upload.wikimedia.org/wikipedia/commons/0/08/Limkokwing_Corporate_Logo_2018.png" alt="" />
             </Link>
         </div>
-        <div className=' mt-3 flex space-x-3 items-center'>
-            <div className='border p-1 rounded-lg bg-white shadow-lg w-fit'>
+        <div className=' mt-3 flex gap-3 items-center'>
+            <div className='border p-1 rounded-lg bg-white shadow-lg w-fit hidden sm:block'>
                 <img className='w-24 h-26 rounded-md' src="https://media.licdn.com/dms/image/C4D03AQGN45a9_qXexg/profile-displayphoto-shrink_200_200/0/1614820492981?e=2147483647&v=beta&t=V5F_lF_AGnvP7R43oLNesvqensIRx4QcgdvgP_sKqN4" alt="" />
             </div>
             <div className='w-full mt-1 flex flex-col'>

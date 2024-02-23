@@ -2,9 +2,9 @@ import React from 'react'
 
 export default function TeacherClassCard() {
   return (
-    <div className='border-2 rounded-lg p-3 w-full items-center shadow-lg sm:w-80 md:w-96 xl:w-1/2 h-96 max-h-96'>
+    <div className='border-2  rounded-lg p-3 w-full items-center shadow-lg sm:w-80 md:w-96 xl:w-1/2 '>
         <p className='font-bold text-sm '>Your Classes</p>
-        <div className='p-3 w-full rounded-lg border-2 flex justify-between mt-3'>
+        <div className='p-3 w-full flex-wrap rounded-lg border-2 flex justify-between mt-3'>
             <div>
                 <p className='font-bold text-sm '>Web Development</p>
                 <p className='text-xs font-medium text-gray-500'>Wednesday</p>
@@ -21,7 +21,7 @@ export default function TeacherClassCard() {
                 <p className='text-xs font-medium text-gray-500'>24</p>
             </div>
         </div>
-        <div className='p-3 w-full rounded-lg border-2 flex justify-between mt-3'>
+        <div className='p-3 w-full flex-wrap rounded-lg border-2 flex justify-between mt-3'>
             <div>
                 <p className='font-bold text-sm '>Web Development</p>
                 <p className='text-xs font-medium text-gray-500'>Wednesday</p>
@@ -38,7 +38,8 @@ export default function TeacherClassCard() {
                 <p className='text-xs font-medium text-gray-500'>24</p>
             </div>
         </div>
-        <div className='p-3 w-full rounded-lg border-2 flex justify-between mt-3'>
+       
+        <div className='p-3 w-full flex-wrap rounded-lg border-2 flex justify-between mt-3'>
             <div>
                 <p className='font-bold text-sm '>Web Development</p>
                 <p className='text-xs font-medium text-gray-500'>Wednesday</p>
@@ -55,6 +56,8 @@ export default function TeacherClassCard() {
                 <p className='text-xs font-medium text-gray-500'>24</p>
             </div>
         </div>
+       
+       
         
     </div>
   )

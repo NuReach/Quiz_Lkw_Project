@@ -20,7 +20,7 @@ export default function TeacherDashboard() {
                     <TeacherProfileCard />
                     <TeacherClassCard />
                 </div>
-                <div className='p-6 flex justify-center w-full flex-wrap gap-3 xl:gap-6 mb-6'>
+                <div className=' w-full p-6 flex justify-center flex-wrap gap-3  xl:gap-6 mb-6'>
                     <TeacherCalendar />
                     <TeacherAddStudentCard />
                     <TeacherLiveCard />
