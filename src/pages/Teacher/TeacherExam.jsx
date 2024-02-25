@@ -28,7 +28,7 @@ export default function TeacherExam() {
             <div className='filter'>
               <ExamFilter />
             </div>
-            <div className='gap-3 flex flex-wrap w-full'>
+            <div className='gap-3 flex flex-wrap w-full justify-center'>
               <TeacherExamListTableXl data={data} />
               {
                 data.map((item,i)=>(
