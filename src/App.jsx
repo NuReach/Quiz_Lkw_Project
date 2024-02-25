@@ -17,6 +17,7 @@ import TeachProfile from "./pages/Teacher/TeachProfile"
 import TeacherCourse from "./pages/Teacher/TeacherCourse"
 import TeacherExam from "./pages/Teacher/TeacherExam"
 import TeacherQuestionBank from "./pages/Teacher/TeacherQuestionBank"
+import TeacherResult from "./pages/Teacher/TeacherResult"
 
 function App() {
   return (
@@ -36,6 +37,7 @@ function App() {
         <Route path="/create/quiz" element={<CreatePage />} />
         <Route path="/teacher/exam" element={<TeacherExam />} />
         <Route path="/teacher/questionbank" element={<TeacherQuestionBank />} />
+        <Route path="/teacher/result" element={<TeacherResult />} />
         {/* <Route path="/quiz" element={<Quiz />} />
         <Route path="/questions" element={<Question />} />
         <Route path="/user" element={<User />} /> */}
