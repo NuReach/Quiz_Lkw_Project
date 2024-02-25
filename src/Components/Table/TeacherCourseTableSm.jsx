@@ -8,8 +8,8 @@ export default function TeacherCourseTableSm({index}) {
         <p className='line-clamp-1'>{index+1}.Dabase Design and Technolog</p>
     </div>
     <div className='flex gap-3'>
-    <button className='font-medium text-xs py-1 rounded-md px-4 text-white bg-black w-fit my-1'>Edit</button>
-    <button className='font-medium text-xs py-1 rounded-md px-4 text-white bg-black w-fit  my-1'>Delete</button>
+    <button className='font-medium text-xs py-1 rounded-full px-4 text-white bg-yellow-400 w-fit  my-1'>Edit</button>
+    <button className='font-medium text-xs py-1 rounded-full px-4 text-white bg-red-500 w-fit  my-1'>Delete</button> 
     </div>
 </div>
   )
