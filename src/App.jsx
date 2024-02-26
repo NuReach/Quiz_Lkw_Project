@@ -19,10 +19,12 @@ import TeacherExam from "./pages/Teacher/TeacherExam"
 import TeacherQuestionBank from "./pages/Teacher/TeacherQuestionBank"
 import TeacherResult from "./pages/Teacher/TeacherResult"
 import Test from "./pages/Test"
+import { Toaster } from "sonner"
 
 function App() {
   return (
     <>  
+    <Toaster richColors  position="bottom-right" expand={false} />
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
