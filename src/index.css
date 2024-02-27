@@ -27,3 +27,59 @@
 .test {
   background: white;
 }
+
+
+
+.react-calendar__tile--active {
+  background-color: inherit;
+  color: black;
+   /* Red background color */
+}
+
+/* Marker for days with events */
+.react-calendar__tile {
+  position: relative;
+  padding: 9px; /* Adjust the padding as needed */
+}
+.event-day-marker {
+  position: absolute;
+  bottom: 0;
+  width: 15px;
+  height: 6px;
+  background-color: #ff0000; /* Red marker color */
+  margin: 2px auto;
+}
+
+.react-calendar__month-view__days__day {
+  font-size: 14px; /* Adjust the size as needed */
+}
+
+.react-calendar__month-view__weekdays__weekday {
+  font-size: 10px; /* Adjust the size as needed */
+}
+
+/* Change the font size for month label */
+.react-calendar__navigation__label {
+  font-size: 12px; /* Adjust the size as needed */
+}
+
+.react-calendar {
+  border: none;
+}
+
+
+.react-calendar__month-view__weekdays__weekday abbr {
+  text-decoration: none;
+}
+
+.react-calendar__navigation__label:hover {
+  background-color: aqua; /* Replace with your desired color */
+}
+
+.react-calendar__navigation button:enabled:hover, .react-calendar__navigation button:enabled:focus {
+  background-color: inherit;
+}
+
+.react-calendar__tile:enabled:hover, .react-calendar__tile:enabled:focus {
+  background-color: rgb(248, 248, 248);
+}

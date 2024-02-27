@@ -1,52 +1,28 @@
-import React from 'react';
-import { CircularProgressbar, CircularProgressbarWithChildren, buildStyles } from 'react-circular-progressbar';
-import 'react-circular-progressbar/dist/styles.css';
+import React, { useState } from 'react';
+import Calendar from 'react-calendar';
+import 'react-calendar/dist/Calendar.css';
+
 export default function Test() {
-    const percentage = 66;
+    const events = [
+      { date: new Date(2024, 1, 27) },
+      { date: new Date(2024, 1, 28) },
+      // Add more events as needed
+    ];
+  
+  
+    const tileContent = ({ date, view }) => {
+      const dateKey = date.toISOString().split('T')[0];
+      console.log(date.toISOString());
+      const isEvent = events.some((event) => event.date.toISOString().split('T')[0] === dateKey);
+      return isEvent ? <div className="event-day-marker"></div> : null;
+    };
+  
   return (
-    <div className="chart-container w-24 h-24">
-<CircularProgressbar
-  value={percentage}
-  text={`${percentage}%`}
-  styles={{
-    // Customize the root svg element
-    root: {},
-    // Customize the path, i.e. the "completed progress"
-    path: {
-      // Path color
-      stroke: `#65B741`,
-      // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-      strokeLinecap: 'butt',
-      // Customize transition animation
-      transition: 'stroke-dashoffset 0.5s ease 0s',
-      // Rotate the path
-      transform: 'rotate(0.25turn)',
-      transformOrigin: 'center center',
-    },
-    // Customize the circle behind the path, i.e. the "total progress"
-    trail: {
-      // Trail color
-      stroke: '#d6d6d6',
-      // Whether to use rounded or flat corners on the ends - can use 'butt' or 'round'
-      strokeLinecap: 'butt',
-      // Rotate the trail
-      transform: 'rotate(0.25turn)',
-      transformOrigin: 'center center',
-    },
-    // Customize the text
-    text: {
-      // Text color
-      fill: '#65B741',
-      // Text size
-      fontSize: '18px',
-      fontWeight:"bold",
-    },
-    // Customize background - only used when the `background` prop is true
-    background: {
-      fill: '#65B741',
-    },
-  }}
-/>
- </div>
+    <div>
+    <Calendar
+      tileContent={tileContent}
+    />
+    </div>
+
   )
 }
