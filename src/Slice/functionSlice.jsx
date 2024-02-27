@@ -14,6 +14,9 @@ export const functionSlice = createSlice({
             userAnswers:[],
         //search
             search : "kjkj",
+        //dailog
+            dailog : false,
+            deleteItem: {},
     },
     reducers : {
         //create page function
@@ -81,6 +84,18 @@ export const functionSlice = createSlice({
                 return {
                     ...state,search:search
                 }
+            },
+        // show dailog
+            showDailog : (state,action)=>{
+                return {
+                    ...state,dailog:!state.dailog
+                }
+            },
+            deleteItem : (state,action)=>{
+               const payload = action.payload;
+               return{
+                ...state,deleteItem:payload
+               }
             }
     }
 })
@@ -89,6 +104,6 @@ export const {
     startPlaying, nextPage,getQuizId,
     prevPage,setShowQuizType,insertQuiz,
     deleteQuiz,updateQuiz,insertUserAnswer,
-    filterItem
+    filterItem,showDailog,deleteItem
             } = functionSlice.actions;
 export default functionSlice.reducer;

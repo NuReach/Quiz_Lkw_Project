@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link, useLocation } from 'react-router-dom';
 
-export default function TeacherSidebar() {
+export default function TeacherSidebar({path}) {
     const location = useLocation();
     const route = location.pathname;
     const menu = [
@@ -60,7 +60,7 @@ export default function TeacherSidebar() {
           <section className='flex flex-col space-y-6 border-b-2 pb-6 mt-2'>
               {
                   menu.map((item,i)=>(
-                      <Link to={item.link} key={i} className={ route==item.link ?'text-white bg-black p-3 rounded-md md:justify-normal justify-center font-bold flex space-x-3 items-center text-sm cursor-pointer':'text-gray-600 font-bold md:justify-normal justify-center flex space-x-3 items-center text-sm cursor-pointer'}>
+                      <Link to={item.link} key={i} className={ (route==item.link || path==item.link) ?'text-white bg-black p-3 rounded-md md:justify-normal justify-center font-bold flex space-x-3 items-center text-sm cursor-pointer':'text-gray-600 font-bold md:justify-normal justify-center flex space-x-3 items-center text-sm cursor-pointer'}>
                           <div dangerouslySetInnerHTML={{ __html: item.icon }} />
                           <p className='hidden md:block'>{item.title}</p>
                       </Link>
