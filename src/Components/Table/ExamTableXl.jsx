@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function ExamTableXl({data}) {
+    const navigate = useNavigate();
   return (
     <div className='p-6 mt-3 border rounded-lg shadow-lg hidden xl:block'>
         <header className='font-bold text-sm flex justify-between'>
@@ -20,11 +22,16 @@ export default function ExamTableXl({data}) {
                     </div>
                     <p className='w-48 font-medium text-gray-600 line-clamp-1'>CSC101</p>
                     <p className='w-48 font-medium text-gray-600 line-clamp-1'>8 am - 10 am</p>
-                    <p className='w-48'>  <button className='font-medium text-xs py-1 rounded-full px-4 text-white bg-black w-1/2  my-1'>Take</button></p>
-                </div>
-            ))
-        }
-        <div className='w-full flex justify-end'>
+                    <p className='w-48'>     
+                    <button onClick={(e)=>{
+                    e.preventDefault();
+                    navigate(`/quiz/playing/${"d1"}`)
+                    }}  className='font-medium text-xs py-1 rounded-md px-4 text-white bg-black w-1/2  my-1'>Take</button></p>
+                            </div>
+                        ))
+         }
+        <div className='w-full flex justify-between'>
+            <button className='font-medium text-xs py-1 rounded-md px-4 text-white bg-black  my-1 hidden xl:block'>Back</button>
             <button className='font-medium text-xs py-1 rounded-md px-4 text-white bg-black  my-1 hidden xl:block'>Next</button>
         </div>
     </div>

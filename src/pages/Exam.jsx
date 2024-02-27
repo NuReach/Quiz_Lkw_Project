@@ -32,7 +32,8 @@ export default function Exam() {
                 <div>
                   <ExamTableXl data={data} />
                 </div>
-                <div className='w-full flex p-6 justify-end'>
+                <div className='w-full flex p-6 justify-between'>
+                <button className='font-medium text-xs py-1 rounded-full px-4 text-white bg-black  my-1 xl:hidden'>Back</button>
                 <button className='font-medium text-xs py-1 rounded-full px-4 text-white bg-black  my-1 xl:hidden'>Next</button>
                 </div>
             </div>

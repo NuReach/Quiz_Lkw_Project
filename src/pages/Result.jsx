@@ -3,9 +3,9 @@ import Navbar from '../Components/Navbar/Navbar'
 import Sidebar from '../Components/Sidebar/Sidebar'
 import Footer from '../Components/Footer/Footer'
 import ResultFilter from '../Components/Button/ResultFilter'
-import ResultSearch from '../Components/Input/ResultSearch'
 import ResultTableSm from '../Components/Table/ResultTableSm'
 import ResultTableXl from '../Components/Table/ResultTableXl'
+import Search from '../Components/Input/Search'
 
 export default function Result() {
   const text ="asdfgh";
@@ -18,7 +18,7 @@ export default function Result() {
             <div className='w-full p-3'>
               <p className='text-xl font-bold mt-2 '>Result</p>
               <div>
-                <ResultSearch />
+                <Search />
                 <ResultFilter />
               </div>
               <div>

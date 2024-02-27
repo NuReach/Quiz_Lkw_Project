@@ -12,6 +12,8 @@ export const functionSlice = createSlice({
             start:false,
             page : 0,
             userAnswers:[],
+        //search
+            search : "kjkj",
     },
     reducers : {
         //create page function
@@ -72,6 +74,13 @@ export const functionSlice = createSlice({
                     }  
                 }
                 
+            },
+        // search function
+            filterItem : (state,action)=>{
+                const search = action.payload.search;
+                return {
+                    ...state,search:search
+                }
             }
     }
 })
@@ -79,6 +88,7 @@ export const functionSlice = createSlice({
 export const {
     startPlaying, nextPage,getQuizId,
     prevPage,setShowQuizType,insertQuiz,
-    deleteQuiz,updateQuiz,insertUserAnswer
+    deleteQuiz,updateQuiz,insertUserAnswer,
+    filterItem
             } = functionSlice.actions;
 export default functionSlice.reducer;

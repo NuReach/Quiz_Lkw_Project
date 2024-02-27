@@ -1,6 +1,8 @@
 import React from 'react'
+import { useNavigate } from 'react-router-dom';
 
 export default function ExamTableSm({index}) {
+  const navigate = useNavigate();
   return (
     <div className='border rounded-md p-3 text-xs w-full sm:w-full md:w-64  lg:w-96 xl:hidden '>
         <div className='flex space-x-3'>
@@ -15,7 +17,10 @@ export default function ExamTableSm({index}) {
             <p className='font-medium w-12 '>Time</p>
             <p>8 am - 10 am</p>
         </div>
-        <button className='font-medium text-xs py-1 rounded-md px-4 text-white bg-black w-1/2  my-1'>Take</button>
+        <button onClick={(e)=>{
+          e.preventDefault();
+          navigate(`/quiz/playing/${"d1"}`)
+        }}  className='font-medium text-xs py-1 rounded-md px-4 text-white bg-black w-1/2  my-1'>Take</button>
     </div>
   )
 }

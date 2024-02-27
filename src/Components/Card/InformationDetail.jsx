@@ -25,8 +25,10 @@ export default function InformationDetail() {
                 <input type="text" value={nationality} onChange={(e)=>setNationality(e.target.value)}  className='w-full shadow-sm text-xs border border-gray-200 rounded-md mt-2' />
             </div>
             <div>
+            <div>
                 <p className='text-sm font-medium'>Change Image</p>
                 <input type="file" onChange={(e)=>setImg(e.target.files[0])}   className='w-full shadow-sm text-xs border border-gray-200 rounded-md mt-2' />
+            </div>
             </div>
             <button onClick={save} className='px-3 py-2  text-white font-medium text-sm rounded-md bg-blue-600 hover:scale-105 transition'>Save</button>   
         </section>
