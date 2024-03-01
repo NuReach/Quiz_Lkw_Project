@@ -2,6 +2,7 @@ import React from 'react'
 import Dailog from '../Card/Dailog'
 import { useDispatch } from 'react-redux';
 import { deleteItem, showDailog } from '../../Slice/functionSlice';
+import { Link } from 'react-router-dom';
 
 export default function TeacherCourseTableXl({data}) {
     const dispatch = useDispatch();
@@ -26,7 +27,7 @@ export default function TeacherCourseTableXl({data}) {
                     <p className='w-72 font-normal line-clamp-1 text-xs text-gray-500 mt-3'>Asign 2h ago</p>
                     </div>
                     <div className='w-48 gap-3 flex'>
-                    <button className='font-medium text-xs py-1 rounded-full px-4 text-white bg-yellow-400 w-fit  my-1'>Edit</button>
+                    <Link to={`/teacher/course/update/${"id1234"}`}  className='font-medium text-xs py-1 rounded-full px-4 text-white bg-yellow-400 w-fit  my-1'>Edit</Link>
                     <button onClick={(e)=>show(e,"item12233","/api/course/")} className='font-medium text-xs py-1 rounded-full px-4 text-white bg-red-500 w-fit  my-1'>Delete</button> 
                     </div>
                 </div>

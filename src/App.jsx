@@ -21,6 +21,7 @@ import TeacherResult from "./pages/Teacher/TeacherResult"
 import Test from "./pages/Test"
 import { Toaster } from "sonner"
 import TeacherCourseCreateForm from "./pages/Teacher/TeacherCourseCreateForm"
+import TeacherCourseEdit from "./pages/Teacher/TeacherCourseEdit"
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
         <Route path="/teacher/profile" element={<TeachProfile />} />
         <Route path="/teacher/course" element={<TeacherCourse />} />
         <Route path="/teacher/course/create" element={<TeacherCourseCreateForm />} />
+        <Route path="/teacher/course/update/:id" element={<TeacherCourseEdit />} />
         <Route path="/create/quiz" element={<CreatePage />} />
         <Route path="/teacher/exam" element={<TeacherExam />} />
         <Route path="/teacher/questionbank" element={<TeacherQuestionBank />} />

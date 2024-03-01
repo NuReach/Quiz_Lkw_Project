@@ -1,6 +1,7 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { deleteItem, showDailog } from '../../Slice/functionSlice';
+import { Link } from 'react-router-dom';
 
 export default function TeacherCourseTableSm({index}) {
   const dispatch = useDispatch();
@@ -16,7 +17,7 @@ export default function TeacherCourseTableSm({index}) {
         <p className='line-clamp-1'>{index+1}.Dabase Design and Technolog</p>
     </div>
     <div className='flex gap-3'>
-    <button className='font-medium text-xs py-1 rounded-full px-4 text-white bg-yellow-400 w-fit  my-1'>Edit</button>
+    <Link to={`/teacher/course/update/${"id1234"}`}  className='font-medium text-xs py-1 rounded-full px-4 text-white bg-yellow-400 w-fit  my-1'>Edit</Link>
     <button onClick={(e)=>show(e,"item12233","/api/course/")} className='font-medium text-xs py-1 rounded-full px-4 text-white bg-red-500 w-fit  my-1'>Delete</button> 
     </div>
 </div>
