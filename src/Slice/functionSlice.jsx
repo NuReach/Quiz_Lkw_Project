@@ -17,6 +17,8 @@ export const functionSlice = createSlice({
         //dailog
             dailog : false,
             deleteItem: {},
+        //create exam
+            selectedQuestion : [],
     },
     reducers : {
         //create page function
@@ -96,7 +98,25 @@ export const functionSlice = createSlice({
                return{
                 ...state,deleteItem:payload
                }
+            },
+        //create exam page
+            addQuestion : (state,action)=>{
+                const item = action.payload.item;
+                const selectedQuestion = action.payload.selectedQuestion;
+                const existItem = state.selectedQuestion.find((x)=>x.id == item.id);
+                if(existItem){
+                    return {
+                        ...state,selectedQuestion:selectedQuestion.map((x)=>x.id == item.id? item : x)
+                    }
+                }else{
+                    return {
+                        ...state,...state,selectedQuestion:[...state.selectedQuestion,item]
+                    }
+                }
+    
+                //console.log(payload);
             }
+
     }
 })
 
@@ -104,6 +124,6 @@ export const {
     startPlaying, nextPage,getQuizId,
     prevPage,setShowQuizType,insertQuiz,
     deleteQuiz,updateQuiz,insertUserAnswer,
-    filterItem,showDailog,deleteItem
+    filterItem,showDailog,deleteItem,addQuestion
             } = functionSlice.actions;
 export default functionSlice.reducer;

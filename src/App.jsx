@@ -22,6 +22,7 @@ import Test from "./pages/Test"
 import { Toaster } from "sonner"
 import TeacherCourseCreateForm from "./pages/Teacher/TeacherCourseCreateForm"
 import TeacherCourseEdit from "./pages/Teacher/TeacherCourseEdit"
+import TeacherExamCreatePage from "./pages/Teacher/TeacherExamCreatePage"
 
 function App() {
   return (
@@ -31,18 +32,29 @@ function App() {
       <Routes>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+
         <Route path="/" element={<Home />} />
+
         <Route path="/profile" element={<Profile />} />
+
         <Route path="/exam" element={<Exam />} />
+
         <Route path="/result" element={<Result />} />
+
         <Route path="/quiz/playing/:id" element={<Playing />} />
+
         <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
+
         <Route path="/teacher/profile" element={<TeachProfile />} />
+
         <Route path="/teacher/course" element={<TeacherCourse />} />
         <Route path="/teacher/course/create" element={<TeacherCourseCreateForm />} />
         <Route path="/teacher/course/update/:id" element={<TeacherCourseEdit />} />
-        <Route path="/create/quiz" element={<CreatePage />} />
+
         <Route path="/teacher/exam" element={<TeacherExam />} />
+        <Route path="/teacher/exam/create?" element={<TeacherExamCreatePage />} />
+
+        <Route path="/create/quiz" element={<CreatePage />} />
         <Route path="/teacher/questionbank" element={<TeacherQuestionBank />} />
         <Route path="/teacher/result" element={<TeacherResult />} />
         <Route path="/test" element={<Test />} />
