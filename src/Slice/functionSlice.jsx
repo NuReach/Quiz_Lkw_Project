@@ -95,6 +95,7 @@ export const functionSlice = createSlice({
             },
             deleteItem : (state,action)=>{
                const payload = action.payload;
+               console.log(payload);
                return{
                 ...state,deleteItem:payload
                }

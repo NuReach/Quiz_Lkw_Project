@@ -23,6 +23,7 @@ import { Toaster } from "sonner"
 import TeacherCourseCreateForm from "./pages/Teacher/TeacherCourseCreateForm"
 import TeacherCourseEdit from "./pages/Teacher/TeacherCourseEdit"
 import TeacherExamCreatePage from "./pages/Teacher/TeacherExamCreatePage"
+import TeacherQuestionCreatePage from "./pages/Teacher/TeacherQuestionCreatePage"
 
 function App() {
   return (
@@ -54,8 +55,10 @@ function App() {
         <Route path="/teacher/exam" element={<TeacherExam />} />
         <Route path="/teacher/exam/create?" element={<TeacherExamCreatePage />} />
 
-        <Route path="/create/quiz" element={<CreatePage />} />
         <Route path="/teacher/questionbank" element={<TeacherQuestionBank />} />
+        <Route path="/teacher/questionbank/create" element={<TeacherQuestionCreatePage />} />
+
+        <Route path="/create/quiz" element={<CreatePage />} />
         <Route path="/teacher/result" element={<TeacherResult />} />
         <Route path="/test" element={<Test />} />
         {/* <Route path="/quiz" element={<Quiz />} />

@@ -16,7 +16,7 @@ export default function TeacherNavbar() {
             <img className='w-24' src="https://upload.wikimedia.org/wikipedia/commons/0/08/Limkokwing_Corporate_Logo_2018.png" alt="" />
           </Link>
           <div className='flex space-x-3  items-center'>
-            <button onClick={()=>navigate("/create/quiz")} className='py-2 px-4 hidden md:block bg-white dark:text-white dark:bg-pink-600 rounded-md text-sm font-medium hover:scale-105 transition'>Create</button>
+            <button onClick={()=>navigate("/teacher/questionbank/create")} className='py-2 px-4 hidden md:block bg-white dark:text-white dark:bg-pink-600 rounded-md text-sm font-medium hover:scale-105 transition'>Create</button>
             <div onClick={showNoti} className='relative'>
               <div className='text-xs text-white bg-red-500 rounded-full w-3 h-3 absolute top-3 z-0 right-1'></div>
               <svg className='text-white cursor-pointer ' xmlns="http://www.w3.org/2000/svg" width="30" height="60" viewBox="0 0 24 24"><path fill="currentColor" d="M5 19q-.425 0-.712-.288T4 18q0-.425.288-.712T5 17h1v-7q0-2.075 1.25-3.687T10.5 4.2v-.7q0-.625.438-1.062T12 2q.625 0 1.063.438T13.5 3.5v.7q2 .5 3.25 2.113T18 10v7h1q.425 0 .713.288T20 18q0 .425-.288.713T19 19zm7 3q-.825 0-1.412-.587T10 20h4q0 .825-.587 1.413T12 22"/></svg>
