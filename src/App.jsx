@@ -24,6 +24,7 @@ import TeacherCourseCreateForm from "./pages/Teacher/TeacherCourseCreateForm"
 import TeacherCourseEdit from "./pages/Teacher/TeacherCourseEdit"
 import TeacherExamCreatePage from "./pages/Teacher/TeacherExamCreatePage"
 import TeacherQuestionCreatePage from "./pages/Teacher/TeacherQuestionCreatePage"
+import TeacherQuestionUpdatePage from "./pages/Teacher/TeacherQuestionUpdatePage"
 
 function App() {
   return (
@@ -57,6 +58,7 @@ function App() {
 
         <Route path="/teacher/questionbank" element={<TeacherQuestionBank />} />
         <Route path="/teacher/questionbank/create" element={<TeacherQuestionCreatePage />} />
+        <Route path="/teacher/questionbank/update/:id" element={<TeacherQuestionUpdatePage />} />
 
         <Route path="/create/quiz" element={<CreatePage />} />
         <Route path="/teacher/result" element={<TeacherResult />} />

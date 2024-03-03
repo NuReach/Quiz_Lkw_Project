@@ -1,13 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 
-export default function CreateTfCard() {
+export default function UpdateTfCard() {
     const navigate = useNavigate();
     const [selectedFile, setSelectedFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
-    const [difficulty,setDifficulty] = useState("");
-    const [question,setQuestion] = useState("");
-    const [answer,setAnswer] = useState("");
+    const [difficulty,setDifficulty] = useState("easy");
+    const [question,setQuestion] = useState("What is this ?");
+    const [answer,setAnswer] = useState("true");
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -22,9 +22,6 @@ export default function CreateTfCard() {
     return (
       <div className='flex flex-col gap-9 pb-16'>
           <section className='flex gap-16'>
-              <div onClick={(e)=>navigate("/teacher/questionbank/create")} className='w-28 text-center border-b-4 pb-3 border-gray-500 cursor-pointer'>
-                  <p className='font-bold text-sm text-gray-500 '>Muliple Choice Question</p>
-              </div>
               <div onClick={(e)=>navigate("/teacher/questionbank/create?tf=true")} className='w-24 text-center cursor-pointer  '>
                   <p className='font-bold text-sm border-b-4 pb-3 border-black'>True False Question</p>
               </div>

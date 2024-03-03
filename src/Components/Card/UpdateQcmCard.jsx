@@ -1,17 +1,17 @@
 import React, { useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
 
-export default function CreateQcmCard() {
+export default function UpdateQcmCard() {
     const navigate = useNavigate();
     const [selectedFile, setSelectedFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
-    const [difficulty,setDifficulty] = useState("");
-    const [op1,setOp1] = useState("");
-    const [op2,setOp2] = useState("");
-    const [op3,setOp3] = useState("");
-    const [op4,setOp4] = useState("");
-    const [question,setQuestion] = useState("");
-    const [answer,setAnswer] = useState("");
+    const [difficulty,setDifficulty] = useState("hard");
+    const [op1,setOp1] = useState("A");
+    const [op2,setOp2] = useState("B");
+    const [op3,setOp3] = useState("C");
+    const [op4,setOp4] = useState("D");
+    const [question,setQuestion] = useState("Select the correct answer");
+    const [answer,setAnswer] = useState("op3");
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {

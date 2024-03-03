@@ -1,14 +1,18 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
 import { deleteItem, showDailog } from '../../Slice/functionSlice';
+import { useNavigate } from 'react-router-dom';
 
 export default function TeacherQuestionTableXl({data}) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const show = (e,id,route)=>{
         e.preventDefault();
         dispatch(showDailog());
         dispatch(deleteItem({id:id,route:route}))
     }
+    const id = 1234;
+    const type = "qcm";
   return (
     <>
     <div className='p-6 mt-3 border rounded-lg shadow-lg hidden xl:block w-full'>
@@ -30,7 +34,7 @@ export default function TeacherQuestionTableXl({data}) {
                     <p className='w-48 font-medium text-gray-600 line-clamp-1'>Multiple Choice</p>
                     <p className='w-48 font-medium text-gray-600 line-clamp-1'>Hard</p>
                     <div className='w-48 gap-3 flex'>
-                    <button className='font-medium text-xs py-1 rounded-full px-4 text-white bg-yellow-400 w-fit  my-1'>Edit</button>
+                    <button onClick={(e)=>navigate(`/teacher/questionbank/update/${id}?type=${type}`)} className='font-medium text-xs py-1 rounded-full px-4 text-white bg-yellow-400 w-fit  my-1'>Edit</button>
                     <button onClick={(e)=>show(e,"item12233","/api/course/")} className='font-medium text-xs py-1 rounded-full px-4 text-white bg-red-500 w-fit  my-1'>Delete</button> 
                     </div>
                 </div>
