@@ -61,9 +61,9 @@ function App() {
         <Route path="/teacher/questionbank/update/:id" element={<TeacherQuestionUpdatePage />} />
 
         <Route path="/teacher/result" element={<TeacherResult />} />
-        
-        <Route path="/create/quiz" element={<CreatePage />} />
-        <Route path="/test" element={<Test />} />
+
+        {/* <Route path="/create/quiz" element={<CreatePage />} />
+        <Route path="/test" element={<Test />} /> */}
         {/* <Route path="/quiz" element={<Quiz />} />
         <Route path="/questions" element={<Question />} />
         <Route path="/user" element={<User />} /> */}
