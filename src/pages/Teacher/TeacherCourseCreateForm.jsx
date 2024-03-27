@@ -3,6 +3,8 @@ import TeacherNavbar from '../../Components/Navbar/TeacherNavbar'
 import Footer from '../../Components/Footer/Footer'
 import TeacherSidebar from '../../Components/Sidebar/TeacherSidebar'
 import { useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { containerMotion } from '../../animation';
 
 export default function TeacherCourseCreateForm() {
     const [id, setId] = useState('');
@@ -13,7 +15,12 @@ export default function TeacherCourseCreateForm() {
         <TeacherNavbar />
         <div className='flex'>
             <TeacherSidebar  path={"/teacher/course"} />
-            <div className='w-full flex justify-center items-center p-3'>
+            <motion.div
+                variants={containerMotion}
+                initial = "hidden"
+                animate = "visible"
+                exit= "exit"
+                 className='w-full flex justify-center items-center p-3'>
                 <div className='w-full md:w-1/2 lg:w-1/3 p-6 py-12 border-2 rounded-lg flex flex-col gap-3'>
                     <p className='font-bold text-lg '>Create Course</p>
                     <div>             
@@ -32,7 +39,7 @@ export default function TeacherCourseCreateForm() {
                         <button className='font-medium text-xs py-1 rounded-full px-4 text-white bg-black  my-1 '>Submit</button>
                     </div>
                 </div>
-            </div>
+            </motion.div>
         </div>
         <Footer />
     </div>

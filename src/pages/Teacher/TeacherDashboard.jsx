@@ -8,6 +8,8 @@ import TeacherCalendar from '../../Components/Card/TeacherCalendar'
 import TeacherAddStudentCard from '../../Components/Card/TeacherAddStudentCard'
 import TeacherCreateExamCard from '../../Components/Card/TeacherCreateExamCard'
 import TeacherLiveCard from '../../Components/Card/TeacherLiveCard'
+import { motion } from 'framer-motion'
+import { containerMotion } from '../../animation'
 
 export default function TeacherDashboard() {
   return (
@@ -15,7 +17,13 @@ export default function TeacherDashboard() {
         <TeacherNavbar />
         <div className='flex'>
             <TeacherSidebar />
-            <div className='w-full flex-col '>
+            <motion.div
+                variants={containerMotion}
+                initial = "hidden"
+                animate = "visible"
+                exit= "exit"
+                
+                 className='w-full flex-col z-40 '>
                 <div className='w-full p-6 mt-9 flex gap-3 justify-center flex-wrap'>
                     <TeacherProfileCard />
                     <TeacherClassCard />
@@ -26,7 +34,7 @@ export default function TeacherDashboard() {
                     <TeacherLiveCard />
                     <TeacherCreateExamCard />
                 </div>
-            </div>
+            </motion.div>
         </div>
         <Footer />
     </div>

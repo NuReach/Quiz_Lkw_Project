@@ -7,6 +7,8 @@ import ExamFilter from '../../Components/Button/ExamFilter'
 import TeacherExamListTableXl from '../../Components/Table/TeacherExamListTableXl'
 import TeacherExamListTableSm from '../../Components/Table/TeacherExamListTableSm'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { containerMotion } from '../../animation'
 
 export default function TeacherExam() {
   const text ="asdfgh";
@@ -17,7 +19,12 @@ export default function TeacherExam() {
       <TeacherNavbar />
       <div className='flex'>
         <TeacherSidebar />
-        <div className='p-3 w-full'>
+        <motion.div
+             variants={containerMotion}
+                initial = "hidden"
+                animate = "visible"
+                exit= "exit"
+           className='p-3 w-full'>
           <p className='font-bold text-lg '>Exam List</p>
           <div>
             <div className='flex justify-between items-center flex-wrap'>
@@ -44,7 +51,7 @@ export default function TeacherExam() {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
       </div>
       <Footer />
     </div>

@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from "react-router-dom"
+import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom"
 import Home from "./pages/Home"
 import CreatePage from "./pages/CreatePage"
 import Quiz from "./pages/Quiz"
@@ -25,13 +25,36 @@ import TeacherCourseEdit from "./pages/Teacher/TeacherCourseEdit"
 import TeacherExamCreatePage from "./pages/Teacher/TeacherExamCreatePage"
 import TeacherQuestionCreatePage from "./pages/Teacher/TeacherQuestionCreatePage"
 import TeacherQuestionUpdatePage from "./pages/Teacher/TeacherQuestionUpdatePage"
+import { containerMotion } from "./animation"
+import { AnimatePresence, motion } from "framer-motion"
 
 function App() {
   return (
     <>  
     <Toaster richColors  position="bottom-right" expand={false} />
     <BrowserRouter>
-      <Routes>
+      <LocationProvider>
+        <RoutesWithAnimation />
+      </LocationProvider>
+    </BrowserRouter>
+
+    </>
+  )
+}
+
+export default App
+
+function LocationProvider({ children }) {
+  return <AnimatePresence  mode="wait"  >{children}</AnimatePresence>;
+}
+
+
+
+function RoutesWithAnimation() {
+    const location = useLocation();
+  
+    return (
+      <Routes location={location} key={location.key}>
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
 
@@ -54,7 +77,7 @@ function App() {
         <Route path="/teacher/course/update/:id" element={<TeacherCourseEdit />} />
 
         <Route path="/teacher/exam" element={<TeacherExam />} />
-        <Route path="/teacher/exam/create?" element={<TeacherExamCreatePage />} />
+        <Route path="/teacher/exam/create" element={<TeacherExamCreatePage />} />
 
         <Route path="/teacher/questionbank" element={<TeacherQuestionBank />} />
         <Route path="/teacher/questionbank/create" element={<TeacherQuestionCreatePage />} />
@@ -68,10 +91,5 @@ function App() {
         <Route path="/questions" element={<Question />} />
         <Route path="/user" element={<User />} /> */}
       </Routes>
-    </BrowserRouter>
-
-    </>
-  )
-}
-
-export default App
+    );
+  }

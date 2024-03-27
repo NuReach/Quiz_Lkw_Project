@@ -6,14 +6,22 @@ import InfomationCard from '../Components/Card/InfomationCard'
 import InformationDetail from '../Components/Card/InformationDetail'
 import ProfileCard from '../Components/Card/ProfileCard'
 import ChangePasswordCard from '../Components/Card/ChangePasswordCard'
+import { motion } from 'framer-motion'
+import { containerMotion } from '../animation'
 
 export default function Profile() {
+    
   return (
     <div>
         <Navbar/>
         <div className='flex'>
             <Sidebar />
-            <div className='flex flex-wrap justify-center items-center w-full gap-6'>
+            <motion.div
+              variants={containerMotion}
+                initial = "hidden"
+                animate = "visible"
+                exit= "exit"
+             className='flex flex-wrap justify-center items-center w-full gap-6'>
                 <div className='p-3 w-full sm:w-fit flex flex-col gap-6'>
                     <InfomationCard />
                     <ChangePasswordCard />
@@ -22,7 +30,7 @@ export default function Profile() {
                     <ProfileCard />
                     <InformationDetail />
                 </div>
-            </div>
+            </motion.div>
         </div>
         <Footer />
     </div>

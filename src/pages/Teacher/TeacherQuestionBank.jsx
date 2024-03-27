@@ -10,6 +10,8 @@ import TeacherQuestionTableSm from '../../Components/Table/TeacherQuestionTableS
 import Dailog from '../../Components/Card/Dailog'
 import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { motion } from 'framer-motion'
+import { containerMotion } from '../../animation'
 
 export default function TeacherQuestionBank() {
     const text ="asdfgh";
@@ -22,7 +24,12 @@ export default function TeacherQuestionBank() {
         <TeacherNavbar />
         <div className='flex'>
             <TeacherSidebar/>
-            <div className='p-3 w-full'>
+            <motion.div
+                variants={containerMotion}
+                initial = "hidden"
+                animate = "visible"
+                exit= "exit"
+                 className='p-3 w-full'>
                 <p className='font-bold text-lg '>Question List</p>
                 <div className='flex justify-between items-center flex-wrap w-full'>
                     <Search />
@@ -42,7 +49,7 @@ export default function TeacherQuestionBank() {
                 <div className='w-full flex  justify-end'>
                   <button className='font-medium text-xs py-1 rounded-full px-4 text-white bg-black  my-1 xl:hidden'>Next</button>
               </div>
-            </div>
+            </motion.div>
         </div>
         {
             showDailog ? <Dailog /> : ""

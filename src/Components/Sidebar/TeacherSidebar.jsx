@@ -56,7 +56,7 @@ export default function TeacherSidebar({path}) {
       
     ]
     return (
-      <div className=' border w-fit p-3 shadow-lg flex flex-col md:min-w-48 h-auto pb-24  '>
+      <div className=' border w-fit p-3 shadow-lg flex flex-col md:min-w-48 h-auto pb-24  z-30'>
           <section className='flex flex-col space-y-6 border-b-2 pb-6 mt-2'>
               {
                   menu.map((item,i)=>(

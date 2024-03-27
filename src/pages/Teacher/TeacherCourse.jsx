@@ -8,18 +8,25 @@ import TeacherCourseTableXl from '../../Components/Table/TeacherCourseTableXl'
 import { useNavigate } from 'react-router-dom'
 import Dailog from '../../Components/Card/Dailog'
 import { useSelector } from 'react-redux'
+import { motion } from 'framer-motion'
+import { containerMotion } from '../../animation'
 
 function TeacherCourse() {
     const navigate = useNavigate();
     const dailog = useSelector((state)=>state.function.dailog);
     const text ="asdfgh";
     const [data,setData]=useState(text.split(""));
+
   return (
     <div>
         <TeacherNavbar />
         <div className='flex'>
             <TeacherSidebar />
-            <div className='p-3 w-full'>
+            <motion.div
+                variants={containerMotion}
+                initial = "hidden"
+                animate = "visible"
+                exit= "exit" className='p-3 w-full'>
                 <p className='font-bold text-lg '>Courses List</p>
                 <div className='flex justify-between items-center flex-wrap'>
                     <Search />
@@ -44,7 +51,7 @@ function TeacherCourse() {
                         <button className='font-medium text-xs py-1 rounded-full px-4 text-white bg-black  my-1 xl:hidden'>Next</button>
                     </div>
                 </div>
-            </div>
+            </motion.div>
 
         </div>
         <Footer />

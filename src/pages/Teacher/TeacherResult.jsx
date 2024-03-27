@@ -5,6 +5,8 @@ import Footer from '../../Components/Footer/Footer'
 import Search from '../../Components/Input/Search'
 import TeacherResultFilter from '../../Components/Button/TeacherResultFilter'
 import TeacherResultTable from '../../Components/Table/TeacherResultTable'
+import { containerMotion } from '../../animation'
+import { motion } from 'framer-motion'
 
 export default function TeacherResult() {
     const text ="asdfgh";
@@ -17,12 +19,17 @@ export default function TeacherResult() {
         setShow(!show);
         console.log(id);
     }
+    motion
   return (
     <div>
         <TeacherNavbar />
         <div className='flex'> 
             <TeacherSidebar />
-            <div className='p-3 w-full' >
+            <motion.div    
+                variants={containerMotion}
+                initial = "hidden"
+                animate = "visible"
+                exit= "exit" className='p-3 w-full' >
                 <p className='font-bold text-lg '>Result List</p>
                 <div className='flex justify-between items-center flex-wrap w-full'>
                     <Search />  
@@ -60,7 +67,7 @@ export default function TeacherResult() {
                         ))
                     }
                 </div>
-            </div>
+            </motion.div>
         </div>
         <Footer />
     </div>
