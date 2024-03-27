@@ -8,14 +8,22 @@ import Perfomance from '../Components/Card/Perfomance'
 import LastTest from '../Components/Card/LastTest'
 import Task from '../Components/Card/Task'
 import SmallTask from '../Components/Card/SmallTask'
+import { motion } from 'framer-motion'
+import { containerMotion } from '../animation'
 
 export default function Home() {
+
   return (
     <div>
         <Navbar />
         <div className='flex'>
             <Sidebar />
-            <div className=' flex flex-col p-9 w-full '>
+            <motion.div
+                variants={containerMotion}
+                initial = "hidden"
+                animate = "visible"
+                exit= "exit"
+                 className=' flex flex-col p-9 w-full '>
                 <div className='flex flex-wrap  gap-6 sm:justify-center mt-9 '>
                         <section className='w-full sm:w-fit'>
                             <UpcomingTest />
@@ -28,7 +36,7 @@ export default function Home() {
                         {/* sm:hidden */}
                        <Task />
                 </div>
-            </div>
+            </motion.div>
         </div>
         <Footer />
     </div>
