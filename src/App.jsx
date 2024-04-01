@@ -27,17 +27,21 @@ import TeacherQuestionCreatePage from "./pages/Teacher/TeacherQuestionCreatePage
 import TeacherQuestionUpdatePage from "./pages/Teacher/TeacherQuestionUpdatePage"
 import { containerMotion } from "./animation"
 import { AnimatePresence, motion } from "framer-motion"
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 
 function App() {
+  const queryClient = new QueryClient();
+  
   return (
     <>  
-    <Toaster richColors  position="bottom-right" expand={false} />
-    <BrowserRouter>
-      <LocationProvider>
-        <RoutesWithAnimation />
-      </LocationProvider>
-    </BrowserRouter>
-
+    <QueryClientProvider client={queryClient}>
+      <Toaster richColors  position="bottom-right" expand={false} />
+      <BrowserRouter>
+        <LocationProvider>
+          <RoutesWithAnimation />
+        </LocationProvider>
+      </BrowserRouter>
+    </QueryClientProvider>
     </>
   )
 }
@@ -45,7 +49,7 @@ function App() {
 export default App
 
 function LocationProvider({ children }) {
-  return <AnimatePresence  mode="wait"  >{children}</AnimatePresence>;
+  return <AnimatePresence  >{children}</AnimatePresence>;
 }
 
 

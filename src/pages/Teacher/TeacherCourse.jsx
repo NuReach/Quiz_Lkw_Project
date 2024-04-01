@@ -10,13 +10,22 @@ import Dailog from '../../Components/Card/Dailog'
 import { useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
 import { containerMotion } from '../../animation'
+import { useQuery } from '@tanstack/react-query'
+import { getCourses } from '../../Api/CourseApi'
 
 function TeacherCourse() {
     const navigate = useNavigate();
     const dailog = useSelector((state)=>state.function.dailog);
     const text ="asdfgh";
     const [data,setData]=useState(text.split(""));
+    const { isLoading , isError , data:courses } = useQuery({
+        queryKey : ['courses'],
+        queryFn : getCourses
+    });
 
+    if (isLoading) {
+        return <p>Loading...</p>
+    }
   return (
     <div>
         <TeacherNavbar />
@@ -43,7 +52,7 @@ function TeacherCourse() {
                 <div className='mt-3 gap-3 flex flex-wrap w-full justify-center'>
                     {
                         data.map((item,i)=>(
-                             <TeacherCourseTableSm index={i} />
+                             <TeacherCourseTableSm key={i} index={i} />
                         ))
                     }
                     <TeacherCourseTableXl data={data} />
