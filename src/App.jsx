@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom"
+import { BrowserRouter, Navigate, Outlet, Route, Routes, useLocation } from "react-router-dom"
 import Home from "./pages/Home"
 import CreatePage from "./pages/CreatePage"
 import Quiz from "./pages/Quiz"
@@ -59,35 +59,45 @@ function RoutesWithAnimation() {
   
     return (
       <Routes location={location} key={location.key}>
-        <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+        <Route element={<StudentRouter />}>
 
-        <Route path="/" element={<Home />} />
 
-        <Route path="/profile" element={<Profile />} />
+          <Route path="/signup" element={<Signup />} />
 
-        <Route path="/exam" element={<Exam />} />
+          <Route path="/" element={<Home />} />
 
-        <Route path="/result" element={<Result />} />
+          <Route path="/profile" element={<Profile />} />
 
-        <Route path="/quiz/playing/:id" element={<Playing />} />
+          <Route path="/exam" element={<Exam />} />
 
-        <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
+          <Route path="/result" element={<Result />} />
 
-        <Route path="/teacher/profile" element={<TeachProfile />} />
+          <Route path="/quiz/playing/:id" element={<Playing />} />
 
-        <Route path="/teacher/course" element={<TeacherCourse />} />
-        <Route path="/teacher/course/create" element={<TeacherCourseCreateForm />} />
-        <Route path="/teacher/course/update/:id" element={<TeacherCourseEdit />} />
+        </Route>
 
-        <Route path="/teacher/exam" element={<TeacherExam />} />
-        <Route path="/teacher/exam/create" element={<TeacherExamCreatePage />} />
+        <Route element={<TeacherRouter />}>
 
-        <Route path="/teacher/questionbank" element={<TeacherQuestionBank />} />
-        <Route path="/teacher/questionbank/create" element={<TeacherQuestionCreatePage />} />
-        <Route path="/teacher/questionbank/update/:id" element={<TeacherQuestionUpdatePage />} />
+          <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
 
-        <Route path="/teacher/result" element={<TeacherResult />} />
+          <Route path="/teacher/profile" element={<TeachProfile />} />
+
+          <Route path="/teacher/course" element={<TeacherCourse />} />
+          <Route path="/teacher/course/create" element={<TeacherCourseCreateForm />} />
+          <Route path="/teacher/course/update/:id" element={<TeacherCourseEdit />} />
+
+          <Route path="/teacher/exam" element={<TeacherExam />} />
+          <Route path="/teacher/exam/create" element={<TeacherExamCreatePage />} />
+
+          <Route path="/teacher/questionbank" element={<TeacherQuestionBank />} />
+          <Route path="/teacher/questionbank/create" element={<TeacherQuestionCreatePage />} />
+          <Route path="/teacher/questionbank/update/:id" element={<TeacherQuestionUpdatePage />} />
+
+          <Route path="/teacher/result" element={<TeacherResult />} />
+        
+        </Route>
+
 
         {/* <Route path="/create/quiz" element={<CreatePage />} />
         <Route path="/test" element={<Test />} /> */}
@@ -96,4 +106,14 @@ function RoutesWithAnimation() {
         <Route path="/user" element={<User />} /> */}
       </Routes>
     );
+  }
+
+  const TeacherRouter = ()=>{
+    const user = JSON.parse(localStorage.getItem('userData'))  ;
+    return user && user.expirationTime > Date.now() && user.role == "teacher" ? <Outlet /> : <Navigate to={"/login"} />
+  }
+
+  const StudentRouter = ()=>{
+    const user = JSON.parse(localStorage.getItem('userData'))  ;
+    return user && user.expirationTime > Date.now() && user.role == "user" ? <Outlet /> : <Navigate to={"/login"} />
   }

@@ -1,9 +1,10 @@
 import React from 'react'
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export default function TeacherSidebar({path}) {
     const location = useLocation();
     const route = location.pathname;
+    const navigate = useNavigate();
     const menu = [
       {
           title:"Dashboard",
@@ -77,6 +78,13 @@ export default function TeacherSidebar({path}) {
                       </div>
                   ))
               }
+          </section>
+          <section onClick={()=>{
+            localStorage.removeItem("userData");
+            navigate("/login")
+          }}  className='text-gray-600 font-bold md:justify-normal justify-center flex space-x-3 items-center text-sm cursor-pointer mt-3'>
+            <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M6 2h9a2 2 0 0 1 2 2v2h-2V4H6v16h9v-2h2v2a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2"/><path fill="currentColor" d="M16.09 15.59L17.5 17l5-5l-5-5l-1.41 1.41L18.67 11H9v2h9.67z"/></svg>
+            <p className='hidden md:block'>Log out</p>
           </section>
       </div>
     )
