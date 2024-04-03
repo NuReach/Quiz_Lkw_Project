@@ -3,9 +3,8 @@ import TeacherNavbar from '../../Components/Navbar/TeacherNavbar'
 import TeacherSidebar from '../../Components/Sidebar/TeacherSidebar'
 import Footer from '../../Components/Footer/Footer'
 import Search from '../../Components/Input/Search'
-import TeacherCourseTableSm from '../../Components/Table/TeacherCourseTableSm'
 import TeacherCourseTableXl from '../../Components/Table/TeacherCourseTableXl'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import Dailog from '../../Components/Card/Dailog'
 import { useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
@@ -16,27 +15,29 @@ import { getCourses } from '../../Api/CourseApi'
 function TeacherCourse() {
     const navigate = useNavigate();
     const dailog = useSelector((state)=>state.function.dailog);
-    const text ="asdfgh";
-    const [data,setData]=useState(text.split(""));
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const page= queryParams.get('page');
     const { isLoading , isError , data:courses } = useQuery({
         queryKey : ['courses'],
-        queryFn : getCourses
+        queryFn : ()=>getCourses(page)
     });
 
     if (isLoading) {
         return <p>Loading...</p>
     }
+
   return (
     <div>
         <TeacherNavbar />
         <div className='flex'>
-            <TeacherSidebar />
+            <TeacherSidebar  path={`/teacher/course/update/${courses.current_page}`} />
             <motion.div
                 variants={containerMotion}
                 initial = "hidden"
                 animate = "visible"
                 exit= "exit" className='p-3 w-full'>
-                <p className='font-bold text-lg '>Courses List</p>
+                <p className='font-bold text-3xl '>Courses List</p>
                 <div className='flex justify-between items-center flex-wrap'>
                     <Search />
                     <div onClick={
@@ -50,15 +51,7 @@ function TeacherCourse() {
                     </div>
                 </div>
                 <div className='mt-3 gap-3 flex flex-wrap w-full justify-center'>
-                    {
-                        data.map((item,i)=>(
-                             <TeacherCourseTableSm key={i} index={i} />
-                        ))
-                    }
-                    <TeacherCourseTableXl data={data} />
-                    <div className='w-full flex  justify-end'>
-                        <button className='font-medium text-xs py-1 rounded-full px-4 text-white bg-black  my-1 xl:hidden'>Next</button>
-                    </div>
+                    <TeacherCourseTableXl data={courses} />
                 </div>
             </motion.div>
 
