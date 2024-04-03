@@ -10,7 +10,8 @@ import { useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
 import { containerMotion } from '../../animation'
 import { useQuery } from '@tanstack/react-query'
-import { getCourses } from '../../Api/CourseApi'
+import { getCourses, getSearchCourse } from '../../Api/CourseApi'
+import Loading from '../../Components/Loading/Loading'
 
 function TeacherCourse() {
     const navigate = useNavigate();
@@ -18,20 +19,25 @@ function TeacherCourse() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const page= queryParams.get('page');
+    const search = useSelector((state)=>state.function.search);
+
     const { isLoading , isError , data:courses } = useQuery({
         queryKey : ['courses'],
         queryFn : ()=>getCourses(page)
     });
 
-    if (isLoading) {
-        return <p>Loading...</p>
-    }
+    const { isLoading : searchCourseLoading , isError:searchCourseError , data:searchCourses } = useQuery({
+        queryKey : ['searchCourses',{search}],
+        queryFn : ()=>getSearchCourse(search)
+    });
 
+    console.log(searchCourses);
+    console.log(courses);
   return (
     <div>
         <TeacherNavbar />
         <div className='flex'>
-            <TeacherSidebar  path={`/teacher/course/update/${courses.current_page}`} />
+            <TeacherSidebar  path={`/teacher/course/update/${courses?.current_page}`} />
             <motion.div
                 variants={containerMotion}
                 initial = "hidden"
@@ -39,7 +45,7 @@ function TeacherCourse() {
                 exit= "exit" className='p-3 w-full'>
                 <p className='font-bold text-3xl '>Courses List</p>
                 <div className='flex justify-between items-center flex-wrap'>
-                    <Search />
+                    <Search name={"course"} />
                     <div onClick={
                         (e)=>{
                             e.preventDefault();
@@ -51,7 +57,12 @@ function TeacherCourse() {
                     </div>
                 </div>
                 <div className='mt-3 gap-3 flex flex-wrap w-full justify-center'>
-                    <TeacherCourseTableXl data={courses} />
+                    {
+                        isLoading ? 
+                        <Loading />
+                        :
+                        <TeacherCourseTableXl  data={ searchCourses && searchCourses.data.length> 0 ? searchCourses : courses} />
+                    }
                 </div>
             </motion.div>
 

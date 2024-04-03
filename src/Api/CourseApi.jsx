@@ -50,6 +50,26 @@ export const getCourseById = async (id) => {
     }
 }
 
+export const getSearchCourse = async (search) => {
+    console.log(search);
+    try {
+        if (search == null || search == "") {
+            return null;
+        }else{
+        const response = await axios.get(`http://127.0.0.1:8000/api/users/courses/search/${search}`, {
+            headers: {
+                'Authorization': `Bearer ${token}` , 
+            }
+        });
+        console.log(response.data);
+        return response.data;
+        }
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; // Rethrow the error to handle it in the caller function
+    }
+}
+
 export const updateCourse = async (state) => {
     const code = state.course_code.toLowerCase();
     const title = state.course_title.toLowerCase();
