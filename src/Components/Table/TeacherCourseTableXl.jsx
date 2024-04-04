@@ -30,7 +30,8 @@ export default function TeacherCourseTableXl({data}) {
             <p className='lg:w-48 w-24 flex justify-end'>State</p>
         </header>
         {
-            data.data.map((item,i)=>(
+            data?.data.length > 0 ?
+            data?.data.map((item,i)=>(
                 <div key={i}  className='font-bold text-sm flex justify-between items-center my-6 border-b-2 pb-3'>
                     <p className='w-12'>{i+1}</p>
                     <div className='lg:w-60 w-24'>
@@ -43,10 +44,13 @@ export default function TeacherCourseTableXl({data}) {
                         <button onClick={(e)=>show(e,item.id,"course")} className='font-medium text-xs py-1 rounded-full px-4 text-white bg-red-500 w-fit  my-1'>Delete</button> 
                     </div>
                 </div>
-            ))
+            )) :
+            <div className='w-full flex justify-center items-center min-h-96'>
+                <p className='font-bold text-sm'>No Item !!</p>
+            </div>
         }
         <div className='w-full flex justify-end'>
-           <Pagination lastPage = { data.last_page} total = { data.total } size = {data.to} currentPage = {data.current_page} />
+           <Pagination name="course" lastPage = { data.last_page} total = { data.total } size = {data.to} currentPage = {data.current_page} />
         </div>
     </div>
   )

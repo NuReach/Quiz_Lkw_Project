@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TeacherNavbar from '../../Components/Navbar/TeacherNavbar'
 import TeacherSidebar from '../../Components/Sidebar/TeacherSidebar'
 import Footer from '../../Components/Footer/Footer'
@@ -6,13 +6,15 @@ import Search from '../../Components/Input/Search'
 import TeacherCourseTableXl from '../../Components/Table/TeacherCourseTableXl'
 import { useLocation, useNavigate } from 'react-router-dom'
 import Dailog from '../../Components/Card/Dailog'
-import { useSelector } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
 import { containerMotion } from '../../animation'
 import { useQuery } from '@tanstack/react-query'
 import {  getSearchCourse } from '../../Api/CourseApi'
 import Loading from '../../Components/Loading/Loading'
 import Filter from '../../Components/Button/Filter'
+import { filterItem } from '../../Slice/functionSlice'
+import { toast } from 'sonner'
 
 function TeacherCourse() {
     const navigate = useNavigate();
@@ -22,11 +24,22 @@ function TeacherCourse() {
     const page= queryParams.get('page');
     const search = useSelector((state)=>state.function.search);
     const [sort,setSort] = useState({sortBy:"created_at",sortDir:"asc"});
+    const dispatch = useDispatch();
+
+    useEffect(()=>{
+        dispatch(filterItem({search:"all"}));
+      },[])
 
     const { isLoading : searchCourseLoading , isError:searchCourseError , data:searchCourses } = useQuery({
         queryKey : ['searchCourses',{search,sortBy:sort.sortBy,sortDir:sort.sortDir,page}],
         queryFn : ()=>getSearchCourse(search,sort.sortBy,sort.sortDir,page)
     });
+
+    if (searchCourseError) {
+        toast.error("Something went wrong");
+        dispatch(filterItem({search:"all"}));
+        navigate("/teacher/dashboard");
+    }
 
   return (
     <div>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 
-export default function Pagination({lastPage,total,size,currentPage}) {
+export default function Pagination({lastPage,total,size,currentPage,name}) {
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
   const page= queryParams.get('page');
@@ -16,21 +16,21 @@ export default function Pagination({lastPage,total,size,currentPage}) {
             {
               currentPage >1 &&
               <li>
-                <Link to={`/teacher/course?page=${currentPage-1}`}  className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</Link>
+                <Link to={`/teacher/${name}?page=${currentPage-1}`}  className="flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Previous</Link>
               </li>
             }
             {
               array.length > 1 && 
               array.map((item,i)=>(
                 <li key={i}>
-                  <Link to={`/teacher/course?page=${i+1}`}  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{i+1}</Link>
+                  <Link to={`/teacher/${name}?page=${i+1}`}  className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">{i+1}</Link>
                 </li>
               ))
             }
             {
               currentPage < lastPage &&
               <li>
-                <Link to={`/teacher/course?page=${currentPage+1}`} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</Link>
+                <Link to={`/teacher/${name}?page=${currentPage+1}`} className="flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">Next</Link>
               </li>
             }
           </ul>

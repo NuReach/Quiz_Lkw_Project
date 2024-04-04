@@ -7,7 +7,11 @@ export default function Search({name}) {
   const dispatch = useDispatch();
   const submit = (e)=>{
     if (e.key == "Enter") {
-      dispatch(filterItem({search:e.target.value}));
+        if (e.target.value.length == 0) {
+          dispatch(filterItem({search:"all"}));
+        }else{
+        dispatch(filterItem({search:e.target.value}));
+      }
     }
   }
   return (
