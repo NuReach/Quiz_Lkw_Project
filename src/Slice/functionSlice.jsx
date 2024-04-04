@@ -13,7 +13,7 @@ export const functionSlice = createSlice({
             page : 0,
             userAnswers:[],
         //search
-            search : "",
+            search : "all",
         //dailog
             dailog : false,
             deleteItem: {},

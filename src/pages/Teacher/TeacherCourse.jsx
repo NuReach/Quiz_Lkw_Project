@@ -10,8 +10,9 @@ import { useSelector } from 'react-redux'
 import { motion } from 'framer-motion'
 import { containerMotion } from '../../animation'
 import { useQuery } from '@tanstack/react-query'
-import { getCourses, getSearchCourse } from '../../Api/CourseApi'
+import {  getSearchCourse } from '../../Api/CourseApi'
 import Loading from '../../Components/Loading/Loading'
+import Filter from '../../Components/Button/Filter'
 
 function TeacherCourse() {
     const navigate = useNavigate();
@@ -20,24 +21,18 @@ function TeacherCourse() {
     const queryParams = new URLSearchParams(location.search);
     const page= queryParams.get('page');
     const search = useSelector((state)=>state.function.search);
-
-    const { isLoading , isError , data:courses } = useQuery({
-        queryKey : ['courses'],
-        queryFn : ()=>getCourses(page)
-    });
+    const [sort,setSort] = useState({sortBy:"created_at",sortDir:"asc"});
 
     const { isLoading : searchCourseLoading , isError:searchCourseError , data:searchCourses } = useQuery({
-        queryKey : ['searchCourses',{search}],
-        queryFn : ()=>getSearchCourse(search)
+        queryKey : ['searchCourses',{search,sortBy:sort.sortBy,sortDir:sort.sortDir,page}],
+        queryFn : ()=>getSearchCourse(search,sort.sortBy,sort.sortDir,page)
     });
 
-    console.log(searchCourses);
-    console.log(courses);
   return (
     <div>
         <TeacherNavbar />
         <div className='flex'>
-            <TeacherSidebar  path={`/teacher/course/update/${courses?.current_page}`} />
+            <TeacherSidebar  path={`/teacher/course/update/${searchCourses?.current_page}`} />
             <motion.div
                 variants={containerMotion}
                 initial = "hidden"
@@ -56,12 +51,13 @@ function TeacherCourse() {
                         <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 256 256"><path fill="currentColor" d="M128 24a104 104 0 1 0 104 104A104.13 104.13 0 0 0 128 24m40 112h-32v32a8 8 0 0 1-16 0v-32H88a8 8 0 0 1 0-16h32V88a8 8 0 0 1 16 0v32h32a8 8 0 0 1 0 16"/></svg>
                     </div>
                 </div>
+                <Filter setSort={setSort} />
                 <div className='mt-3 gap-3 flex flex-wrap w-full justify-center'>
                     {
-                        isLoading ? 
+                        searchCourseLoading ? 
                         <Loading />
                         :
-                        <TeacherCourseTableXl  data={ searchCourses && searchCourses.data.length> 0 ? searchCourses : courses} />
+                        <TeacherCourseTableXl  data={ searchCourses} />
                     }
                 </div>
             </motion.div>

@@ -28,6 +28,7 @@ import TeacherQuestionUpdatePage from "./pages/Teacher/TeacherQuestionUpdatePage
 import { containerMotion } from "./animation"
 import { AnimatePresence, motion } from "framer-motion"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 
 function App() {
   const queryClient = new QueryClient();
@@ -41,6 +42,7 @@ function App() {
           <RoutesWithAnimation />
         </LocationProvider>
       </BrowserRouter>
+      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
     </>
   )

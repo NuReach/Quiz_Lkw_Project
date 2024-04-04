@@ -3,20 +3,20 @@ import axios from 'axios';
 const user = JSON.parse(localStorage.getItem('userData'));
 const token = user.token;
 
-export const getCourses = async (page) => {
+// export const getCourses = async (page) => {
 
-    try {
-        const response = await axios.get(`http://127.0.0.1:8000/api/users/courses?page=${page}`, {
-            headers: {
-                'Authorization': 'Bearer 5|RwgRKsfHOwnBh02GAg68w8WFTHISMNIoeGdej92Ka9a5cce6', 
-            }
-        });
-        return response.data;
-    } catch (error) {
-        console.error('Error fetching data:', error);
-        throw error; // Rethrow the error to handle it in the caller function
-    }
-}
+//     try {
+//         const response = await axios.get(`http://127.0.0.1:8000/api/users/courses?page=${page}`, {
+//             headers: {
+//                 'Authorization': 'Bearer 5|RwgRKsfHOwnBh02GAg68w8WFTHISMNIoeGdej92Ka9a5cce6', 
+//             }
+//         });
+//         return response.data;
+//     } catch (error) {
+//         console.error('Error fetching data:', error);
+//         throw error; // Rethrow the error to handle it in the caller function
+//     }
+// }
 
 export const createCourse = async (state) =>{
     const code = state.code.toLowerCase();
@@ -50,20 +50,14 @@ export const getCourseById = async (id) => {
     }
 }
 
-export const getSearchCourse = async (search) => {
-    console.log(search);
+export const getSearchCourse = async (search,sortBy,sortDir,page ) => {
     try {
-        if (search == null || search == "") {
-            return null;
-        }else{
-        const response = await axios.get(`http://127.0.0.1:8000/api/users/courses/search/${search}`, {
+        const response = await axios.get(`http://127.0.0.1:8000/api/users/courses/search/${search}/${sortBy}/${sortDir}?page=${page}`, {
             headers: {
                 'Authorization': `Bearer ${token}` , 
             }
         });
-        console.log(response.data);
         return response.data;
-        }
     } catch (error) {
         console.error('Error fetching data:', error);
         throw error; // Rethrow the error to handle it in the caller function
