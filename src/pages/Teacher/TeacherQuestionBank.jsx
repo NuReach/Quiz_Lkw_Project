@@ -15,6 +15,7 @@ import { useLocation } from 'react-router-dom'
 import { getSearchQuestions } from '../../Api/QuestionApi'
 import { useQuery } from '@tanstack/react-query'
 import Loading from '../../Components/Loading/Loading'
+import {toast} from 'sonner';
 
 export default function TeacherQuestionBank() {
 

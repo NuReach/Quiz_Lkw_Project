@@ -1,5 +1,8 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { createQuestion } from '../../Api/QuestionApi';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
+import {toast} from 'sonner';
 
 export default function CreateQcmCard() {
     const navigate = useNavigate();
@@ -12,6 +15,7 @@ export default function CreateQcmCard() {
     const [op4,setOp4] = useState("");
     const [question,setQuestion] = useState("");
     const [answer,setAnswer] = useState("");
+    const queryClient = useQueryClient();
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -23,6 +27,47 @@ export default function CreateQcmCard() {
           reader.readAsDataURL(file);
         }
       };
+    const handleSubmit = async (e)=>{
+        e.preventDefault();
+        const questionObj = {
+            question_prompt : question.toLowerCase(),
+            question_image: selectedFile,
+            question_type: "multiple choice",
+            question_level: difficulty,
+            question_choices : [
+                {
+                    text : op1,
+                    is_correct :  answer == 'op1' ? true : false 
+                },
+                {
+                    text : op2,
+                    is_correct :   answer == 'op2' ? true : false 
+                },
+                {
+                    text : op3,
+                    is_correct :  answer == 'op3' ? true : false 
+                },
+                {
+                    text : op4,
+                    is_correct :  answer == 'op4' ? true : false 
+                },
+            ]
+        }
+        await createQuestionFunc(questionObj);
+    }
+
+    const { mutateAsync : createQuestionFunc , isPending , data   } = useMutation({
+        mutationFn : createQuestion,
+        onSuccess : ()=>{
+          toast.success("Question Created Successfully")
+          navigate('/teacher/questionbank/create/');
+          queryClient.invalidateQueries(['searchQuestions']);
+        },
+        onError : ()=>{
+            toast.error("Sorry, Something went wrong !!")
+        }
+      })
+
   return (
     <div className='flex flex-col gap-9'>
         <section className='flex gap-16'>
@@ -77,7 +122,7 @@ export default function CreateQcmCard() {
             </div>
         </section>
         <section className='w-full flex justify-end'>
-            <button className='bg-black font-bold text-xs px-6 py-2 rounded-md text-white'>Submit</button>
+            <button disabled={isPending} onClick={handleSubmit} className='bg-black font-bold text-xs px-6 py-2 rounded-md text-white'>{isPending ? "Loading..." : "Submit"}</button>
         </section>
     </div>
   )

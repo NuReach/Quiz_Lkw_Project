@@ -13,7 +13,9 @@ export default function TeacherCourseEdit() {
     const navigate = useNavigate();
     const {id} = useParams();
     const {register , handleSubmit , formState: { errors }  } = useForm();
+
     const queryClient = useQueryClient();
+    
     const { isLoading , isError , data:courseById } = useQuery({
         queryKey : ['courseById',{id}],
         queryFn : () => getCourseById(id)

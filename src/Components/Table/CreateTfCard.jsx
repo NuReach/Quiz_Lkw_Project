@@ -1,8 +1,13 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { createQuestion } from '../../Api/QuestionApi';
+import { useMutation , useQueryClient } from '@tanstack/react-query';
+import {toast} from 'sonner' ;
+
 
 export default function CreateTfCard() {
     const navigate = useNavigate();
+    const queryClient  = useQueryClient();
     const [selectedFile, setSelectedFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [difficulty,setDifficulty] = useState("");
@@ -19,6 +24,37 @@ export default function CreateTfCard() {
           reader.readAsDataURL(file);
         }
       };
+      const handleSubmit = async (e)=>{
+        e.preventDefault();
+        const questionObj = {
+            question_prompt : question.toLowerCase(),
+            question_image: selectedFile,
+            question_type: "true or false",
+            question_level: difficulty,
+            question_choices : [
+                {
+                    text : "true",
+                    is_correct :  answer == 'true' ? true : false 
+                },
+                {
+                    text : "false",
+                    is_correct :   answer == 'false' ? true : false 
+                },
+            ]
+        }
+        await createQuestionFunc(questionObj);
+    }
+    const { mutateAsync : createQuestionFunc , isPending , data   } = useMutation({
+        mutationFn : createQuestion,
+        onSuccess : ()=>{
+          toast.success("Question Created Successfully")
+          navigate('/teacher/questionbank/create?tf=true');
+          queryClient.invalidateQueries(['searchQuestions']);
+        },
+        onError : ()=>{
+            toast.error("Sorry, Something went wrong !!")
+        }
+      })
     return (
       <div className='flex flex-col gap-9 pb-16'>
           <section className='flex gap-16'>
@@ -63,7 +99,7 @@ export default function CreateTfCard() {
               </div>
           </section>
           <section className='w-full flex justify-end'>
-              <button className='bg-black font-bold text-xs px-6 py-2 rounded-md text-white'>Submit</button>
+              <button onClick={handleSubmit} className='bg-black font-bold text-xs px-6 py-2 rounded-md text-white'>Submit</button>
           </section>
       </div>
     )

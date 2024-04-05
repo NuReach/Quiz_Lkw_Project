@@ -1,12 +1,11 @@
 import React from 'react'
-import { useDispatch, useSelector } from 'react-redux';
-import { showDailog } from '../../Slice/functionSlice';
-import { AnimatePresence, motion } from 'framer-motion';
+import {  motion } from 'framer-motion';
 import { modalContainer } from '../../animation';
 import { createPortal } from 'react-dom';
 import { deleteCourse } from '../../Api/CourseApi';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
+import { deleteQuestion } from '../../Api/QuestionApi';
 
 export default function Dailog({setModal,modal,content}) {
 
@@ -22,9 +21,13 @@ export default function Dailog({setModal,modal,content}) {
             await courseDeleteFunc(content);
             setModal(!modal);
         }
+        if (content.name == 'question'){
+            await questionDeleteFunc(content);
+            setModal(!modal);
+        }
     };
 
-    const { mutateAsync : courseDeleteFunc , isPending    } = useMutation({
+    const { mutateAsync : courseDeleteFunc     } = useMutation({
         mutationFn : deleteCourse,
         onSuccess : ()=>{
           toast.success("Course Deleted Successfully");
@@ -34,6 +37,16 @@ export default function Dailog({setModal,modal,content}) {
             toast.error("Please feild the corect information")
         }
       })
+    const { mutateAsync : questionDeleteFunc     } = useMutation({
+        mutationFn : deleteQuestion,
+        onSuccess : ()=>{
+        toast.success("Question Deleted Successfully");
+        queryClient.invalidateQueries(['searchQuestions'])
+        },
+        onError : ()=>{
+            toast.error("Please feild the corect information")
+        }
+    })
 
     const mountElemet = document.getElementById("modal");
   return createPortal(
