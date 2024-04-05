@@ -1,24 +1,53 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TeacherNavbar from '../../Components/Navbar/TeacherNavbar'
 import TeacherSidebar from '../../Components/Sidebar/TeacherSidebar'
 import Footer from '../../Components/Footer/Footer'
 import Search from '../../Components/Input/Search'
 import QuestionFilter from '../../Components/Button/QuestionFilter'
 import TeacherQuestionTableXl from '../../Components/Table/TeacherQuestionTableXl'
-import { data } from 'autoprefixer'
-import TeacherQuestionTableSm from '../../Components/Table/TeacherQuestionTableSm'
 import Dailog from '../../Components/Card/Dailog'
-import { useSelector } from 'react-redux'
+import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { containerMotion } from '../../animation'
+import { filterItem } from '../../Slice/functionSlice'
+import { useLocation } from 'react-router-dom'
+import { getSearchQuestions } from '../../Api/QuestionApi'
+import { useQuery } from '@tanstack/react-query'
+import Loading from '../../Components/Loading/Loading'
 
 export default function TeacherQuestionBank() {
-    const text ="asdfgh";
-    const [data,setData]=useState(text.split(""));
+
     const showDailog = useSelector((state)=>state.function.dailog);
     const navigate = useNavigate();
-    console.log(showDailog);
+
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const page= queryParams.get('page');
+    const dispatch = useDispatch();
+    const [sort,setSort] = useState({sortBy:"created_at",sortDir:"asc"});
+    
+
+    useEffect(()=>{
+        dispatch(filterItem({search:"all"}));
+      },[])
+    
+    const search = useSelector((state)=>state.function.search);
+    
+
+    const { isLoading : searchQuestionsLoading , isError:searchQuestionsError , data:searchQuestions } = useQuery({
+        queryKey : ['searchQuestions',{search,sortBy:sort.sortBy,sortDir:sort.sortDir,page}],
+        queryFn : ()=>getSearchQuestions(search,sort.sortBy,sort.sortDir,page)
+    });
+
+
+    if (searchQuestionsError) {
+        toast.error("Something went wrong");
+        dispatch(filterItem({search:"all"}));
+        navigate("/teacher/dashboard");
+      }
+
+
   return (
     <div>
         <TeacherNavbar />
@@ -32,7 +61,7 @@ export default function TeacherQuestionBank() {
                  className='p-3 w-full'>
                 <p className='font-bold text-lg '>Question List</p>
                 <div className='flex justify-between items-center flex-wrap w-full'>
-                    <Search />
+                    <Search name="questions" />
                     <div onClick={(e)=>{
                         navigate("/teacher/questionbank/create")
                     }} className='flex justify-center  items-center gap-3 cursor-pointer hover:scale-105 transition'>
@@ -41,14 +70,16 @@ export default function TeacherQuestionBank() {
                     </div>
                 </div>
                 <div>
-                    <QuestionFilter />
+                    <QuestionFilter setSort={setSort} />
                 </div>
+                {
+                    searchQuestionsLoading ?
+                     <Loading />
+                     :
                 <div className='flex flex-wrap gap-3 w-full justify-center '>
-                    <TeacherQuestionTableXl data={data} />
+                    <TeacherQuestionTableXl data={searchQuestions} />
                 </div>
-                <div className='w-full flex  justify-end'>
-                  <button className='font-medium text-xs py-1 rounded-full px-4 text-white bg-black  my-1 xl:hidden'>Next</button>
-              </div>
+                }
             </motion.div>
         </div>
         {

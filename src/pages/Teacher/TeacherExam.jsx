@@ -5,7 +5,6 @@ import Footer from '../../Components/Footer/Footer'
 import Search from '../../Components/Input/Search'
 import ExamFilter from '../../Components/Button/ExamFilter'
 import TeacherExamListTableXl from '../../Components/Table/TeacherExamListTableXl'
-import TeacherExamListTableSm from '../../Components/Table/TeacherExamListTableSm'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { containerMotion } from '../../animation'
@@ -17,8 +16,7 @@ import { toast } from 'sonner'
 import Loading from '../../Components/Loading/Loading'
 
 export default function TeacherExam() {
-  const text ="asdfgh";
-  const [data,setData]=useState(text.split(""));
+
   const navigate = useNavigate();
   const location = useLocation();
   const queryParams = new URLSearchParams(location.search);
