@@ -1,13 +1,23 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { updateQuestion } from '../../Api/QuestionApi';
+import {useMutation,useQueryClient} from '@tanstack/react-query';
+import { toast } from 'sonner';
 
-export default function UpdateTfCard() {
+export default function UpdateTfCard({data,id}) {
     const navigate = useNavigate();
     const [selectedFile, setSelectedFile] = useState(null);
-    const [imagePreview, setImagePreview] = useState(null);
-    const [difficulty,setDifficulty] = useState("easy");
-    const [question,setQuestion] = useState("What is this ?");
-    const [answer,setAnswer] = useState("true");
+    const [imagePreview, setImagePreview] = useState(data.question_image);
+    const [difficulty,setDifficulty] = useState(data.question_level);
+    const [question,setQuestion] = useState(data.question_prompt);
+    const [answer,setAnswer] = useState(data.choices.findIndex((item)=> item.is_correct == 1) == 0 ? "op1" :
+    (data.choices.findIndex((item)=>item.is_correct == 1) == 1 ? "op2" : (
+    data.choices.findIndex((item)=>item.is_correct == 1) == 2 ? "op3" : "op4"
+    )));
+
+    const queryClient = useQueryClient();
+
+    console.log(data);
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -19,6 +29,44 @@ export default function UpdateTfCard() {
           reader.readAsDataURL(file);
         }
       };
+
+      const handleClick = async (e)=>{
+        e.preventDefault();
+        const questionObj = {
+            id:id,
+            question_prompt : question.toLowerCase(),
+            question_image: selectedFile,
+            question_type: "true of false",
+            question_level: difficulty,
+            question_choices : [
+                {
+                    id:data.choices[0].id,
+                    question_id : data.choices[0].question_id ,
+                    text : "true",
+                    is_correct :  answer == 'op1' ? true : false 
+                },
+                {
+                    id:data.choices[1].id,
+                    question_id : data.choices[1].question_id ,
+                    text : "false",
+                    is_correct :   answer == 'op2' ? true : false 
+                },
+            ]
+        }
+        await updateQuestionFunc(questionObj);
+    }
+      
+      const { mutateAsync : updateQuestionFunc , isPending  } = useMutation({
+        mutationFn : updateQuestion,
+        onSuccess : ()=>{
+          toast.success("Question Updated Successfully")
+          navigate('/teacher/questionbank/');
+          queryClient.invalidateQueries(['searchQuestions']);
+        },
+        onError : ()=>{
+            toast.error("Sorry, Something went wrong !!")
+        }
+      })
     return (
       <div className='flex flex-col gap-9 pb-16'>
           <section className='flex gap-16'>
@@ -34,7 +82,7 @@ export default function UpdateTfCard() {
             <div className='flex flex-col gap-9'>
                 <input onChange={handleFileChange} type="file" className='text-xs file:text-xs rounded-lg' />
                 {
-                    imagePreview != null && <img className='w-36 object-cover' src={imagePreview} alt="" />
+                    imagePreview != null && <img className='w-36 h-48 object-cover' src={imagePreview} alt="" />
                 }
             </div>
         </section>
@@ -51,16 +99,16 @@ export default function UpdateTfCard() {
               <div className='flex flex-wrap gap-6 items-center'>
                   <p className='font-bold text-xs '>Option 1</p>
                   <p className='font-bold text-xs w-12 '>True </p>
-                  <input onClick={(e)=>setAnswer(e.target.value)} value="true" checked={answer=="true"} type="checkbox" className='checked:bg-black' />
+                  <input onClick={(e)=>setAnswer(e.target.value)} value="op1" checked={answer=="op1"} type="checkbox" className='checked:bg-black' />
               </div>
               <div className='flex flex-wrap gap-6 items-center'>
                   <p className='font-bold text-xs '>Option 2</p>
                   <p className='font-bold text-xs w-12'>False </p>
-                  <input onClick={(e)=>setAnswer(e.target.value)} value="false" checked={answer=="false"} type="checkbox" className='checked:bg-black' />
+                  <input onClick={(e)=>setAnswer(e.target.value)} value="op2" checked={answer=="op2"} type="checkbox" className='checked:bg-black' />
               </div>
           </section>
           <section className='w-full flex justify-end'>
-              <button className='bg-black font-bold text-xs px-6 py-2 rounded-md text-white'>Submit</button>
+              <button onClick={handleClick} className='bg-black font-bold text-xs px-6 py-2 rounded-md text-white'>Submit</button>
           </section>
       </div>
     )
