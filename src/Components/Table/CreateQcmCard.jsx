@@ -9,6 +9,7 @@ export default function CreateQcmCard() {
     const [selectedFile, setSelectedFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [difficulty,setDifficulty] = useState("");
+    const [mark,setMark] = useState(0);
     const [op1,setOp1] = useState("");
     const [op2,setOp2] = useState("");
     const [op3,setOp3] = useState("");
@@ -34,6 +35,7 @@ export default function CreateQcmCard() {
             question_image: selectedFile,
             question_type: "multiple choice",
             question_level: difficulty,
+            question_mark:mark,
             question_choices : [
                 {
                     text : op1,
@@ -101,24 +103,28 @@ export default function CreateQcmCard() {
         <section className='flex flex-col gap-6'>
             <p className=' text-sm font-bold'>Answer Question </p>
             <div className='flex flex-wrap gap-6 items-center'>
-                <p className='font-bold text-xs '>Option 1</p>
+                <p className='font-bold w-16 text-xs '>Option 1</p>
                 <input onChange={(e)=>setOp1(e.target.value)} value={op1} type="text" className='p-2 text-xs rounded-md' />
                 <input  value="op1" checked={answer=="op1"} onClick={(e)=>setAnswer(e.target.value)} type="checkbox" className='checked:bg-black' />
             </div>
             <div className='flex flex-wrap gap-6 items-center'>
-                <p className='font-bold text-xs '>Option 2</p>
+                <p className='font-bold w-16 text-xs '>Option 2</p>
                 <input onChange={(e)=>setOp2(e.target.value)} value={op2} type="text" className='p-2 text-xs rounded-md' />
                 <input  value="op2" checked={answer=="op2"} onClick={(e)=>setAnswer(e.target.value)} type="checkbox" className='checked:bg-black' />
             </div>
             <div className='flex flex-wrap gap-6 items-center'>
-                <p className='font-bold text-xs '>Option 3</p>
+                <p className='font-bold w-16 text-xs '>Option 3</p>
                 <input onChange={(e)=>setOp3(e.target.value)} value={op3} type="text" className='p-2 text-xs rounded-md' />
                 <input  value="op3" checked={answer=="op3"} onClick={(e)=>setAnswer(e.target.value)} type="checkbox" className='checked:bg-black' />
             </div>
             <div className='flex flex-wrap gap-6 items-center'>
-                <p className='font-bold text-xs '>Option 4</p>
+                <p className='font-bold w-16 text-xs '>Option 4</p>
                 <input onChange={(e)=>setOp4(e.target.value)} value={op4} type="text" className='p-2 text-xs rounded-md' />
                 <input  value="op4" checked={answer=="op4"} onClick={(e)=>setAnswer(e.target.value)} type="checkbox" className='checked:bg-black' />
+            </div>
+            <div className='flex flex-wrap gap-6 items-center'>
+                <p className='font-bold w-16 text-sm '>Mark</p>
+                <input onChange={(e)=>setMark(e.target.value)} value={mark} type="number" className='p-2 text-xs rounded-md' />
             </div>
         </section>
         <section className='w-full flex justify-end'>

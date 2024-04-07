@@ -40,6 +40,7 @@ export const createQuestion = async (state) => {
             question_level : state.question_level,
             question_type : state.question_type,
             question_choices : state.question_choices,
+            question_mark:state.question_mark,
             author : user.user_id
         },
         {
@@ -64,6 +65,7 @@ export const updateQuestion = async (state)=>{
             question_level : state.question_level,
             question_type : state.question_type,
             question_choices : state.question_choices,
+            question_mark:state.question_mark,
             author : user.user_id
         },
         {

@@ -13,6 +13,7 @@ export default function CreateTfCard() {
     const [difficulty,setDifficulty] = useState("");
     const [question,setQuestion] = useState("");
     const [answer,setAnswer] = useState("");
+    const [mark,setMark] = useState(0);
     const handleFileChange = (event) => {
         const file = event.target.files[0];
         if (file) {
@@ -31,6 +32,7 @@ export default function CreateTfCard() {
             question_image: selectedFile,
             question_type: "true or false",
             question_level: difficulty,
+            question_mark:mark,
             question_choices : [
                 {
                     text : "true",
@@ -88,15 +90,19 @@ export default function CreateTfCard() {
           <section className='flex flex-col gap-6'>
               <p className=' text-sm font-bold'>Answer Question </p>
               <div className='flex flex-wrap gap-6 items-center'>
-                  <p className='font-bold text-xs '>Option 1</p>
+                  <p className='font-bold w-16 text-xs '>Option 1</p>
                   <p className='font-bold text-xs w-12 '>True </p>
                   <input onClick={(e)=>setAnswer(e.target.value)} value="true" checked={answer=="true"} type="checkbox" className='checked:bg-black' />
               </div>
               <div className='flex flex-wrap gap-6 items-center'>
-                  <p className='font-bold text-xs '>Option 2</p>
+                  <p className='font-bold w-16 text-xs '>Option 2</p>
                   <p className='font-bold text-xs w-12'>False </p>
                   <input onClick={(e)=>setAnswer(e.target.value)} value="false" checked={answer=="false"} type="checkbox" className='checked:bg-black' />
               </div>
+              <div className='flex flex-wrap gap-6 items-center'>
+                <p className='font-bold w-16  '>Mark</p>
+                <input onChange={(e)=>setMark(e.target.value)} value={mark} type="number" className='p-2 text-xs rounded-md' />
+            </div>
           </section>
           <section className='w-full flex justify-end'>
               <button onClick={handleSubmit} className='bg-black font-bold text-xs px-6 py-2 rounded-md text-white'>Submit</button>

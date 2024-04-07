@@ -9,6 +9,7 @@ export default function UpdateQcmCard({data,id}) {
     const [selectedFile, setSelectedFile] = useState(null);
     const [imagePreview, setImagePreview] = useState(null);
     const [difficulty,setDifficulty] = useState(data.question_level);
+    const [mark,setMark] = useState(data.mark);
     const [op1,setOp1] = useState(data.choices[0].text);
     const [op2,setOp2] = useState(data.choices[1].text);
     const [op3,setOp3] = useState(data.choices[2].text);
@@ -40,6 +41,7 @@ export default function UpdateQcmCard({data,id}) {
             question_image: selectedFile,
             question_type: "multiple choice",
             question_level: difficulty,
+            question_mark:mark,
             question_choices : [
                 {
                     id:data.choices[0].id,
@@ -84,11 +86,8 @@ export default function UpdateQcmCard({data,id}) {
   return (
     <div className='flex flex-col gap-9'>
         <section className='flex gap-16'>
-            <div onClick={(e)=>navigate("/teacher/questionbank/create")} className='w-28 text-center border-b-4 pb-3 border-black cursor-pointer'>
+            <div className='w-28 text-center border-b-4 pb-3 border-black cursor-pointer'>
                 <p className='font-bold text-sm '>Muliple Choice Question</p>
-            </div>
-            <div onClick={(e)=>navigate("/teacher/questionbank/create?tf=true")} className='w-24 text-center cursor-pointer  border-gray-500'>
-                <p className='font-bold text-sm border-b-4  text-gray-500 pb-3 '>True False Question</p>
             </div>
         </section>
         <section>
@@ -136,6 +135,10 @@ export default function UpdateQcmCard({data,id}) {
                 <p className='font-bold text-xs '>Option 4</p>
                 <input onChange={(e)=>setOp4(e.target.value)} value={op4} type="text" className='p-2 text-xs rounded-md' />
                 <input  value="op4" checked={answer=='op4'} onClick={(e)=>setAnswer(e.target.value)} type="checkbox" className='checked:bg-black' />
+            </div>
+            <div className='flex flex-wrap gap-6 items-center'>
+                <p className='font-bold w-16 text-sm '>Mark</p>
+                <input onChange={(e)=>setMark(e.target.value)} value={mark} type="number" className='p-2 text-xs rounded-md' />
             </div>
         </section>
         <section className='w-full flex justify-end'>
