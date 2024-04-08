@@ -16,7 +16,8 @@ export default function CreateExamStep3() {
         dispatch(showDailog());
     }
     const exam = useSelector((state)=>state.function.exam);
-    console.log(exam,selectedQuestion);
+
+    
     return (
       <div className='w-full p-6 flex flex-col justify-center items-center'>
         <div className='w-full md:w-1/2'>
@@ -60,8 +61,17 @@ export default function CreateExamStep3() {
             </div>
            
             <div className='w-full flex justify-start'>
-            <button onClick={()=>{
-               alert("submit")
+            <button onClick={ async ()=>{
+               const examObj = {
+                    exam_title : exam.title,
+                    course_id : exam.courseId,
+                    exam_percentage : exam.percentage,
+                    exam_score : exam.score,
+                    exam_duration : exam.duration ,
+                    exam_description : exam.description,
+                    questions : selectedQuestion
+               }
+               console.log(examObj);
             }} className='font-medium text-xs py-2 w-full md:w-1/3 rounded-md  px-4 text-white bg-black  my-1 '>Submit</button>
         </div>
         </div>

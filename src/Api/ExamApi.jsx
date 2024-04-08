@@ -30,3 +30,28 @@ export const getAllQuestions = async ()=>{
         throw error; // Rethrow the error to handle it in the caller function
     }
 }
+
+// export const createExam = async (state) =>{
+//     try {
+//         const response = await axios.post(`http://127.0.0.1:8000/api/exams/create`,
+//         {
+//             exam_title : state.
+//             course_id : 
+//             exam_percentage : 
+//             exam_score : 
+//             exam_duration : 
+//             exam_description : 
+//             author :
+//             questions :
+//         },
+//         {
+//             headers: {
+//                 'Authorization': `Bearer ${token}` , 
+//             }
+//         });
+//         return response.data;
+//     } catch (error) {
+//         console.error('Error fetching data:', error);
+//         throw error; // Rethrow the error to handle it in the caller function
+//     }
+// }

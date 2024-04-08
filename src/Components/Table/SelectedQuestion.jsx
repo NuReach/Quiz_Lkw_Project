@@ -12,7 +12,7 @@ export default function SelectedQuestion() {
         <div>
           {
                 selectedQuestion.map((item,i)=>(
-                    <div className='font-bold text-sm flex flex-wrap  items-center my-6 border-b-2 pb-3 gap-3 cursor-pointer '>
+                    <div key={i} className='font-bold text-sm flex flex-wrap  items-center my-6 border-b-2 pb-3 gap-3 cursor-pointer '>
                         <p className='w-6'>{i+1}</p>
                         <div className=''>
                         <p className=' font-medium text-gray-600 line-clamp-1 w-64 capitalize'>{item.question_prompt}</p>
