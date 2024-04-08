@@ -6,6 +6,8 @@ import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import CreateExamStep1 from '../../Components/Card/CreateExamStep1'
 import CreateExamStep2 from '../../Components/Card/CreateExamStep2'
 import CreateExamStep3 from '../../Components/Card/CreateExamStep3'
+import { getCourses } from '../../Api/CourseApi'
+import { useQuery  } from '@tanstack/react-query'
 
 export default function TeacherExamCreatePage() {
   const location = useLocation();
@@ -14,6 +16,12 @@ export default function TeacherExamCreatePage() {
   const step2 = queryParams.get('step2');
   const step3 = queryParams.get('step3');
 
+  const { isLoading : courseLoading , isError:courseError , data:courses } = useQuery({
+    queryKey : ['courses'],
+    queryFn : getCourses
+  });
+  
+
   return (
     <div>
         <TeacherNavbar />
@@ -21,7 +29,7 @@ export default function TeacherExamCreatePage() {
             <TeacherSidebar path={"/teacher/exam"} />
             {
               step1 ? 
-            <CreateExamStep1 /> :
+            <CreateExamStep1 courses = {courses} /> :
             ( step2 ? <CreateExamStep2 /> : (
               step3 ? <CreateExamStep3 /> : <CreateExamStep1 />
             ) )

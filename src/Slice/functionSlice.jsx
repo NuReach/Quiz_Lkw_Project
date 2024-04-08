@@ -19,6 +19,8 @@ export const functionSlice = createSlice({
             deleteItem: {},
         //create exam
             selectedQuestion : [],
+        //create exam 
+            exam : {},
     },
     reducers : {
         //create page function
@@ -116,7 +118,13 @@ export const functionSlice = createSlice({
                 }
     
                 //console.log(payload);
+            },
+          createExam : (state,action) => {
+            const payload = action.payload;
+            return {
+                ...state,exam:{...state.exam,...payload}
             }
+          }
 
     }
 })
@@ -125,6 +133,7 @@ export const {
     startPlaying, nextPage,getQuizId,
     prevPage,setShowQuizType,insertQuiz,
     deleteQuiz,updateQuiz,insertUserAnswer,
-    filterItem,showDailog,deleteItem,addQuestion
+    filterItem,showDailog,deleteItem,addQuestion,
+    createExam
             } = functionSlice.actions;
 export default functionSlice.reducer;

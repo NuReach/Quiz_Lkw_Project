@@ -3,20 +3,20 @@ import axios from 'axios';
 const user = JSON.parse(localStorage.getItem('userData'));
 const token = user?.token;
 
-// export const getCourses = async (page) => {
+export const getCourses = async () => {
 
-//     try {
-//         const response = await axios.get(`http://127.0.0.1:8000/api/users/courses?page=${page}`, {
-//             headers: {
-//                 'Authorization': 'Bearer 5|RwgRKsfHOwnBh02GAg68w8WFTHISMNIoeGdej92Ka9a5cce6', 
-//             }
-//         });
-//         return response.data;
-//     } catch (error) {
-//         console.error('Error fetching data:', error);
-//         throw error; // Rethrow the error to handle it in the caller function
-//     }
-// }
+    try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/users/courses`, {
+            headers: {
+                'Authorization':  `Bearer ${token}`, 
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; // Rethrow the error to handle it in the caller function
+    }
+}
 
 export const createCourse = async (state) =>{
     const code = state.code.toLowerCase();

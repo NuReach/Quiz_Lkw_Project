@@ -15,6 +15,8 @@ export default function CreateExamStep3() {
         e.preventDefault();
         dispatch(showDailog());
     }
+    const exam = useSelector((state)=>state.function.exam);
+    console.log(exam,selectedQuestion);
     return (
       <div className='w-full p-6 flex flex-col justify-center items-center'>
         <div className='w-full md:w-1/2'>

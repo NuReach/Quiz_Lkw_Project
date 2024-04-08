@@ -1,8 +1,15 @@
-import React from 'react'
-import { useNavigate } from 'react-router-dom';
-
+import React, { useState } from 'react'
+import { useNavigate  } from 'react-router-dom';
+import { useDispatch , useSelector } from 'react-redux';
+import { createExam } from '../../Slice/functionSlice';
 export default function CreateExamStep2() {
     const navigate = useNavigate();
+    const [score,setScore] = useState(0);
+    const [duration,setDuration] = useState(0);
+    const [description,setDescription] = useState("");
+    const dispatch = useDispatch();
+    const exam = useSelector((state)=>state.function.exam);
+    console.log(exam);
     return (
       <div className='w-full p-6 flex flex-col justify-center items-center'>
                 <div className='w-full md:w-1/2'>
@@ -26,20 +33,24 @@ export default function CreateExamStep2() {
                   <div className='rounded-lg shadow-lg p-9 border-2 w-full mt-16 gap-3 flex flex-col'>
                     <p className='font-bold text-sm '>Enter the details for new exam</p>
                     <div>
-                      <p className='text-xs'>Section Name</p>
-                      <input type="text" name="" id="" className='bg-inherit text-xs mt-1 w-full md:w-1/2 focus:ring-0 focus:outline-none focus:border-black rounded-sm' />
+                      <p className='text-xs'>Full Score</p> 
+                      <input onChange={(e)=>setScore(e.target.value)} value={score} type="text" name="" id="" className='bg-inherit text-xs mt-1 w-full md:w-1/2 focus:ring-0 focus:outline-none focus:border-black rounded-sm' />
                     </div>
                     <div>
+                      <div className='flex gap-3'>
                       <p className='text-xs'>Duration</p>
-                      <input type="text" name="" id="" className='bg-inherit mt-1 w-full md:w-1/2 focus:ring-0 focus:outline-none focus:border-black rounded-sm text-xs' />
+                      <p className='text-xs text-red-600'>Note : In Minute</p>
+                      </div>
+                      <input onChange={(e)=>setDuration(e.target.value)} value={duration} type="text" name="" id="" className='bg-inherit mt-1 w-full md:w-1/2 focus:ring-0 focus:outline-none focus:border-black rounded-sm text-xs' />
                     </div>
                     <div>
                       <p className='text-xs'>Description</p>
-                      <input type="text" name="" id="" className='bg-inherit mt-1 w-full md:w-1/2 focus:ring-0 focus:outline-none focus:border-black rounded-sm text-xs' />
+                      <input onChange={(e)=>setDescription(e.target.value)} value={description} type="text" name="" id="" className='bg-inherit mt-1 w-full md:w-1/2 focus:ring-0 focus:outline-none focus:border-black rounded-sm text-xs' />
                     </div>
                     <div className='w-full flex  justify-start'>
                       <button onClick={()=>{
-                        navigate("/teacher/exam/create?step3=true")
+                        navigate(`/teacher/exam/create?step3=true`);
+                        dispatch(createExam({score,duration,description}))
                       }} className='font-medium text-xs w-full md:w-1/3 py-2 rounded-md px-4 text-white bg-black  my-1 '>Next</button>
                   </div>
                   </div>
