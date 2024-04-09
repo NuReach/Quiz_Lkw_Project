@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import QuestionBank from '../Table/QuestionBank';
 import { useDispatch, useSelector } from 'react-redux';
 import { showDailog } from '../../Slice/functionSlice';
 import SelectedQuestion from '../Table/SelectedQuestion';
-
+import { AnimatePresence } from 'framer-motion'
+import ExamDailog from './ExamDailog';
 
 export default function CreateExamStep3() {
     const navigate = useNavigate();
     const dailog = useSelector((state)=>state.function.dailog);
     const selectedQuestion = useSelector((state)=>state.function.selectedQuestion);
+    const [examDaillog,setExamDailog] = useState(false);
+    const [examObj,setExamObj]= useState(null);
     const dispatch = useDispatch()
     const show = (e)=>{
         e.preventDefault();
@@ -17,7 +20,6 @@ export default function CreateExamStep3() {
     }
     const exam = useSelector((state)=>state.function.exam);
 
-    
     return (
       <div className='w-full p-6 flex flex-col justify-center items-center'>
         <div className='w-full md:w-1/2'>
@@ -69,13 +71,21 @@ export default function CreateExamStep3() {
                     exam_score : exam.score,
                     exam_duration : exam.duration ,
                     exam_description : exam.description,
-                    questions : selectedQuestion
+                    questions : selectedQuestion.map((item=>item.id))
                }
-               console.log(examObj);
+               setExamObj(examObj);
+               setExamDailog(!examDaillog);
             }} className='font-medium text-xs py-2 w-full md:w-1/3 rounded-md  px-4 text-white bg-black  my-1 '>Submit</button>
         </div>
         </div>
-        </div>         
+        </div>   
+        <AnimatePresence>
+        {
+            examDaillog ? 
+            <ExamDailog examObj ={examObj} setExamDailog={setExamDailog} examDailog={examDaillog} />
+             : ""
+        }     
+        </AnimatePresence>
     </div>
     )
 }
