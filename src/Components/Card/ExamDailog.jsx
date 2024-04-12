@@ -1,17 +1,24 @@
-import React from 'react'
+
 import { createPortal } from 'react-dom'
 import {motion} from 'framer-motion'
 import { modalContainer } from '../../animation';
 import { createExamApi } from '../../Api/ExamApi';
 import { useMutation } from '@tanstack/react-query';
 import { toast } from 'sonner'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from 'react-redux';
+import { resetSelectedQuestions } from '../../Slice/functionSlice';
 
 export default function ExamDailog({examObj,setExamDailog, examDailog}) {
   const mountElemet = document.getElementById("modal");
-  const { mutateAsync  : createExamMutation , isPending , data   } = useMutation({
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const { mutateAsync  : createExamMutation   } = useMutation({
     mutationFn : createExamApi,
     onSuccess : ()=>{
       toast.success("Login Successfully")
+      navigate('/teacher/exam');
+      dispatch(resetSelectedQuestions());
     },
     onError : ()=>{
         toast.error("Please feild the corect information")

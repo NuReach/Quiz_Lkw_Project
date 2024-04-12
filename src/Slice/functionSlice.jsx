@@ -24,7 +24,7 @@ export const functionSlice = createSlice({
     },
     reducers : {
         //create page function
-            setShowQuizType : (state,action)=>{
+            setShowQuizType : (state)=>{
                 return {
                     ...state,showQuizType:!state.showQuizType
                 }
@@ -56,15 +56,15 @@ export const functionSlice = createSlice({
                 }                
             },
         //playing page
-            startPlaying : ( state, action )=> {
+            startPlaying : ( state)=> {
                 return {
                     ...state,start:!state.start
                 }
             },
-            nextPage : (state,action) =>{
+            nextPage : (state) =>{
                     state.page++;
             },
-            prevPage : (state,action) =>{
+            prevPage : (state) =>{
                 state.page--;
             },
             insertUserAnswer : (state,action)=>{
@@ -90,7 +90,7 @@ export const functionSlice = createSlice({
                 }
             },
         // show dailog
-            showDailog : (state,action)=>{
+            showDailog : (state)=>{
                 return {
                     ...state,dailog:!state.dailog
                 }
@@ -119,6 +119,20 @@ export const functionSlice = createSlice({
     
                 //console.log(payload);
             },
+            deleteQuestion: (state, action) => {
+                const deletedItemId = action.payload.deletedItemId;
+                return {
+                    ...state,
+                    selectedQuestion: state.selectedQuestion.filter(x => x.id !== deletedItemId)
+                };
+            },
+            resetSelectedQuestions: (state) => {
+                return {
+                    ...state,
+                    selectedQuestion: []
+                };
+            },
+            
           createExam : (state,action) => {
             const payload = action.payload;
             return {
@@ -134,6 +148,6 @@ export const {
     prevPage,setShowQuizType,insertQuiz,
     deleteQuiz,updateQuiz,insertUserAnswer,
     filterItem,showDailog,deleteItem,addQuestion,
-    createExam
+    createExam , deleteQuestion , resetSelectedQuestions
             } = functionSlice.actions;
 export default functionSlice.reducer;

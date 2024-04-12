@@ -1,9 +1,7 @@
-import React, { useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { filterItem } from '../../Slice/functionSlice';
 
 export default function Search({name}) {
-  const search = useSelector((state)=>state.function.search);
   const dispatch = useDispatch();
   const submit = (e)=>{
     if (e.key == "Enter") {
