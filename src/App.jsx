@@ -29,6 +29,7 @@ import { containerMotion } from "./animation"
 import { AnimatePresence, motion } from "framer-motion"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
+import TeacherExamUpdatePage from "./pages/Teacher/TeacherExamUpdatePage"
 
 function App() {
   const queryClient = new QueryClient();
@@ -91,6 +92,7 @@ function RoutesWithAnimation() {
 
           <Route path="/teacher/exam" element={<TeacherExam />} />
           <Route path="/teacher/exam/create" element={<TeacherExamCreatePage />} />
+          <Route path="/teacher/exam/update/:id" element={<TeacherExamUpdatePage />} />
 
           <Route path="/teacher/questionbank" element={<TeacherQuestionBank />} />
           <Route path="/teacher/questionbank/create" element={<TeacherQuestionCreatePage />} />

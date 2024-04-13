@@ -15,7 +15,7 @@ export default function TeacherExamListTableXl({data}) {
         {
             data.data.length > 0 ?
             data.data.map((item,i)=>(
-                <div className='font-bold text-sm flex justify-between items-center my-6 border-b-2 pb-3'>
+                <div key={i} className='font-bold text-sm flex justify-between items-center my-6 border-b-2 pb-3'>
                     <p className='w-12'>{i+1}</p>
                     <div className='lg:w-72'>
                     <p className='font-medium text-gray-600 line-clamp-1 capitalize'>{item.exam_title}</p>
@@ -29,7 +29,7 @@ export default function TeacherExamListTableXl({data}) {
                             item.status == "prepared" ?  <button className='font-medium hidden lg:block text-xs py-1 rounded-full px-4 text-white bg-red-500 lg:w-1/2  my-1 w-full'>Prepared</button> :  <button className='font-medium hidden lg:block text-xs py-1 rounded-full px-4 text-white bg-yellow-400 lg:w-1/2  my-1 w-full'>Published</button>
                         ) 
                     }
-                    <Link to={`/teacher/exam/${item.id}`} className='font-medium text-center text-xs py-1 rounded-full px-4 text-white bg-black   my-1 w-fit'>Edit</Link>
+                    <Link to={`/teacher/exam/update/${item.id}`} className='font-medium text-center text-xs py-1 rounded-full px-4 text-white bg-black   my-1 w-fit'>Edit</Link>
                     </div>
                 </div>
             )):

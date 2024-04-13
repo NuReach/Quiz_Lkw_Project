@@ -16,12 +16,12 @@ export default function ExamDailog({examObj,setExamDailog, examDailog}) {
   const { mutateAsync  : createExamMutation   } = useMutation({
     mutationFn : createExamApi,
     onSuccess : ()=>{
-      toast.success("Login Successfully")
+      toast.success("Create Successfully")
       navigate('/teacher/exam');
       dispatch(resetSelectedQuestions());
     },
     onError : ()=>{
-        toast.error("Please feild the corect information")
+        toast.error("Something went wrong !!")
     }
   })
   return createPortal(

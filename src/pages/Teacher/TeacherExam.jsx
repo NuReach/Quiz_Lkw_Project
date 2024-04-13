@@ -35,7 +35,6 @@ export default function TeacherExam() {
     queryFn : ()=>getSearchExams(search,sort.sortBy,sort.sortDir,page)
   });
 
-  console.log(searchExams);
 
   if (searchExamError) {
     toast.error("Something went wrong");
