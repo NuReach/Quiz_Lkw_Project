@@ -30,6 +30,8 @@ import { AnimatePresence, motion } from "framer-motion"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import TeacherExamUpdatePage from "./pages/Teacher/TeacherExamUpdatePage"
+import SuccessfulPage from "./pages/SuccessfulPage"
+import AnswerPreview from "./pages/AnswerPreview"
 
 function App() {
   const queryClient = new QueryClient();
@@ -77,6 +79,9 @@ function RoutesWithAnimation() {
           <Route path="/result" element={<Result />} />
 
           <Route path="/quiz/playing/:id" element={<Playing />} />
+
+          <Route path="/submite/exam/page" element={<SuccessfulPage />} />
+          <Route path="/exam/answer/preview" element={<AnswerPreview />} />
 
         </Route>
 

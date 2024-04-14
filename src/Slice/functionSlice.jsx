@@ -82,6 +82,13 @@ export const functionSlice = createSlice({
                 }
                 
             },
+            resetUserAnswer: (state) => {
+                return {
+                    ...state,
+                    userAnswers: []
+                };
+            },
+
         // search function
             filterItem : (state,action)=>{
                 const search = action.payload.search;
@@ -148,6 +155,7 @@ export const {
     prevPage,setShowQuizType,insertQuiz,
     deleteQuiz,updateQuiz,insertUserAnswer,
     filterItem,showDailog,deleteItem,addQuestion,
-    createExam , deleteQuestion , resetSelectedQuestions
+    createExam , deleteQuestion , resetSelectedQuestions,
+    resetUserAnswer
             } = functionSlice.actions;
 export default functionSlice.reducer;

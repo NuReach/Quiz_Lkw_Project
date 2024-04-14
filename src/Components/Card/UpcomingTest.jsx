@@ -20,7 +20,7 @@ export default function UpcomingTest() {
             <p className='text-xs font-bold mt-3'>Deadline:17/02/2024</p>
         </div>
         <div>
-            <button onClick={(e)=>handleClick(e,"d1")} className='text-white bg-black rounded-md my-6 text-xs py-2 font-medium w-full'>Take Test</button>
+            <button onClick={(e)=>handleClick(e,"1")} className='text-white bg-black rounded-md my-6 text-xs py-2 font-medium w-full'>Take Test</button>
         </div>
         <div className=''>
             <p className='font-bold text-lg'>Recent Test Result</p>
