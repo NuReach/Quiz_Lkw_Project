@@ -1,4 +1,3 @@
-import React, { useState } from 'react'
 import Navbar from '../Components/Navbar/Navbar'
 import Footer from '../Components/Footer/Footer'
 import Clock from '../Components/Clock/Clock'
@@ -15,7 +14,7 @@ export default function Playing() {
   const start = useSelector((state)=>state.function.start);
   const param = useParams();
   const id = param.id;
-  const { isLoading , isError , data:exam } = useQuery({
+  const { isLoading  , data:exam } = useQuery({
     queryKey : ['exam',{id}],
     queryFn : () => getExamByID(id)
   });

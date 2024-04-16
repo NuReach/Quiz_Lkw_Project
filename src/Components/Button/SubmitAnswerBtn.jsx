@@ -1,5 +1,4 @@
 import { useMutation } from '@tanstack/react-query';
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { submitExamApi } from '../../Api/SubmitExamApi';
 import { resetUserAnswer } from '../../Slice/functionSlice';
@@ -27,7 +26,7 @@ export default function SubmitAnswerBtn() {
       mutationFn : submitExamApi,
       onSuccess : ()=>{
         toast.success("Exam Submited Successfully")
-        navigate('/submite/exam/page');
+        navigate(`/submite/exam/page?exam=${userAnswer[0]?.exam_id}`);
         dispatch(resetUserAnswer());
       },
       onError : ()=>{

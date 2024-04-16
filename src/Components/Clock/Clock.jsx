@@ -43,9 +43,6 @@ export default function Clock({duration}) {
                 }
               }
               submit();
-              navigate("/submite/exam/page");
-              dispatch(resetUserAnswer());    
-
           } catch (error) {
             console.log(error);
           }
@@ -57,7 +54,7 @@ export default function Clock({duration}) {
         mutationFn : submitExamApi,
         onSuccess : ()=>{
           toast.success("Exam Submited Successfully")
-          //navigate('/');
+          navigate("/submite/exam/page");
           dispatch(resetUserAnswer());
         },
         onError : ()=>{

@@ -1,9 +1,12 @@
 import React from 'react'
 import Navbar from '../Components/Navbar/Navbar'
 import Footer from '../Components/Footer/Footer'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 
 export default function SuccessfulPage() {
+  const location = useLocation();
+  const queryParams = new URLSearchParams(location.search);
+  const exam_id = queryParams.get('exam');
   return (
     <div>
         <Navbar />
@@ -13,7 +16,7 @@ export default function SuccessfulPage() {
             <p className='font-bold w-fit text-3xl'>You Submited Successfully !!</p>
             <div className='mt-6 gap-3 flex'>
                 <Link to={`/`} className='text-xs bg-blue-600 px-9 py-3 text-white rounded-lg font-bold'>Home</Link>
-                <Link to={`/`} className='text-xs bg-purple-600 px-9 py-3 text-white rounded-lg font-bold'>Preview</Link>
+                <Link to={`/exam/answer/preview?exam=${exam_id}`} className='text-xs bg-purple-600 px-9 py-3 text-white rounded-lg font-bold'>Preview</Link>
             </div>
         </div>
         
