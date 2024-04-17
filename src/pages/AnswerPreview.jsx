@@ -5,6 +5,8 @@ import { useQuery } from '@tanstack/react-query';
 import { getUserResultApi } from '../Api/SubmitExamApi';
 import { useLocation } from 'react-router-dom';
 import { getExamByID } from '../Api/ExamApi';
+import QCM from '../Components/Card/QCM';
+import TF from '../Components/Card/TF';
 
 export default function AnswerPreview() {
   const location = useLocation();
@@ -21,8 +23,14 @@ export default function AnswerPreview() {
       <Navbar />
         <div className='flex'>
             <Sidebar />
-            <div className='p-3'>
-                result
+            <div className='p-3 w-full justify-center flex flex-wrap gap-6' >
+                {
+                 userResult?.answers.map((item,i)=>(
+                  item.question.question_type == "multiple choice" ?
+                  <QCM key={i} item={item} number={i+1} /> :
+                  <TF key={i} item={item} number={i+1} />
+                 ))
+                }
             </div>
         </div>
       <Footer />
