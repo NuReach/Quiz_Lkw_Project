@@ -12,6 +12,7 @@ import { motion } from 'framer-motion'
 import { containerMotion } from '../../animation'
 import { getTeachDashboardDetail } from '../../Api/TeacherDashboardApi'
 import { useQuery } from '@tanstack/react-query'
+import Loading from '../../Components/Loading/Loading'
 
 export default function TeacherDashboard() {
     const user = JSON.parse(localStorage.getItem('userData'));
@@ -20,7 +21,7 @@ export default function TeacherDashboard() {
         queryFn : ()=>getTeachDashboardDetail()
       });
    if (isLoading) {
-     return <p>Loading...</p>
+     return <p>Loading</p>
    }
   return (
     <div>

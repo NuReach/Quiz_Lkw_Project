@@ -1,6 +1,7 @@
 import { useQuery } from '@tanstack/react-query';
 import React from 'react'
 import { getResultStudentScoreApi } from '../../Api/SubmitExamApi';
+import { Link } from 'react-router-dom';
 
 export default function TeacherResultTable({id}) {
       
@@ -20,8 +21,8 @@ export default function TeacherResultTable({id}) {
         </header>
         {
             examResult?.map((item,i)=>(
-                <div key={i} className='font-medium text-xs flex justify-between py-6 border-b '>
-                    <p className='sm:w-36 line-clamp-1'>{item?.user}</p>
+                <Link to={`/teacher/exam/answer/preview?exam=${item.exam.id}&user=${item.user.id}`} key={i} className='font-medium text-xs flex justify-between py-6 border-b cursor-pointer'>
+                    <p className='sm:w-36 line-clamp-1'>{item?.user.name}</p>
                     <p className='sm:w-36'>{item?.correct}/{item?.state}</p>
                     <p className='sm:w-14'>{item?.score}%</p>
                     {
@@ -34,7 +35,7 @@ export default function TeacherResultTable({id}) {
                             )
                         ))
                     }
-                </div>
+                </Link>
             ))
         }
     </div>

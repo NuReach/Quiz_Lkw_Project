@@ -24,6 +24,7 @@ import { ReactQueryDevtools } from "@tanstack/react-query-devtools"
 import TeacherExamUpdatePage from "./pages/Teacher/TeacherExamUpdatePage"
 import SuccessfulPage from "./pages/SuccessfulPage"
 import AnswerPreview from "./pages/AnswerPreview"
+import TeacherAnswerPreview from "./pages/TeacherAnswerPreview"
 
 function App() {
   const queryClient = new QueryClient();
@@ -78,6 +79,7 @@ function RoutesWithAnimation() {
 
         <Route element={<TeacherRouter />}>
 
+
           <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
 
           <Route path="/teacher/profile" element={<TeachProfile />} />
@@ -95,6 +97,8 @@ function RoutesWithAnimation() {
           <Route path="/teacher/questionbank/update/:id" element={<TeacherQuestionUpdatePage />} />
 
           <Route path="/teacher/result" element={<TeacherResult />} />
+
+          <Route path="/teacher/exam/answer/preview" element={<TeacherAnswerPreview />} />
         
         </Route>
 
