@@ -5,7 +5,7 @@ import { resetUserAnswer } from '../../Slice/functionSlice';
 import { toast } from 'sonner';
 import { useNavigate } from 'react-router-dom';
 
-export default function SubmitAnswerBtn() {
+export default function SubmitAnswerBtn({numOfQuestions}) {
     const userAnswer = useSelector((state)=>state.function.userAnswers);
     const dispatch = useDispatch();
     const user = JSON.parse(localStorage.getItem('userData'));
@@ -20,7 +20,12 @@ export default function SubmitAnswerBtn() {
           choice_id: item.choice_id}
         )) 
       }
-      await submitExamMutation(userAnswerObj);
+      console.log(userAnswerObj);
+      if (userAnswer.length < numOfQuestions) {
+        alert("Please Complete All Question")
+      }else{
+        await submitExamMutation(userAnswerObj);
+      }
     };
     const { mutateAsync  : submitExamMutation   } = useMutation({
       mutationFn : submitExamApi,
@@ -30,6 +35,7 @@ export default function SubmitAnswerBtn() {
         dispatch(resetUserAnswer());
       },
       onError : ()=>{
+         dispatch(resetUserAnswer());
           toast.error("Something went wrong !!")
       }
     })

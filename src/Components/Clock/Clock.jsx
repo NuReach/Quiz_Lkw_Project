@@ -8,7 +8,7 @@ import { resetUserAnswer } from '../../Slice/functionSlice';
 import { toast } from 'sonner';
 
 export default function Clock({ duration }) {
-  const [timeLeft, setTimeLeft] = useState(duration * 20);
+  const [timeLeft, setTimeLeft] = useState(duration * 60);
   const [countdownCompleted, setCountdownCompleted] = useState(false);
   const intervalRef = useRef(null);
   const user = JSON.parse(localStorage.getItem('userData'));

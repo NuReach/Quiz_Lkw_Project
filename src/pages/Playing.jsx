@@ -31,7 +31,7 @@ export default function Playing() {
             start ?
             <div className='w-full p-6 '>
                     <div className='fixed bottom-3 right-3 md:bottom-9 md:right-9'>
-                      <Clock duration={exam?.exam_duration} />
+                      <Clock duration={exam?.exam_duration} numOfQuestions = {exam?.questions.length} />
                     </div>
                   <div className=' items-center justify-center flex flex-col py-3 gap-9 '>
                     {
@@ -43,7 +43,7 @@ export default function Playing() {
                   </div>
                   <div className='flex justify-center w-full'>
                       <div className='w-full md:w-96 lg:w-1/3 flex justify-end'>
-                      <SubmitAnswerBtn />
+                      <SubmitAnswerBtn numOfQuestions = {exam?.questions.length} />
                       </div>
                   </div>
             </div>

@@ -1,9 +1,10 @@
 import React from 'react'
-import { Link, useLocation, useParams } from 'react-router-dom';
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom';
 
 export default function Sidebar() {
   const location = useLocation();
   const route = location.pathname;
+  const navigate = useNavigate();
   const menu = [
     {
         title:"Dashboard",

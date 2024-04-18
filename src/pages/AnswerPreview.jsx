@@ -13,8 +13,10 @@ export default function AnswerPreview() {
   const queryParams = new URLSearchParams(location.search);
   const exam_id = queryParams.get('exam');
   const id = exam_id;
+  const user = JSON.parse(localStorage.getItem('userData'));
+  const user_id = user.user_id;
   const { data:userResult } = useQuery({
-    queryKey : ['userResult',{exam_id}],
+    queryKey : ['userResult',{exam_id},{user_id}],
     queryFn : ()=>getUserResultApi(exam_id)
   });
   console.log(userResult);
@@ -48,6 +50,14 @@ export default function AnswerPreview() {
                 <div className='w-full md:w-96  flex gap-3'>
                   <p className='text-sm font-bold capitalize w-16 '>Minimum</p>
                   <p className='text-sm font-medium capitalize '>{userResult?.exam.exam_percentage} %</p>
+                </div>
+                <div className='w-full md:w-96  flex gap-3 '>
+                  <p className='text-sm font-bold capitalize w-16 '>User</p>
+                  <p className='text-sm font-medium capitalize '>{userResult?.user.name}</p>
+                </div>
+                <div className='w-full md:w-96  flex gap-3'>
+                  <p className='text-sm font-bold capitalize w-16 '>Email</p>
+                  <p className='text-sm font-medium capitalize '>{userResult?.user.email}</p>
                 </div>
                 <div className='w-full md:w-96  flex gap-3 border-t-2 mt-6 pt-3'>
                   <p className='text-sm font-bold capitalize '>Your Result</p>
