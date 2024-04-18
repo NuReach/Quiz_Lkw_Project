@@ -10,8 +10,18 @@ import TeacherCreateExamCard from '../../Components/Card/TeacherCreateExamCard'
 import TeacherLiveCard from '../../Components/Card/TeacherLiveCard'
 import { motion } from 'framer-motion'
 import { containerMotion } from '../../animation'
+import { getTeachDashboardDetail } from '../../Api/TeacherDashboardApi'
+import { useQuery } from '@tanstack/react-query'
 
 export default function TeacherDashboard() {
+    const user = JSON.parse(localStorage.getItem('userData'));
+    const { isLoading  , isError , data:data } = useQuery({
+        queryKey : ['teacherDashboardDetail'],
+        queryFn : ()=>getTeachDashboardDetail()
+      });
+   if (isLoading) {
+     return <p>Loading...</p>
+   }
   return (
     <div>
         <TeacherNavbar />
@@ -25,8 +35,8 @@ export default function TeacherDashboard() {
                 
                  className='w-full flex-col z-40 '>
                 <div className='w-full p-6 mt-9 flex gap-3 justify-center flex-wrap'>
-                    <TeacherProfileCard />
-                    <TeacherClassCard />
+                    <TeacherProfileCard data={data} user={user} />
+                    <TeacherClassCard data={data} />
                 </div>
                 <div className=' w-full p-6 flex justify-center flex-wrap gap-3  xl:gap-6 mb-6'>
                     <TeacherCalendar />
