@@ -14,14 +14,20 @@ export default function TeacherProfileCard({data,user}) {
         </div>
         <div className=' mt-3 flex gap-3 items-center'>
             <div className='border p-1 rounded-lg bg-white shadow-lg w-fit hidden sm:block'>
-                <img className='w-24 h-26 rounded-md' src="https://media.licdn.com/dms/image/C4D03AQGN45a9_qXexg/profile-displayphoto-shrink_200_200/0/1614820492981?e=2147483647&v=beta&t=V5F_lF_AGnvP7R43oLNesvqensIRx4QcgdvgP_sKqN4" alt="" />
+                <img className='w-24 h-26 rounded-md' src={user.image_url} alt="" />
             </div>
             <div className='w-full mt-1 flex flex-col'>
-                <div className='bg-gray-400 text-white p-1 w-full'>
-                    <p className='font-bold text-xs capitalize '>Name : {user.user_name}</p>
+                <div className='bg-gray-400 text-white p-1 flex gap-3'>
+                    <p className='font-bold text-xs capitalize w-12'>Name </p>
+                    <p className='font-bold text-xs capitalize '>{user.name}</p>
                 </div>
-                <div className='p-1 bg-black bg-opacity-15'>
-                    <p className='font-bold text-xs capitalize'>Role : {user.role} </p>
+                <div className='p-1 bg-black bg-opacity-15 flex gap-3'>
+                    <p className='font-bold text-xs capitalize w-12'>Role </p>
+                    <p className='font-bold text-xs capitalize'>{user.role} </p>
+                </div>
+                <div className='p-1 bg-black bg-opacity-15 flex gap-3'>
+                    <p className='font-bold text-xs capitalize w-12'>Email </p>
+                    <p className='font-bold text-xs capitalize'>{user.email} </p>
                 </div>
             </div>
         </div>

@@ -15,12 +15,16 @@ import { useQuery } from '@tanstack/react-query'
 import Loading from '../../Components/Loading/Loading'
 
 export default function TeacherDashboard() {
-    const user = JSON.parse(localStorage.getItem('userData'));
-    const { isLoading  , isError , data:data } = useQuery({
+  const { isLoading:dataLoading  , data:data } = useQuery({
         queryKey : ['teacherDashboardDetail'],
         queryFn : ()=>getTeachDashboardDetail()
       });
-   if (isLoading) {
+      
+  const { isLoading:userLoading  , data:user } = useQuery({
+    queryKey : ['user'],
+    queryFn : ()=>getUser()
+  });
+   if (userLoading && dataLoading) {
      return <p>Loading</p>
    }
   return (
