@@ -36,3 +36,39 @@ export const getUserResultApi = async (exam_id) => {
         throw error; // Rethrow the error to handle it in the caller function
     }
 }
+
+export const getExamList = async (search,sortBy,sortDir,page) => {
+    try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/getResult`, 
+        {
+            headers: {
+                'Authorization': `Bearer ${token}` , 
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; // Rethrow the error to handle it in the caller function
+    }
+}
+
+export const getResultStudentScoreApi = async (id) => {
+   if (id == null) {
+     return [];
+   }else{
+        try {
+            const response = await axios.get(`http://127.0.0.1:8000/api/getResult/studentScore/${id}`, 
+            {
+                headers: {
+                    'Authorization': `Bearer ${token}` , 
+                    'Accept' : 'application/json',
+                    'Content-Type' : 'application/json'
+                }
+            });
+            return response.data;
+        } catch (error) {
+            console.error('Error fetching data:', error);
+            throw error; // Rethrow the error to handle it in the caller function
+        }
+    }
+}

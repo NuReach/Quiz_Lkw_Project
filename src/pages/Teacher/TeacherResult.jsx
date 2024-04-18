@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import TeacherSidebar from '../../Components/Sidebar/TeacherSidebar'
 import TeacherNavbar from '../../Components/Navbar/TeacherNavbar'
 import Footer from '../../Components/Footer/Footer'
@@ -7,6 +7,10 @@ import TeacherResultFilter from '../../Components/Button/TeacherResultFilter'
 import TeacherResultTable from '../../Components/Table/TeacherResultTable'
 import { containerMotion } from '../../animation'
 import { motion } from 'framer-motion'
+import { getExamList, getResultStudentScoreApi } from '../../Api/SubmitExamApi'
+import { filterItem } from '../../Slice/functionSlice'
+import { useQuery } from '@tanstack/react-query'
+import { useSelector } from 'react-redux'
 
 export default function TeacherResult() {
     const text ="asdfgh";
@@ -19,7 +23,13 @@ export default function TeacherResult() {
         setShow(!show);
         console.log(id);
     }
-    motion
+
+    const { isLoading  , isError , data:examList } = useQuery({
+        queryKey : ['examList'],
+        queryFn : ()=>getExamList()
+      });
+
+    
   return (
     <div>
         <TeacherNavbar />
@@ -30,19 +40,16 @@ export default function TeacherResult() {
                 initial = "hidden"
                 animate = "visible"
                 exit= "exit" className='p-3 w-full' >
+                <div className='flex justify-center flex-col flex-wrap items-center gap-9 mt-3  w-full'>
                 <p className='font-bold text-lg '>Result List</p>
-                <div className='flex justify-between items-center flex-wrap w-full'>
-                    <Search />  
-                    <TeacherResultFilter />
-                </div>
-                <div className='w-full flex justify-center flex-col items-center gap-9 mt-3'>
                     {
-                        data.map((item,i)=>(
-                        <div className='flex flex-col lg:w-1/2 border-b pb-1 '>
+                        examList?.map((item,i)=>(
+                        <div key={i} className='flex flex-col w-full border-b pb-1 '>
                             <div onClick={(e)=>handleClick(e,i)}  className='flex  w-full justify-between items-center cursor-pointer'>
-                                <div className=' flex items-end gap-1 flex-wrap'>
-                                    <p className='font-bold text-sm '>CS101:Introduction to computer science</p>
-                                    <p className='font-bold text-xs text-gray-500 '>15/02/2024</p>
+                                <div className=' flex items-end gap-3 flex-wrap'>
+                                    <p className='font-bold text-sm uppercase'>{item.course.course_code} :</p>
+                                    <p className='font-bold text-sm capitalize'>{item.exam_title}</p>
+                                    <p className='font-bold text-xs text-gray-500 '>{item.created_at.slice(0,10)}</p>
                                 </div>
                                 {
                                     id == i && show == true ? 
@@ -58,7 +65,7 @@ export default function TeacherResult() {
                             {
                                 id == i && show == true ? 
                                 <div className='my-3 transition-all'>
-                                    <TeacherResultTable data={data} />
+                                    <TeacherResultTable id={item.id} />
                                 </div>  : ""
                             }
                            
