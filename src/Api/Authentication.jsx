@@ -1,7 +1,9 @@
 import axios from "axios";
 
+const user = JSON.parse(localStorage.getItem('userData'));
+const token = user?.token;
+
 export const loginApi = async (data) => {
-    console.log(data);
     try {
       const response = await axios.post("http://127.0.0.1:8000/api/login", 
         {
@@ -23,4 +25,41 @@ export const loginApi = async (data) => {
       throw error; // Rethrow the error to handle it in the caller function
     }
   }
-  
+
+  export const getUser = async () => {
+    try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/user`, {
+            headers: {
+                'Authorization': `Bearer ${token}` , 
+            }
+        });
+        console.log(response.data);
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; // Rethrow the error to handle it in the caller function
+    }
+  }
+
+  export const updateUserApi = async (state)=>{
+    const { name , email , id  , user_image , role } = state;
+    try {
+          const response = await axios.post(`http://127.0.0.1:8000/api/update/user/${id}`, 
+          {
+            name,
+            email,
+            user_image,
+            role
+
+          },
+          {
+              headers: {
+                  'Authorization': `Bearer ${token}` , 
+              }
+          });
+          return response.data;
+      } catch (error) {
+          console.error('Error Update data:', error);
+          throw error; // Rethrow the error to handle it in the caller function
+      }
+  }

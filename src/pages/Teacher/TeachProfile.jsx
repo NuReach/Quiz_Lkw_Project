@@ -8,9 +8,19 @@ import ProfileCard from '../../Components/Card/ProfileCard'
 import InformationDetail from '../../Components/Card/InformationDetail'
 import { containerMotion } from '../../animation'
 import { motion } from 'framer-motion'
+import { useQuery } from '@tanstack/react-query'
+import { getUser } from '../../Api/Authentication'
 
 export default function TeachProfile() {
     
+  const { isLoading  , isError , data:user } = useQuery({
+    queryKey : ['user'],
+    queryFn : ()=>getUser()
+  });
+
+  if (isLoading) {
+    return <p>Loading...</p>
+  }
   return (
     <div>
         <TeacherNavbar />
@@ -23,12 +33,12 @@ export default function TeachProfile() {
                 exit= "exit"
              className='flex flex-wrap justify-center items-center w-full gap-6'>
                 <div className='p-3 w-full sm:w-fit flex flex-col gap-6'>
-                    <InfomationCard />
-                    <ChangePasswordCard />
+                    <InfomationCard user={user} />
+                    <ChangePasswordCard user={user} />
                 </div>
                 <div className='p-3 w-fit flex flex-col gap-6'>
-                    <ProfileCard />
-                    <InformationDetail />
+                    <ProfileCard user={user} />
+                    <InformationDetail user={user} />
                 </div>
             </motion.div>
         </div>

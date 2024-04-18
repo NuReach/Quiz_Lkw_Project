@@ -27,7 +27,7 @@ export default function Login() {
           toast.success("Login Successfully")
         },
         onError : ()=>{
-            toast.error("Please feild the corect information")
+            toast.error("Please feild the correct information")
         }
       })
     
