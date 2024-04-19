@@ -14,6 +14,7 @@ import { getSearchExams } from '../../Api/ExamApi'
 import { useQuery } from '@tanstack/react-query'
 import { toast } from 'sonner'
 import Loading from '../../Components/Loading/Loading'
+import LoadingPage from '../LoadingPage'
 
 export default function TeacherExam() {
 
@@ -40,6 +41,10 @@ export default function TeacherExam() {
     toast.error("Something went wrong");
     dispatch(filterItem({search:"all"}));
     navigate("/teacher/dashboard");
+  }
+
+  if (searchExamLoading) {
+    return <LoadingPage />
   }
   
   return (

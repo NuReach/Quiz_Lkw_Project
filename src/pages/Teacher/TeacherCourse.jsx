@@ -15,6 +15,7 @@ import Loading from '../../Components/Loading/Loading'
 import Filter from '../../Components/Button/Filter'
 import { filterItem } from '../../Slice/functionSlice'
 import { toast } from 'sonner'
+import LoadingPage from '../LoadingPage'
 
 function TeacherCourse() {
     const navigate = useNavigate();
@@ -39,6 +40,10 @@ function TeacherCourse() {
         toast.error("Something went wrong");
         dispatch(filterItem({search:"all"}));
         navigate("/teacher/dashboard");
+    }
+
+    if (searchCourseLoading) {
+        return <LoadingPage />
     }
 
   return (

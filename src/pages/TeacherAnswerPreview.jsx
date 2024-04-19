@@ -9,17 +9,20 @@ import Footer from '../Components/Footer/Footer';
 import { getUserResultApi, getUserResultApiByTeacher } from '../Api/SubmitExamApi';
 import TeacherNavbar from '../Components/Navbar/TeacherNavbar';
 import TeacherSidebar from '../Components/Sidebar/TeacherSidebar';
+import LoadingPage from './LoadingPage';
 
 export default function TeacherAnswerPreview() {
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
     const exam_id = queryParams.get('exam');
     const user_id = queryParams.get('user');
-    const { data:userResult } = useQuery({
+    const { isLoading, data:userResult } = useQuery({
       queryKey : ['userResult',{exam_id},{user_id}],
       queryFn : ()=>getUserResultApiByTeacher(exam_id,user_id)
     });
-    console.log(userResult);
+    if (isLoading) {
+      return <LoadingPage />
+    }
   return (
     <div>
       <TeacherNavbar />

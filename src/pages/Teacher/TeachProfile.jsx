@@ -10,6 +10,7 @@ import { containerMotion } from '../../animation'
 import { motion } from 'framer-motion'
 import { useQuery } from '@tanstack/react-query'
 import { getUser } from '../../Api/Authentication'
+import LoadingPage from '../LoadingPage'
 
 export default function TeachProfile() {
     
@@ -19,7 +20,7 @@ export default function TeachProfile() {
   });
 
   if (isLoading) {
-    return <p>Loading...</p>
+    return <LoadingPage />
   }
   return (
     <div>

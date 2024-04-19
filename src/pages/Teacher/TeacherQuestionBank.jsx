@@ -16,6 +16,7 @@ import { getSearchQuestions } from '../../Api/QuestionApi'
 import { useQuery } from '@tanstack/react-query'
 import Loading from '../../Components/Loading/Loading'
 import {toast} from 'sonner';
+import LoadingPage from '../LoadingPage'
 
 export default function TeacherQuestionBank() {
 
@@ -47,6 +48,10 @@ export default function TeacherQuestionBank() {
         dispatch(filterItem({search:"all"}));
         navigate("/teacher/dashboard");
       }
+
+    if (searchQuestionsLoading) {
+        return <LoadingPage />
+    } 
 
 
   return (

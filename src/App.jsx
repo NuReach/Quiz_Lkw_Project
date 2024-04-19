@@ -25,6 +25,7 @@ import TeacherExamUpdatePage from "./pages/Teacher/TeacherExamUpdatePage"
 import SuccessfulPage from "./pages/SuccessfulPage"
 import AnswerPreview from "./pages/AnswerPreview"
 import TeacherAnswerPreview from "./pages/TeacherAnswerPreview"
+import NotFoundPage from "./pages/NotFoundPage"
 
 function App() {
   const queryClient = new QueryClient();
@@ -57,67 +58,52 @@ function RoutesWithAnimation() {
     return (
       <Routes location={location} key={location.key}>
           <Route path="/login" element={<Login />} />
-        <Route element={<StudentRouter />}>
 
+            <Route element={<StudentRouter />}>
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/" element={<Home />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/exam" element={<Exam />} />
+              <Route path="/result" element={<Result />} />
+              <Route path="/quiz/playing/:id" element={<Playing />} />
+              <Route path="/submite/exam/page" element={<SuccessfulPage />} />
+              <Route path="/exam/answer/preview" element={<AnswerPreview />} />
+            </Route>
 
-          <Route path="/signup" element={<Signup />} />
+            <Route element={<TeacherRouter />}>
+              <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
+              <Route path="/teacher/profile" element={<TeachProfile />} />
+              <Route path="/teacher/course" element={<TeacherCourse />} />
+              <Route path="/teacher/course/create" element={<TeacherCourseCreateForm />} />
+              <Route path="/teacher/course/update/:id" element={<TeacherCourseEdit />} />
+              <Route path="/teacher/exam" element={<TeacherExam />} />
+              <Route path="/teacher/exam/create" element={<TeacherExamCreatePage />} />
+              <Route path="/teacher/exam/update/:id" element={<TeacherExamUpdatePage />} />
+              <Route path="/teacher/questionbank" element={<TeacherQuestionBank />} />
+              <Route path="/teacher/questionbank/create" element={<TeacherQuestionCreatePage />} />
+              <Route path="/teacher/questionbank/update/:id" element={<TeacherQuestionUpdatePage />} />
+              <Route path="/teacher/result" element={<TeacherResult />} />
+              <Route path="/teacher/exam/answer/preview" element={<TeacherAnswerPreview />} />
+            </Route>
 
-          <Route path="/" element={<Home />} />
+            <Route path="*" element={<NotFoundPage />} />
 
-          <Route path="/profile" element={<Profile />} />
-
-          <Route path="/exam" element={<Exam />} />
-
-          <Route path="/result" element={<Result />} />
-
-          <Route path="/quiz/playing/:id" element={<Playing />} />
-
-          <Route path="/submite/exam/page" element={<SuccessfulPage />} />
-          <Route path="/exam/answer/preview" element={<AnswerPreview />} />
-
-        </Route>
-
-        <Route element={<TeacherRouter />}>
-
-
-          <Route path="/teacher/dashboard" element={<TeacherDashboard />} />
-
-          <Route path="/teacher/profile" element={<TeachProfile />} />
-
-          <Route path="/teacher/course" element={<TeacherCourse />} />
-          <Route path="/teacher/course/create" element={<TeacherCourseCreateForm />} />
-          <Route path="/teacher/course/update/:id" element={<TeacherCourseEdit />} />
-
-          <Route path="/teacher/exam" element={<TeacherExam />} />
-          <Route path="/teacher/exam/create" element={<TeacherExamCreatePage />} />
-          <Route path="/teacher/exam/update/:id" element={<TeacherExamUpdatePage />} />
-
-          <Route path="/teacher/questionbank" element={<TeacherQuestionBank />} />
-          <Route path="/teacher/questionbank/create" element={<TeacherQuestionCreatePage />} />
-          <Route path="/teacher/questionbank/update/:id" element={<TeacherQuestionUpdatePage />} />
-
-          <Route path="/teacher/result" element={<TeacherResult />} />
-
-          <Route path="/teacher/exam/answer/preview" element={<TeacherAnswerPreview />} />
-        
-        </Route>
-
-
-        {/* <Route path="/create/quiz" element={<CreatePage />} />
-        <Route path="/test" element={<Test />} /> */}
-        {/* <Route path="/quiz" element={<Quiz />} />
-        <Route path="/questions" element={<Question />} />
-        <Route path="/user" element={<User />} /> */}
       </Routes>
     );
   }
 
   const TeacherRouter = ()=>{
     const user = JSON.parse(localStorage.getItem('userData'))  ;
-    return user && user.expirationTime > Date.now() && user.role == "teacher" ? <Outlet /> : <Navigate to={"/login"} />
+    return user && user.expirationTime > Date.now() && user.role == "teacher" ? <Outlet /> : <Navigate to={"/teacher/dashboard"} />
   }
 
   const StudentRouter = ()=>{
     const user = JSON.parse(localStorage.getItem('userData'))  ;
-    return user && user.expirationTime > Date.now() && user.role == "user" ? <Outlet /> : <Navigate to={"/login"} />
+    return user && user.expirationTime > Date.now() && user.role == "user" ? <Outlet /> : <Navigate to={"/"} />
   }
+
+  const AdminRouter = ()=>{
+    const user = JSON.parse(localStorage.getItem('userData'))  ;
+    return user && user.expirationTime > Date.now() && user.role == "admin" ? <Outlet /> : <Navigate to={"/admin/dashboard"} />
+  }
+

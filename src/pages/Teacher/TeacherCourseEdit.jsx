@@ -8,6 +8,7 @@ import { getCourseById, updateCourse } from '../../Api/CourseApi';
 import { useForm } from 'react-hook-form';
 import { toast } from 'sonner';
 import Loading from '../../Components/Loading/Loading';
+import LoadingPage from '../LoadingPage';
 
 export default function TeacherCourseEdit() {
     const navigate = useNavigate();
@@ -39,6 +40,10 @@ export default function TeacherCourseEdit() {
             toast.error("Sorry, Something went wrong !!")
         }
       })
+
+    if (isLoading) {
+        return <LoadingPage />
+    }
 
     
   return (

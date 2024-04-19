@@ -7,6 +7,7 @@ import { useLocation } from 'react-router-dom';
 import { getExamByID } from '../Api/ExamApi';
 import QCM from '../Components/Card/QCM';
 import TF from '../Components/Card/TF';
+import LoadingPage from './LoadingPage';
 
 export default function AnswerPreview() {
   const location = useLocation();
@@ -15,11 +16,14 @@ export default function AnswerPreview() {
   const id = exam_id;
   const user = JSON.parse(localStorage.getItem('userData'));
   const user_id = user.user_id;
-  const { data:userResult } = useQuery({
+  const { isLoading , data:userResult } = useQuery({
     queryKey : ['userResult',{exam_id},{user_id}],
     queryFn : ()=>getUserResultApi(exam_id)
   });
-  console.log(userResult);
+
+  if (isLoading) {
+    return <LoadingPage />
+  }
   return (
     <div>
       <Navbar />

@@ -11,6 +11,7 @@ import { getExamList, getResultStudentScoreApi } from '../../Api/SubmitExamApi'
 import { filterItem } from '../../Slice/functionSlice'
 import { useQuery } from '@tanstack/react-query'
 import { useSelector } from 'react-redux'
+import LoadingPage from '../LoadingPage'
 
 export default function TeacherResult() {
     const text ="asdfgh";
@@ -29,7 +30,9 @@ export default function TeacherResult() {
         queryFn : ()=>getExamList()
       });
 
-    
+    if (isLoading) {
+        return <LoadingPage />
+    }
   return (
     <div>
         <TeacherNavbar />

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { Suspense } from 'react'
 import TeacherNavbar from '../../Components/Navbar/TeacherNavbar'
 import Footer from '../../Components/Footer/Footer'
 import TeacherSidebar from '../../Components/Sidebar/TeacherSidebar'
@@ -8,11 +8,12 @@ import TeacherCalendar from '../../Components/Card/TeacherCalendar'
 import TeacherAddStudentCard from '../../Components/Card/TeacherAddStudentCard'
 import TeacherCreateExamCard from '../../Components/Card/TeacherCreateExamCard'
 import TeacherLiveCard from '../../Components/Card/TeacherLiveCard'
-import { motion } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 import { containerMotion } from '../../animation'
 import { getTeachDashboardDetail } from '../../Api/TeacherDashboardApi'
 import { useQuery } from '@tanstack/react-query'
 import Loading from '../../Components/Loading/Loading'
+import LoadingPage from '../LoadingPage'
 
 export default function TeacherDashboard() {
   const { isLoading:dataLoading  , data:data } = useQuery({
@@ -24,8 +25,14 @@ export default function TeacherDashboard() {
     queryKey : ['user'],
     queryFn : ()=>getUser()
   });
-   if (userLoading && dataLoading) {
-     return <p>Loading</p>
+   if (userLoading) {
+     return <>
+          <LoadingPage />
+     </> 
+   }
+
+   if (dataLoading) {
+    <LoadingPage />
    }
   return (
     <div>
