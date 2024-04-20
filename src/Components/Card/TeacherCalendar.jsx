@@ -10,7 +10,6 @@ export default function TeacherCalendar() {
   ];
   const tileContent = ({ date, view }) => {
     const dateKey = date.toISOString().split('T')[0];
-    console.log(date.toISOString());
     const isEvent = events.some((event) => event.date.toISOString().split('T')[0] === dateKey);
     return isEvent ? <div className="event-day-marker "></div> : null;
   };

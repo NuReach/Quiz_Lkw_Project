@@ -96,16 +96,16 @@ function RoutesWithAnimation() {
 
   const TeacherRouter = ()=>{
     const user = JSON.parse(localStorage.getItem('userData'))  ;
-    return user && user.expirationTime > Date.now() && user.role == "teacher" ? <Outlet /> : <Navigate to={"/teacher/dashboard"} />
+    return user && user.expirationTime > Date.now() && user.role == "teacher" ? <Outlet /> : <Navigate to={"/login"} />
   }
 
   const StudentRouter = ()=>{
     const user = JSON.parse(localStorage.getItem('userData'))  ;
-    return user && user.expirationTime > Date.now() && user.role == "user" ? <Outlet /> : <Navigate to={"/"} />
+    return user && user.expirationTime > Date.now() && user.role == "user" ? <Outlet /> : <Navigate to={"/login"} />
   }
 
   const AdminRouter = ()=>{
     const user = JSON.parse(localStorage.getItem('userData'))  ;
-    return user && user.expirationTime > Date.now() && user.role == "admin" ? <Outlet /> : <Navigate to={"/admin/dashboard"} />
+    return user && user.expirationTime > Date.now() && user.role == "admin" ? <Outlet /> : <Navigate to={"/loign"} />
   }
 
