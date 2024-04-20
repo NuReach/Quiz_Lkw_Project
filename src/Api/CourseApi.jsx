@@ -18,6 +18,7 @@ export const getCourses = async () => {
     }
 }
 
+
 export const createCourse = async (state) =>{
     const code = state.code.toLowerCase();
     const title = state.title.toLowerCase();
@@ -64,6 +65,21 @@ export const getSearchCourse = async (search,sortBy,sortDir,page ) => {
     }
 }
 
+export const getSearchCourseByStudent = async (search,sortBy,sortDir,page ) => {
+    try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/users/student/courses/search/${search}/${sortBy}/${sortDir}?page=${page}`, {
+            headers: {
+                'Authorization': `Bearer ${token}` , 
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; // Rethrow the error to handle it in the caller function
+    }
+}
+
+
 export const updateCourse = async (state) => {
     const code = state.course_code.toLowerCase();
     const title = state.course_title.toLowerCase();
@@ -93,6 +109,61 @@ export const deleteCourse = async (state) => {
                      }
                  }
                  )
+     }catch (error){
+         console.log(error);
+         throw error;
+     }
+}
+
+export const addCourseToStudentApi = async (id)=>{
+    const course_id  = id;
+    const user_id = user.user_id;
+    console.log(course_id,user_id);
+    try{
+        const response = await axios.post(`http://127.0.0.1:8000/api/users/student/add/course/${course_id}/${user_id}`,
+            {
+                headers : {
+                    'Authorization': `Bearer ${token}`
+                }
+            }
+            )
+        return response.data;
+     }catch (error){
+         console.log(error);
+         throw error;
+     }
+}
+
+export const getStudentCourse = async (state)=>{
+    const id = user.user_id;
+    try{
+        const response = await axios.get(`http://127.0.0.1:8000/api/users/student/courses/${id}`,
+                 {
+                     headers : {
+                         'Authorization': `Bearer ${token}`
+                     }
+                 }
+                 )
+        return response.data;
+     }catch (error){
+         console.log(error);
+         throw error;
+     }
+}
+
+export const deleteStudentCourseApi = async (state)=>{
+    const course_id = state;
+    const user_id = user.user_id;
+    console.log(course_id,user_id);
+    try{
+        const response = await axios.delete(`http://127.0.0.1:8000/api/users/student/delete/course/${course_id}/${user_id}`,
+                 {
+                     headers : {
+                         'Authorization': `Bearer ${token}`
+                     }
+                 }
+                 )
+        return response.data;
      }catch (error){
          console.log(error);
          throw error;

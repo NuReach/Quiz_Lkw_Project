@@ -32,7 +32,7 @@ export default function TeacherDashboard() {
    }
 
    if (dataLoading) {
-    <LoadingPage />
+    return <LoadingPage />
    }
   return (
     <div>

@@ -26,6 +26,7 @@ import SuccessfulPage from "./pages/SuccessfulPage"
 import AnswerPreview from "./pages/AnswerPreview"
 import TeacherAnswerPreview from "./pages/TeacherAnswerPreview"
 import NotFoundPage from "./pages/NotFoundPage"
+import CoursePage from "./pages/CoursePage"
 
 function App() {
   const queryClient = new QueryClient();
@@ -68,6 +69,7 @@ function RoutesWithAnimation() {
               <Route path="/quiz/playing/:id" element={<Playing />} />
               <Route path="/submite/exam/page" element={<SuccessfulPage />} />
               <Route path="/exam/answer/preview" element={<AnswerPreview />} />
+              <Route path="/courses" element={<CoursePage  />} />
             </Route>
 
             <Route element={<TeacherRouter />}>
