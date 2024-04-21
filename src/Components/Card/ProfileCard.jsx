@@ -1,6 +1,7 @@
 import React from 'react'
 
 export default function ProfileCard({user}) {
+  console.log(user.image_url);
   return (
     <div className='border rounded-lg shadow-lg p-3 w-full sm:w-60 md:w-72 lg:w-80 xl:w-96'>
         <div className='text-sm uppercase font-bold'>
@@ -12,7 +13,7 @@ export default function ProfileCard({user}) {
         </div>
         <div>
             {
-              user?.image_url == 0 ?
+              user?.image_url == null ?
               <img className='w-full max-h-72 object-contain' src="https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_640.png" alt="" />
               :
             <img className='w-full max-h-72 object-contain' src={user?.image_url} alt="" />

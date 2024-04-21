@@ -14,8 +14,6 @@ import { useSelector } from 'react-redux'
 import LoadingPage from '../LoadingPage'
 
 export default function TeacherResult() {
-    const text ="asdfgh";
-    const [data,setData]=useState(text.split(""));
     const [id,setId] = useState(null);
     const [show,setShow] = useState(false);
     const handleClick = (e,id)=>{

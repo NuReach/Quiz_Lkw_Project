@@ -26,11 +26,11 @@ export const loginApi = async (data) => {
     }
   }
 
-  export const getUser = async () => {
+  export const getUser = async (user_token) => {
     try {
         const response = await axios.get(`http://127.0.0.1:8000/api/user`, {
             headers: {
-                'Authorization': `Bearer ${token}` , 
+                'Authorization': `Bearer ${user_token}` , 
             }
         });
         return response.data;

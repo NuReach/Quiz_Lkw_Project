@@ -1,4 +1,4 @@
-import { useMutation } from '@tanstack/react-query';
+import { useMutation, useQueryClient } from '@tanstack/react-query';
 import React from 'react'
 import { useForm } from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom'
@@ -9,9 +9,12 @@ import { toast } from 'sonner';
 export default function Login() {
     const {register , handleSubmit , formState: { errors }  } = useForm();
     const navigate = useNavigate();
+    const queryClient = useQueryClient();
+    const user = JSON.parse(localStorage.getItem('userData'));
 
     const onSubmit = async ( data )=>{
         const userData  = await login ( data );
+        queryClient.invalidateQueries(['user']);
         if (userData && userData.role == "teacher") {
             navigate("/teacher/dashboard");
         }else if (userData && userData.role == "user"){

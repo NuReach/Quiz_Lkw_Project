@@ -20,7 +20,9 @@ export default function TeacherResultTable({id}) {
             <p className='sm:w-20 text-center'>Grade</p>
         </header>
         {
-            examResult?.map((item,i)=>(
+            examResult
+            ?.sort((a, b) => b.score - a.score)
+            ?.map((item,i)=>(
                 <Link to={`/teacher/exam/answer/preview?exam=${item.exam.id}&user=${item.user.id}`} key={i} className='font-medium text-xs flex justify-between py-6 border-b cursor-pointer'>
                     <p className='sm:w-36 line-clamp-1'>{item?.user.name}</p>
                     <p className='sm:w-36'>{item?.correct}/{item?.state}</p>

@@ -88,3 +88,39 @@ export const getResultStudentScoreApi = async (id) => {
         }
     }
 }
+
+export const getUserResultsList = async () => {
+    const user_id = user.user_id;       
+    try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/get/user/result/${user_id}`, 
+        {
+            headers: {
+                'Authorization': `Bearer ${token}` , 
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/json'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; // Rethrow the error to handle it in the caller function
+    }
+}
+
+export const getUserExamsList = async () => {
+    const user_id = user.user_id;       
+    try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/get/user/exams/${user_id}`, 
+        {
+            headers: {
+                'Authorization': `Bearer ${token}` , 
+                'Accept' : 'application/json',
+                'Content-Type' : 'application/json'
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; // Rethrow the error to handle it in the caller function
+    }
+}

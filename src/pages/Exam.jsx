@@ -9,11 +9,27 @@ import ExamTableXl from '../Components/Table/ExamTableXl'
 import NextQuestion from '../Components/Button/NextQuestion'
 import { containerMotion } from '../animation'
 import { motion } from 'framer-motion'
+import { getUserExamsList, getUserResultsList } from '../Api/SubmitExamApi'
+import Loading from '../Components/Loading/Loading'
+import { useQuery } from '@tanstack/react-query'
+import LoadingPage from './LoadingPage'
 
 export default function Exam() {
-  const text ="asdfgh";
-  const [data,setData]=useState(text.split(""));
-  
+
+  const { isLoading : ld  , isError : er , data:userResultsList } = useQuery({
+    queryKey : ['userResultsList'],
+    queryFn : getUserResultsList
+  });
+
+  const { isLoading  , isError , data:userexamsList } = useQuery({
+    queryKey : ['userexamsList'],
+    queryFn : getUserExamsList
+  });
+
+  console.log(userexamsList);
+  if (isLoading) {
+    return <LoadingPage />
+  }
   return (
     <div>
         <Navbar />
@@ -30,19 +46,8 @@ export default function Exam() {
                   <Search />
                   <Filter />
                 </div>
-                <div  className=' flex flex-wrap gap-3 mt-3  '>
-                {
-                  data.map((item,i)=>(
-                  <ExamTableSm key={i} index={i} />
-                  ))
-                }
-                </div>
                 <div>
-                  <ExamTableXl data={data} />
-                </div>
-                <div className='w-full flex p-6 justify-between'>
-                <button className='font-medium text-xs py-1 rounded-full px-4 text-white bg-black  my-1 xl:hidden'>Back</button>
-                <button className='font-medium text-xs py-1 rounded-full px-4 text-white bg-black  my-1 xl:hidden'>Next</button>
+                  <ExamTableXl data={userexamsList} result={userResultsList} />
                 </div>
             </motion.div>
         </div>
