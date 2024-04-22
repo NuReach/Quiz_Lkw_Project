@@ -6,6 +6,7 @@ import { deleteCourse } from '../../Api/CourseApi';
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { deleteQuestion } from '../../Api/QuestionApi';
+import { deleteNotification } from '../../Api/NotificationApi';
 
 export default function Dailog({setModal,modal,content}) {
 
@@ -25,6 +26,10 @@ export default function Dailog({setModal,modal,content}) {
             await questionDeleteFunc(content);
             setModal(!modal);
         }
+        if (content.name == 'notification'){
+            await notificationsDeleteFunc(content);
+            setModal(!modal);
+        }
     };
 
     const { mutateAsync : courseDeleteFunc     } = useMutation({
@@ -42,6 +47,17 @@ export default function Dailog({setModal,modal,content}) {
         onSuccess : ()=>{
         toast.success("Question Deleted Successfully");
         queryClient.invalidateQueries(['searchQuestions'])
+        },
+        onError : ()=>{
+            toast.error("Please feild the corect information")
+        }
+    })
+
+    const { mutateAsync : notificationsDeleteFunc     } = useMutation({
+        mutationFn : deleteNotification,
+        onSuccess : ()=>{
+        toast.success("Notification Deleted Successfully");
+        queryClient.invalidateQueries(['notifications'])
         },
         onError : ()=>{
             toast.error("Please feild the corect information")

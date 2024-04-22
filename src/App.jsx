@@ -27,6 +27,9 @@ import AnswerPreview from "./pages/AnswerPreview"
 import TeacherAnswerPreview from "./pages/TeacherAnswerPreview"
 import NotFoundPage from "./pages/NotFoundPage"
 import CoursePage from "./pages/CoursePage"
+import AdminUserPage from "./pages/Admin/AdminUserPage"
+import AdminNotificationPage from "./pages/Admin/AdminNotificationPage"
+import NotificationList from "./pages/Admin/NotificationList"
 
 function App() {
   const queryClient = new QueryClient();
@@ -88,8 +91,13 @@ function RoutesWithAnimation() {
               <Route path="/teacher/exam/answer/preview" element={<TeacherAnswerPreview />} />
             </Route>
 
-            <Route path="*" element={<NotFoundPage />} />
+            <Route element={<AdminRouter />}>
+              <Route path="/admin/notification/page" element={<AdminNotificationPage />} />
+              <Route path="/admin/user/page" element={<AdminUserPage />} />
+            </Route>
 
+            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/notifications/list/page" element={<NotificationList />} />
       </Routes>
     );
   }

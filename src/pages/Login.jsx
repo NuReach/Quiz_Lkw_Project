@@ -20,7 +20,7 @@ export default function Login() {
         }else if (userData && userData.role == "user"){
             navigate("/");
         }else{
-            console.log("Not Login");
+            navigate("/admin/notification/page");
         }
     }
 
