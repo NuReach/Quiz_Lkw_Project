@@ -1,7 +1,6 @@
 import React from 'react'
 
 export default function ProfileCard({user}) {
-  console.log(user.image_url);
   return (
     <div className='border rounded-lg shadow-lg p-3 w-full sm:w-60 md:w-72 lg:w-80 xl:w-96'>
         <div className='text-sm uppercase font-bold'>

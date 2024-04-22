@@ -25,7 +25,7 @@ export default function InformationDetail({user}) {
             );
             const data = await response.json();
             setImageUrl(data.secure_url);
-            await updateUserMutation({name:user.name,email:user.email,id:user.id,role:user.role,user_image:data.secure_url})
+            await updateUserMutation({name:user?.name,email:user?.email,id:user?.id,role:user?.role,user_image:data.secure_url})
             setLoading(false);
           } catch (error) {
             console.error('Error uploading image: ', error);

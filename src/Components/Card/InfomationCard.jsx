@@ -4,12 +4,12 @@ import { toast } from 'sonner';
 import { updateUserApi } from '../../Api/Authentication';
 
 export default function InfomationCard({user}) {
-    const [name,setName] = useState(user.name);
-    const [email,setEmail] = useState(user.email);
+    const [name,setName] = useState(user?.name);
+    const [email,setEmail] = useState(user?.email);
     const queryClinet = useQueryClient();
     const save = async (e)=>{
         e.preventDefault();
-        await updateUserMutation({name,email,id:user.id,role:user.role,user_image:user.user_image})
+        await updateUserMutation({name,email,id:user.id,role:user.role,user_image:user?.user_image})
     }
     const { mutateAsync : updateUserMutation , isPending    } = useMutation({
         mutationFn : updateUserApi,

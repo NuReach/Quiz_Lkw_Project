@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Navbar from '../Components/Navbar/Navbar'
 import Footer from '../Components/Footer/Footer'
 import Sidebar from '../Components/Sidebar/Sidebar'
@@ -13,10 +13,16 @@ import { useQuery } from '@tanstack/react-query'
 import LoadingPage from './LoadingPage'
 
 export default function Profile() {
+  const [token,setToken] = useState("");
+
+  useEffect(()=>{
+    const userData = JSON.parse(localStorage.getItem('userData'));
+    setToken( userData?.token)
+  },[])
 
   const { isLoading  , isError , data:user } = useQuery({
     queryKey : ['user'],
-    queryFn : ()=>getUser()
+    queryFn : getUser
   });
 
 

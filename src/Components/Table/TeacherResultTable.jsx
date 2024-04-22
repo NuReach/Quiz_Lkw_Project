@@ -26,7 +26,7 @@ export default function TeacherResultTable({id}) {
                 <Link to={`/teacher/exam/answer/preview?exam=${item.exam.id}&user=${item.user.id}`} key={i} className='font-medium text-xs flex justify-between py-6 border-b cursor-pointer'>
                     <p className='sm:w-36 line-clamp-1'>{item?.user.name}</p>
                     <p className='sm:w-36'>{item?.correct}/{item?.state}</p>
-                    <p className='sm:w-14'>{item?.score}%</p>
+                    <p className='sm:w-14'>{item?.score.toFixed(2)}%</p>
                     {
                         item?.grade == 'A' ?
                         <div className='sm:w-20  text-white p-1 rounded-full text-center bg-green-500 ' >A</div> :

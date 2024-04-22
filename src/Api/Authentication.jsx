@@ -1,7 +1,8 @@
 import axios from "axios";
 
+
 const user = JSON.parse(localStorage.getItem('userData'));
-const token = user?.token;
+const token = user.token;
 
 export const loginApi = async (data) => {
     try {
@@ -26,13 +27,14 @@ export const loginApi = async (data) => {
     }
   }
 
-  export const getUser = async (user_token) => {
+  export const getUser = async () => {
     try {
         const response = await axios.get(`http://127.0.0.1:8000/api/user`, {
             headers: {
-                'Authorization': `Bearer ${user_token}` , 
+                'Authorization': `Bearer ${token}` , 
             }
         });
+        console.log(response.data);
         return response.data;
     } catch (error) {
         console.error('Error fetching data:', error);

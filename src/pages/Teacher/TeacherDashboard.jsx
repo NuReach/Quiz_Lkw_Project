@@ -1,4 +1,4 @@
-import React, { Suspense } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import TeacherNavbar from '../../Components/Navbar/TeacherNavbar'
 import Footer from '../../Components/Footer/Footer'
 import TeacherSidebar from '../../Components/Sidebar/TeacherSidebar'
@@ -14,8 +14,10 @@ import { getTeachDashboardDetail } from '../../Api/TeacherDashboardApi'
 import { useQuery } from '@tanstack/react-query'
 import Loading from '../../Components/Loading/Loading'
 import LoadingPage from '../LoadingPage'
+import { getUser } from '../../Api/Authentication'
 
 export default function TeacherDashboard() {
+
   const { isLoading:dataLoading  , data:data } = useQuery({
         queryKey : ['teacherDashboardDetail'],
         queryFn : ()=>getTeachDashboardDetail()
@@ -23,7 +25,8 @@ export default function TeacherDashboard() {
       
   const { isLoading:userLoading  , data:user } = useQuery({
     queryKey : ['user'],
-    queryFn : ()=>getUser()
+    queryFn : getUser,
+    cacheTime : 0,
   });
    if (userLoading) {
      return <>

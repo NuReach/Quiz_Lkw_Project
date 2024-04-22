@@ -29,9 +29,6 @@ export default function ResultTableXl({data}) {
                 </div>
             ))
         }
-        <div className='w-full flex justify-end'>
-            <button className='font-medium text-xs py-1 rounded-md px-4 text-white bg-black  my-1 hidden xl:block'>Next</button>
-        </div>
     </div>
     )
 }

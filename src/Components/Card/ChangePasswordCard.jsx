@@ -13,7 +13,7 @@ export default function ChangePasswordCard({user}) {
         if (confirmPw != newPw) {
             toast.error('Password does not match');  
         }else{
-            await updatePasswordMutation({currentPw,newPw,id:user.id})
+            await updatePasswordMutation({currentPw,newPw,id:user?.id})
         }
     }
     const { mutateAsync : updatePasswordMutation , isPending    } = useMutation({

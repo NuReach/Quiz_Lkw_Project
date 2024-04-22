@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import NotificationDiv from './NotificationDiv';
 import { useQuery } from '@tanstack/react-query';
@@ -12,11 +12,13 @@ export default function TeacherNavbar() {
       e.preventDefault();
       setNoti(!noti);
     }
+
+
     const { isLoading  , isError , data:user } = useQuery({
       queryKey : ['user'],
-      queryFn : ()=>getUser()
+      queryFn : getUser
     });
-    return (
+    return ( 
       <nav className='bg-black flex justify-between items-center px-6  '>
           <Link to={"/teacher/dashboard"}>
             <img className='w-24' src="https://upload.wikimedia.org/wikipedia/commons/0/08/Limkokwing_Corporate_Logo_2018.png" alt="" />
