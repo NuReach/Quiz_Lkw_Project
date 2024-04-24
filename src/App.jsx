@@ -30,6 +30,7 @@ import CoursePage from "./pages/CoursePage"
 import AdminUserPage from "./pages/Admin/AdminUserPage"
 import AdminNotificationPage from "./pages/Admin/AdminNotificationPage"
 import NotificationList from "./pages/Admin/NotificationList"
+import AdminUserCreatePage from "./pages/Admin/AdminUserCreatePage"
 
 function App() {
   const queryClient = new QueryClient();
@@ -94,6 +95,7 @@ function RoutesWithAnimation() {
             <Route element={<AdminRouter />}>
               <Route path="/admin/notification/page" element={<AdminNotificationPage />} />
               <Route path="/admin/user/page" element={<AdminUserPage />} />
+              <Route path="/admin/user/create/page" element={<AdminUserCreatePage />} />
             </Route>
 
             <Route path="*" element={<NotFoundPage />} />

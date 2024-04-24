@@ -65,15 +65,30 @@ export const loginApi = async (data) => {
   }
 
   export const updatePasswordApi = async (state)=>{
-    const current_password = state.currentPw;
-    const new_password = state.newPw;
-    const id = state.id;
+      const current_password = state.currentPw;
+      const new_password = state.newPw;
+      const id = state.id;
+      try {
+        const response = await axios.post(`http://127.0.0.1:8000/api/update/password/${id}`, 
+        {
+          current_password,
+          new_password
+        },
+        {
+            headers: {
+                'Authorization': `Bearer ${token}` , 
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error Update data:', error);
+        throw error; // Rethrow the error to handle it in the caller function
+    }
+  }
+
+  export const getAllUserApi = async(search,sortBy,sortDir,page )=>{
     try {
-      const response = await axios.post(`http://127.0.0.1:8000/api/update/password/${id}`, 
-      {
-        current_password,
-        new_password
-      },
+      const response = await axios.get(`http://127.0.0.1:8000/api/get/all/users/${search}/${sortBy}/${sortDir}?page=${page}`, 
       {
           headers: {
               'Authorization': `Bearer ${token}` , 
