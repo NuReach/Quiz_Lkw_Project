@@ -19,7 +19,7 @@ export default function AdminUserPage() {
   const queryParams = new URLSearchParams(location.search);
   const page= queryParams.get('page');
   const dispatch = useDispatch();
-  const [sort,setSort] = useState({sortBy:"created_at",sortDir:"asc"});
+  const [sort,setSort] = useState({sortBy:"created_at",sortDir:"desc"});
   const search = useSelector((state)=>state.function.search);
 
   
@@ -57,7 +57,7 @@ export default function AdminUserPage() {
                 </div>
                </div>
                 <div className='flex items-center justify-between flex-wrap'>
-                  <Search />
+                  <Search name="user" />
                 </div>
                 <div>
                   {/* <ExamTableXl data={userexamsList} result={userResultsList} /> */}

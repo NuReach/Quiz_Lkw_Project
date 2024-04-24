@@ -42,14 +42,15 @@ export const loginApi = async (data) => {
   }
 
   export const updateUserApi = async (state)=>{
-    const { name , email , id  , user_image , role } = state;
+    const { name , email , id  , user_image , role , password } = state;
     try {
           const response = await axios.post(`http://127.0.0.1:8000/api/update/user/${id}`, 
           {
             name,
             email,
             user_image,
-            role
+            role,
+            password
 
           },
           {
@@ -102,9 +103,47 @@ export const loginApi = async (data) => {
   }
 
   export const deleteUserAPi = async (state)=>{
-    console.log(state.id);
     try {
-      const response = await axios.delete(`http://127.0.0.1:8000/api/users/delete/${state.id}`, 
+        const response = await axios.delete(`http://127.0.0.1:8000/api/users/delete/${state.id}`, 
+        {
+            headers: {
+                'Authorization': `Bearer ${token}` , 
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error Update data:', error);
+        throw error; // Rethrow the error to handle it in the caller function
+    }
+  }
+
+  export const createUserApi = async (state) =>{
+    try {
+      const response = await axios.post(`http://127.0.0.1:8000/api/register`, 
+      {
+        name : state.name,
+        email : state.email,
+        role : state.role,
+        password : state.password,
+        image_url : null,
+      }
+      ,
+      {
+          headers: {
+              'Authorization': `Bearer ${token}` , 
+          }
+      });
+      return response.data;
+  } catch (error) {
+      console.error('Error Update data:', error);
+      throw error; // Rethrow the error to handle it in the caller function
+  }
+  }
+
+  
+  export const getAllUserByIdApi = async(id)=>{
+    try {
+      const response = await axios.get(`http://127.0.0.1:8000/api/user/${id}`, 
       {
           headers: {
               'Authorization': `Bearer ${token}` , 

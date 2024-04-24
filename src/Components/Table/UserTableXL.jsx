@@ -43,7 +43,7 @@ export default function UserTableXL({data}) {
                     <p className='lg:w-28 lg:block hidden font-medium text-gray-600 line-clamp-1'>{item.role}</p>
                     <div className='lg:w-48 flex justify-end w-24 capitalize gap-3'>  
                     <button onClick={(e)=>show(e,item.id,"users")} className='font-medium text-xs py-1 rounded-full px-4 text-white bg-red-500 w-fit  my-1'>Delete</button> 
-                    <Link to={`/teacher/exam/update/${item.id}`} className='font-medium text-center text-xs py-1 rounded-full px-4 text-white bg-black   my-1 w-fit'>Edit</Link>
+                    <Link to={`/admin/user/update/${item.id}`} className='font-medium text-center text-xs py-1 rounded-full px-4 text-white bg-black   my-1 w-fit'>Edit</Link>
                     </div>
                 </div>
             )):

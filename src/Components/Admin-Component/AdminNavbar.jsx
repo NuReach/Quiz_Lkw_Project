@@ -20,7 +20,7 @@ export default function AdminNavbar() {
     });
     return ( 
       <nav className='bg-black flex justify-between items-center px-6  '>
-          <Link to={"/teacher/dashboard"}>
+          <Link to={"/admin/profile"}>
             <img className='w-24' src="https://upload.wikimedia.org/wikipedia/commons/0/08/Limkokwing_Corporate_Logo_2018.png" alt="" />
           </Link>
           <div className='flex space-x-3  items-center'>
