@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import Pagination from '../Pagination/Pagination';
 import { AnimatePresence } from 'framer-motion';
+import Dailog from '../Card/Dailog';
 
 export default function UserTableXL({data}) {
     const navigate = useNavigate();
@@ -19,7 +20,7 @@ export default function UserTableXL({data}) {
       <div className='p-6 mt-3 border rounded-lg shadow-lg '>
         <AnimatePresence>
         {
-            modal ? <Dailof setModal={setModal} modal={modal} content = {content}  /> : ""
+            modal ? <Dailog setModal={setModal} modal={modal} content = {content}  /> : ""
         }
         </AnimatePresence>
           <header className='font-bold text-sm flex justify-between'>

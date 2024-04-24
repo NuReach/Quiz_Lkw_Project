@@ -7,6 +7,7 @@ import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { toast } from 'sonner';
 import { deleteQuestion } from '../../Api/QuestionApi';
 import { deleteNotification } from '../../Api/NotificationApi';
+import { deleteUserAPi } from '../../Api/Authentication';
 
 export default function Dailog({setModal,modal,content}) {
 
@@ -30,6 +31,11 @@ export default function Dailog({setModal,modal,content}) {
             await notificationsDeleteFunc(content);
             setModal(!modal);
         }
+        if (content.name == 'users'){
+            await deleteUserMutation(content);
+            setModal(!modal);
+        }
+
     };
 
     const { mutateAsync : courseDeleteFunc     } = useMutation({
@@ -63,6 +69,18 @@ export default function Dailog({setModal,modal,content}) {
             toast.error("Please feild the corect information")
         }
     })
+
+    const { mutateAsync : deleteUserMutation     } = useMutation({
+        mutationFn : deleteUserAPi,
+        onSuccess : ()=>{
+        toast.success("User Deleted Successfully");
+        queryClient.invalidateQueries(['users'])
+        },
+        onError : ()=>{
+            toast.error("Please feild the corect information")
+        }
+    })
+
 
     const mountElemet = document.getElementById("modal");
   return createPortal(
