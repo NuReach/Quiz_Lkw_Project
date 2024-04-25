@@ -1,5 +1,5 @@
 
-export default function SmallTask() {
+export default function SmallTask({data}) {
   return (
     <div className='w-full hidden p-6 shadow-lg rounded-lg border sm:block sm:w-60 mt-6 lg:w-80 xl:hidden'>
                                 <div className=' flex justify-between items-center'>

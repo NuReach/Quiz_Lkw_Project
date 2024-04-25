@@ -101,7 +101,8 @@ function RoutesWithAnimation() {
             </Route>
 
             <Route path="*" element={<NotFoundPage />} />
-            <Route path="/notifications/list/page" element={<NotificationList />} />
+            <Route path="
+            " element={<NotificationList />} />
       </Routes>
     );
   }

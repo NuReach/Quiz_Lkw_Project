@@ -22,9 +22,15 @@ ChartJS.register(
 );
 
 
-export default function Perfomance() {
-  const tests = ["test1", "test2","test3", "test4","test5", "test6"];
-  const scores = [3,100,80,50,80,69]
+export default function Perfomance({results}) {
+  const choiceResults = results?.map(result => (
+    (result.correct_choices_count / result.total_choices_count) * 100
+  ));
+  const resultTitle = results?.map((result)=>(
+    result.exam_id
+  ))
+  const tests = resultTitle;
+  const scores = choiceResults
   const data = {
     labels: tests,
     datasets: [
@@ -54,8 +60,8 @@ export default function Perfomance() {
   return (
     <div className='w-full  p-6 shadow-lg rounded-lg border sm:w-60  lg:w-80'>
     <p className='font-bold text-lg w-fit'>Performance </p>
-    <div className='w-11/12 h96 '>
-      <Line options={options} data={data} />
+    <div className='w-11/12 '>
+      <Line height={120} options={options} data={data} />
     </div>
     </div>
   )

@@ -1,8 +1,8 @@
 import React from 'react'
 import { CircularProgressbar } from 'react-circular-progressbar'
 
-export default function LastTest() {
-  const percentage = 66;
+export default function LastTest({data}) {
+  const percentage = ((data[0]?.correct_choices_count / data[0]?.total_choices_count) * 100).toFixed(2);
   return (
     <div className='w-full p-6 shadow-lg rounded-lg border sm:w-60 lg:w-80 h-fit xl:h-full '>
     <p className='font-bold text-lg'>Last Tests</p>
@@ -54,10 +54,10 @@ export default function LastTest() {
             />
         </div>
         <div>
-            <p className='text-xs font-bold'>Sotfware Requirement</p>
-            <p className='text-gray-500 font-medium text-xs mt-2'>[85 marks]</p>
-            <p className='text-gray-500 font-medium text-xs mt-2'>15/02/2024</p>
-            <p className='text-gray-500 font-medium text-xs mt-2'>2 hours</p>
+            <p className='text-xs font-bold capitalize'>{data[0]?.exam_title}</p>
+            <p className='text-gray-500 font-medium text-xs mt-2 capitalize'>{data[0]?.course_title}</p>
+            <p className='text-gray-500 font-medium text-xs mt-2'>[{percentage}%]</p>
+            <p className='text-gray-500 font-medium text-xs mt-2'>{data[0]?.created_at.slice(0,10)}</p>
         </div>
     </div>
 </div>

@@ -16,3 +16,17 @@ export const getTeachDashboardDetail = async () => {
         throw error; // Rethrow the error to handle it in the caller function
     }
 }
+
+export const getUserDashbooardApi = async () => {
+    try {
+        const response = await axios.get(`http://127.0.0.1:8000/api/user/dashboard/${user.user_id}`, {
+            headers: {
+                'Authorization': `Bearer ${token}` , 
+            }
+        });
+        return response.data;
+    } catch (error) {
+        console.error('Error fetching data:', error);
+        throw error; // Rethrow the error to handle it in the caller function
+    }
+}
